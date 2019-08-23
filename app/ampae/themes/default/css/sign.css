@@ -1,0 +1,68 @@
+/*
+ * <codeheader>
+ * <name>ChinaTown</name>
+ * <version>5.1.1</version>
+ * <description>User Registration and Management LAMP SaaS FrameWork. Secure, Fast, Small and Light.</description>
+ * <base>https://ampae.com/chinatown/</base>
+ * <author>V Bugroff</author>
+ * <email>bugroff@protonmail.com</email>
+ * <author>M Karodine</author>
+ * <email>usr04@protonmail.com</email>
+ * <copyright file="LICENSE.txt" company="AMPAE">
+ * THIS CODE ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
+ * A PARTICULAR PURPOSE.
+ * </copyright>
+ * <date>2019-01-01</date>
+ * <summary>
+ * CSS Script File
+ * </summary>
+ * </codeheader>
+*/
+body {
+    background: url('../../../../../shared/img/bg2.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+main {
+  margin:0;
+  padding:0;
+  min-height: calc(100vh);
+  background: transparent url('../../../../../shared/img/pattern.png') repeat top left fixed;
+}
+
+.error {
+  color: #99182c;
+  margin: 5px;
+  font-size: .85em;
+}
+input.error {
+    border:1px dashed #99182c;
+}
+label.error {
+  display: inline;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  padding:1px 20px 1px 20px;
+}
+.label-default {
+  color: #024355 !important;
+  background-color: #73bec4 !important;
+}
+
+/*
+  form i {
+    left: 20px;
+    top: 37px;
+    border: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    float: left;
+    color: #fff;
+  }
+*/
