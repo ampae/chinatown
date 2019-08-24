@@ -1,9 +1,8 @@
 *.log
+*.ini
 
 /log/
 /upload/
 
 /.htaccess
 /license.txt
-
-
