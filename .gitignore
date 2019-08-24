@@ -1,0 +1,9 @@
+*.log
+
+/log/
+/upload/
+
+/.htaccess
+/license.txt
+
+
