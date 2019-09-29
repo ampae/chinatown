@@ -26,6 +26,14 @@ class View
      */
     public function __construct()
     {
+        //global $alerts,$local,$view,$theme;
+      //$view->open();
+    }
+
+    public function __destruct()
+    {
+        //global $alerts,$local,$view,$theme;
+        //$view->close();
     }
 
     public function headers()

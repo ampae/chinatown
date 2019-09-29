@@ -20,7 +20,7 @@
  * </codeheader>
 */
 body {
-    background: url('../../../../../shared/img/bg2.jpg') no-repeat center center fixed;
+    background: url('../../../../../assets/img/bg2.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -31,7 +31,7 @@ main {
   margin:0;
   padding:0;
   min-height: calc(100vh);
-  background: transparent url('../../../../../shared/img/pattern.png') repeat top left fixed;
+  background: transparent url('../../../../../assets/img/pattern.png') repeat top left fixed;
 }
 
 .error {

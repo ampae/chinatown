@@ -57,7 +57,7 @@
    public function index()
    {
      global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
-     $tmpLibPath = ABSPATH.PATH_LIBS.'php'.DIRECTORY_SEPARATOR;
+     $tmpLibPath = ABSPATH.PATH_LIBS.DIRECTORY_SEPARATOR.'php'.DIRECTORY_SEPARATOR;
      require_once realpath($tmpLibPath . 'iso3166.php');
      require_once realpath($tmpLibPath . 'timezones.php');
 ?>

@@ -40,7 +40,7 @@ class At
         global $model, $view, $sign, $auth, $office;
 
         //if ($office->can()) {
-        $val5 = $model->appinfo['url'].PATH_LIBS.'jquery/jquery.flot.min.js';
+        $val5 = $model->appinfo['url'].PATH_LIBS.'/jquery/jquery.flot.min.js';
         $view->addScript('HEAD', $val5);
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admchart.js';
         $view->addScript('HEAD', $val4);

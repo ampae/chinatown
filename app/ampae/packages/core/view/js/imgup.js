@@ -26,7 +26,7 @@ jQuery(function($) {
                 alert('Not supported');
             } else {
                 $("#co-post-img").html( $("input[name*='iid']").val() );
-                $("#preview").html('');$("#preview").html('<img src="shared/img/loader.gif" alt="Uploading..."/>');
+                $("#preview").html('');$("#preview").html('<img src="assets/img/loader.gif" alt="Uploading..."/>');
                 $("#imageform").ajaxForm({target: '#preview'}).submit();
             }
         } else {

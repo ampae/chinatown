@@ -52,7 +52,7 @@ class Avatar
         $image_width   = 100;
         $image_height  = 100;
 
-        $ttf_file      = ABSPATH.''.DIR_SHARED.'/fonts/'.$tmp_font;
+        $ttf_file      = ABSPATH.''.DIR_ASSETS.'/fonts/'.$tmp_font;
 
         putenv('GDFONTPATH=' . $ttf_file);
 
@@ -96,7 +96,7 @@ class Avatar
         if (file_exists($tmpAvaFile)) {
             $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_UPLOADS.'/'.$uid.'.png';
         } else {
-            $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_SHARED.'/img/user.png';
+            $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_ASSETS.'/img/user.png';
         }
         return $tmpAvaFileUrl;
     }
@@ -108,7 +108,7 @@ class Avatar
         if (file_exists($tmpAvaFile)) {
             $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_UPLOADS.'/'.$uid.'.png';
         } else {
-            $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_SHARED.'/img/user.png';
+            $tmpAvaFileUrl = $model->appinfo['url'].''.DIR_ASSETS.'/img/user.png';
         }
         echo $html->img($tmpAvaFileUrl, 'avatar', $size, $size);
     }

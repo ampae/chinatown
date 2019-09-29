@@ -10,17 +10,17 @@
 <?php
 $view->renderMeta();
 ?>
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_SHARED; ?>/img/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
 
-<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].PATH_LIBS; ?>fa-5/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/fa-5/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/css/styles.css" />
 
 <?php
 $view->renderStyles();
 ?>
-<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>jquery/jquery.min.js"></script>
+<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/jquery/jquery.min.js"></script>
 
-<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>jquery/jquery.form.min.js"></script>
+<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/jquery/jquery.form.min.js"></script>
 
 
 <?php
@@ -59,7 +59,7 @@ if ($auth->is()) {
 ?>
       <div class="headerLogo">
         <a href="<?php echo $model->appinfo['url']; ?>">
-        <img src="<?php echo $model->appinfo['url'].DIR_SHARED; ?>/img/logo-32-w.png" class="img-responsive" alt="" />
+        <img src="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/logo-32-w.png" class="img-responsive" alt="" />
         </a>
       </div>
 

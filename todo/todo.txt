@@ -1,6 +1,22 @@
+0. all config to ini
+1. install
+
+2. sessions
+3. remember me
+4. AC
+
+split core and other packages..
+
+--Base Structure?
+
+<script type="text/javascript">
+var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+</script>
+
+Reset.style.background = " url('"+templateUrl+"/images/searchfield_clear.png') ";
 
 POST MODEL if redirect not set it must die!!!
-GET VIEW - if redirect, if no 
+GET VIEW - if redirect, if no
 
 ~. bring back session auth, redo device based auth to work as "remember me", make it part of the config.
 ~. change OTP to AC (access code), add table to store ALL codes ever given.. last sent code should be treated as password.

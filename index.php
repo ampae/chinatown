@@ -44,8 +44,8 @@ if (extension_loaded('mbstring')) {
 }
 
 /*
- * Basic PHP environment setup
- *
+ * Basic PHP environment setup !!! to config !!!
+ * add loop !!!
  */
 ini_set('magic_quotes_runtime', 'off');
 ini_set('register_globals', 'off');
@@ -65,9 +65,11 @@ if (DEBUG_MODE) {
     error_reporting(0);
 }
 
+/*
 if ( DEBUG_MODE && !in_array('mod_rewrite', apache_get_modules()) ) {
   die('Error: mod_rewrite required! Exiting.');
 }
+*/
 
 /**
  * Load main that does it all like load libraries and classes etc.

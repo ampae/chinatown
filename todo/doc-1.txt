@@ -1,0 +1,26 @@
+BackEnd Structure Design.
+.MVC - CT uses MVC structure.
+.CRUD - Models use CRUD structure to simplify everything. 
+.REST Lite - CT also utilize simplified REST Lite (only support GET and POST) approach and split events based on Server Call Method that make easy to call a class based on such method. There's no hard dependance on type of opperation for each method, that is up to developer.
+.Vendors - 
+.Autoload - CT uses standard PHP autoload feature. Each Vendor may have it's own autoload across all packages
+.Packages - Each Vendor can create unlimited number of packages that may contain unlititd number of classes.
+.Translation - Each Vendor can add/extend translation of any word or phrase using CT core translation feature.
+
+Composer.
+CT doesn't use composer as there's no dependances to handle, CT is complete and consistent Framework that contain everything needed. CT has it's own Update manager that take care of any missing files/classes or extensions.
+
+Autoload used without composer. We don't plan to add support for Composer in the future.
+
+Namespaces.
+CT uses Namespace for all it's core, vendor, and plugin casses, Vendor is always a prefix.
+
+Config Files.
+CT uses INI type of config files. We have choose INI over "standard" DEFINE for number of reasons, you can see discussion in here..
+
+Installation.
+CT uses embedded installation system. We can't rely on an external installers as such installer must be avare of the CT BackEnd Structure Design.
+
+
+
+
