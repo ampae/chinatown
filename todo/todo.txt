@@ -1,5 +1,19 @@
-0. all config to ini
-1. install
+Packages!!!
+. --event controllers ->
+.. ++event model/get model/Post
+. --event view, event model set everything for the view !
+.. ++view as db & textfile with shortcodes for forms !!! and whatever data?
+.. ++view single html template with php for head, aside, main etc..
+. ++default page page_type
+. ++default redirect
+== --controllers, --models -> events/post|get , view -> txt files !!! --view/js -> --view/aside !!! pack/lib/js
+rebuild core/lib/view.php
+
+
+1. install nested, db -> admin ..
+.. check if admin at least one is set !!!
+.. separate db, cookies, admin
+.. 3 functions.. check cookies if not do it.., check db-//-, check admin
 
 2. sessions
 3. remember me
@@ -15,7 +29,7 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 
 Reset.style.background = " url('"+templateUrl+"/images/searchfield_clear.png') ";
 
-POST MODEL if redirect not set it must die!!!
+POST MODEL if redirect not set it must die!!! config set def?
 GET VIEW - if redirect, if no
 
 ~. bring back session auth, redo device based auth to work as "remember me", make it part of the config.
@@ -53,6 +67,9 @@ GET VIEW - if redirect, if no
 . + config - app_use_default_method..
 . + config - controller_method_strict - use folder controller in addition with method controller
 
+MAIN_ADMIN_EMAIL
+
+0. finalize config to ini (menu,iso[2]) MENUS!!!->DB !!!
 
 VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 Structure:

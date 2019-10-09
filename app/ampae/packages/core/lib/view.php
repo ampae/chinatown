@@ -226,7 +226,7 @@ class View
         global $model;
         if (!empty($model->results['EX']['SCRIPT'][$pos])) {
             foreach ($model->results['EX']['SCRIPT'][$pos] as $k) {
-//              $tmp_head_script = $model->appinfo['url'].PATH_LIBS.'/js/'.$k;
+//              $tmp_head_script = $model->appinfo['url'].DIR_LIBS.'/js/'.$k;
 //                $tmp_head_script = $this->getThemePath().'/'.$k;
 //                if (file_exists($tmp_head_script)) {
                 echo "<script type='text/javascript' src='".$k."'></script>\n";
@@ -260,7 +260,7 @@ class View
         global $model;
         if (!empty($model->results['EX']['STYLE'])) {
             foreach ($model->results['EX']['STYLE'] as $k) {
-//                $tmp_head_style = $model->appinfo['url'].PATH_LIBS.'/css/'.$k;
+//                $tmp_head_style = $model->appinfo['url'].DIR_LIBS.'/css/'.$k;
 //                if (file_exists($tmp_head_style)) {
                 echo "<link rel='stylesheet' type='text/css' href='".$k."' />\n";
 //                }

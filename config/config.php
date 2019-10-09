@@ -1,37 +1,23 @@
 <?php
-/**
- * ChinaTown - LAMP SaaS FrameWork.
- * Complete User Registration and Management. Secure, Fast, Small and Light.
- *
- * THIS CODE ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
- * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
- *
- * PHP version 5.4
- *
- * @version    HG: <5.1.1>
- * @category   SaaS RAD LAMP FrameWork.
- * @see        https://ampae.com/chinatown/
- * @author     AMPAE <info@ampae.com>
- * @license    https://ampae.com/chinatown/license.txt
- * @copyright  2009 - 2019 AMPAE
-**/
+/*
+[define]
+DEBUG_MODE=1
+APP_ENCODING=UTF-8
+APP_COOKIE_PREFIX = ct_
+DEF_ADMIN_EMAIL = info@example.com
+DEF_VENDOR=ampae
+DEF_THEME=default
+DIR_APP=app
+DIR_ASSETS=assets
+DIR_LOG=log
+DIR_UPLOADS=uploads
+DIR_PACKS=packages
+DIR_THEMES=themes
+DIR_LIB=lib
 
-define('DEBUG_MODE', true);
-define('APP_ENCODING', 'UTF-8');
-define('DEF_VENDOR', 'ampae');
-define('DEF_THEME', 'default');
-define('APP_COOKIE_PREFIX', 'ct');
-
-// --- PATH ---
-define('DIR_APP', 'app');
-define('DIR_ASSETS', 'assets');
-define('PATH_LIBS', 'libs');
-define('DIR_LOG', 'log');
-define('DIR_UPLOADS', 'uploads');
-
-define('DIR_PACKS', 'packages');
-define('DIR_THEMES', 'themes');
-
-define('DIR_LIB', 'lib');
-// config,install,loc,js,
+[php_ini_set]
+magic_quotes_runtime=off
+register_globals=off
+memory_limit=64M
+max_execution_time=300
+*/

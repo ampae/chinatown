@@ -1,2 +1,7 @@
 <?php
-define('CCID', 'ct709a3f1111');
+//autoconfig
+/*
+
+[define]
+CCID=ct_9a3f22530790
+*/

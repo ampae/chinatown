@@ -364,14 +364,13 @@ class Theme
 
         echo $html->formOpen(
             // $model->appinfo['url'].'install/process?nonce='.$nonce->gen(),
-                        $model->appinfo['url'].'install/process',
+            $model->appinfo['url'].'install/process',
             'POST',
             $id.'-form',
             'co-form',
             '',
             '',
-            ''
-                    );
+            '');
 
         echo '<legend><i class="fa fa-sign-in icon-large"></i> <strong>'.$local->translate('install').'</strong></legend><br />';
 
@@ -382,6 +381,8 @@ class Theme
             }
             echo $html->formField($tmpFtype, $tmpKey, 'form-control', 'envelope-o', $local->translate($tmpKey), $tmpVal);
         }
+
+        echo $html->formField('email', 'email', 'form-control', 'user-o', $local->translate('admin'), '');
 
         echo $html->formClose(
             $local->translate('setup'),

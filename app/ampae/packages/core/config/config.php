@@ -1,33 +1,30 @@
 <?php
-/**
- * ChinaTown - LAMP SaaS FrameWork.
- * Complete User Registration and Management. Secure, Fast, Small and Light.
- *
- * THIS CODE ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
- * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
- *
- * PHP version 5.4
- *
- * @version    HG: <5.1.1>
- * @category   SaaS RAD LAMP FrameWork.
- * @see        https://ampae.com/chinatown/
- * @author     AMPAE <info@ampae.com>
- * @license    https://ampae.com/chinatown/license.txt
- * @copyright  2009 - 2019 AMPAE
-**/
+/*
+ampae[] = controller
+ampae[] = logger
+ampae[] = basic
+ampae[] = cookies
+ampae[] = session
+ampae[] = nonce
+ampae[] = alerts
+ampae[] = pdo
+ampae[] = db
+ampae[] = smreca
+ampae[] = smrecb
+ampae[] = model
+ampae[] = usr
+ampae[] = devices
+ampae[] = auth
+ampae[] = sign
+ampae[] = mvc
+ampae[] = options
+ampae[] = media
+ampae[] = local
+ampae[] = menu
+ampae[] = http
+ampae[] = view
+ampae[] = html
+ampae[] = email
 
-global $tmpGlobalConfig;
 
-$tmpGlobalConfig[DIR_LIB]['ampae'] = array (
-      'controller',
-      'logger', 'basic', 'cookies',
-      'session', 'nonce', 'alerts', 'pdo', 'db',
-      'smreca', 'smrecb', 'model',
-      'usr',
-      'devices', 'auth', 'sign',
-      'mvc', 'options', 
-      'media', 'local', 'menu',
-      'http', 'view', 'html',
-      'email',
-);
+*/

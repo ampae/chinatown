@@ -48,7 +48,6 @@ class Db
           'dbpass' => DB1_PASSWORD,
           'dbprefix' => DB1_TABLE_PREFIX,
           'dbcs' => DB1_CHARSET,
-          'email' => MAIN_ADMIN_EMAIL,
         );
 
         $tmp_db1_host = DB1_HOST;

@@ -14,10 +14,10 @@
 
 <?php
 
-//	echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIRECTORY_SEPARATOR.PATH_LIBS.'/jquery/jquery-ui.min.js"></script>';
+//	echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIRECTORY_SEPARATOR.DIR_LIBS.'/jquery/jquery-ui.min.js"></script>';
 
-//    echo '<script type="text/javascript" src="'.$model->appinfo['url'].PATH_LIBS.'/jquery/jquery.form.min.js"></script>';
-    echo '<script type="text/javascript" src="'.$model->appinfo['url'].PATH_LIBS.'/jquery/jquery.validate.min.js"></script>';
+//    echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIR_LIBS.'/jquery/jquery.form.min.js"></script>';
+    echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIR_LIBS.'/jquery/jquery.validate.min.js"></script>';
 
 /*
 if ($auth->is()){

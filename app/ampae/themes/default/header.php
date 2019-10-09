@@ -12,15 +12,15 @@ $view->renderMeta();
 ?>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
 
-<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/fa-5/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/fa-5/css/fontawesome-all.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/css/styles.css" />
 
 <?php
 $view->renderStyles();
 ?>
-<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/jquery/jquery.min.js"></script>
+<script type='text/javascript' src="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/jquery/jquery.min.js"></script>
 
-<script type='text/javascript' src="<?php echo $model->appinfo['url'].PATH_LIBS; ?>/jquery/jquery.form.min.js"></script>
+<script type='text/javascript' src="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/jquery/jquery.form.min.js"></script>
 
 
 <?php

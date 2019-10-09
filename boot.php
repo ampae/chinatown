@@ -67,7 +67,7 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
   foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
 
     // premap mvc
-    $tmpMvcPreIndex = array('controller','get','post','model','view');
+    $tmpMvcPreIndex = array('controller','get','post','model','view'); // !!! add to config !!!
     foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {
       $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
       if ($tmpMvcPreIndexTmp=='get' || $tmpMvcPreIndexTmp=='post') {
@@ -97,7 +97,7 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
 
     $tmpMyUglyTmp2 = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php';
     if (file_exists($tmpMyUglyTmp2)) {
-      include $tmpMyUglyTmp2;
+      $tmpGlobalConfig[DIR_LIB] = readConfig($tmpMyUglyTmp2);
     }
     if (isset($tmpGlobalConfig[DIR_LIB][$tmpVendor])) {
       $tmpClasses = $tmpGlobalConfig[DIR_LIB][$tmpVendor];
@@ -114,7 +114,8 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
         $tmp_psr4_cls = '\\'.$tmp_psr4_ns.ucfirst($tmpClass);
         $tmp_conf = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$tmpClass.'.php';
         if (file_exists($tmp_conf)) {
-            include $tmp_conf;
+            //include $tmp_conf;
+            $tmpGlobalConfig[$tmpVendor][$tmpPack][$tmpClass] = readConfig($tmp_conf);
         }
 
         $tmpLoadStatus = 'failure';
@@ -148,7 +149,7 @@ foreach ($tmpGlobalConfig['instances']['success'] as $tmpSuccessLog) {
 
 if (isset($logger)) {
     $time_start = $logger->getMicrotime();
-    $logger->info('MAIN - All core files loaded; Starting..');
+    $logger->info('MAIN - All libs are loaded; Starting..');
 }
 
 $mvc->controller();

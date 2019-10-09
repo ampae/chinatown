@@ -30,22 +30,22 @@ class Email
 /*
       global $tmpGlobalConfig, $theme;
 
-//    include ABSPATH.PATH_LIBS.'autoload.php';
+//    include ABSPATH.DIR_LIBS.'autoload.php';
 
       $tmpLibNs = 'PHPMailer\\PHPMailer\\';
-      $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpLibNs] = PATH_LIBS.'/php/PHPmailer/';
+      $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpLibNs] = DIR_LIBS.'/php/PHPmailer/';
 
 
       $tmp_lib = '\\'.$tmpLibNs.'PHPMailer';
       $tmpMail = new $tmp_lib();
 
-      require realpath(ABSPATH.PATH_LIBS.'/php/PHPmailer/SMTP.php');
+      require realpath(ABSPATH.DIR_LIBS.'/php/PHPmailer/SMTP.php');
 
       $tmpMail->IsSMTP();
 */
 /*
-      require realpath(ABSPATH.PATH_LIBS.'/php/PHPmailer/PHPMailer.php');
-      require realpath(ABSPATH.PATH_LIBS.'/php/PHPmailer/SMTP.php');
+      require realpath(ABSPATH.DIR_LIBS.'/php/PHPmailer/PHPMailer.php');
+      require realpath(ABSPATH.DIR_LIBS.'/php/PHPmailer/SMTP.php');
       $tmpMail = new PHPMailer\PHPMailer\PHPMailer();
       $tmpMail->IsSMTP();
 */
@@ -73,13 +73,13 @@ class Email
 // php-mailer without autoload !!!
 
             $tmpLibNs = 'PHPMailer\\PHPMailer\\';
-            $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpLibNs] = PATH_LIBS.'/php/PHPmailer/';
+            $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpLibNs] = DIR_LIBS.'/php/PHPmailer/';
 
 
             $tmp_lib = '\\'.$tmpLibNs.'PHPMailer';
             $tmpMail = new $tmp_lib();
 
-            require realpath(ABSPATH.PATH_LIBS.'/php/PHPmailer/SMTP.php');
+            require realpath(ABSPATH.DIR_LIBS.'/php/PHPmailer/SMTP.php');
 
             $tmpMail->IsSMTP();
 

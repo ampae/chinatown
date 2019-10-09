@@ -33,7 +33,12 @@ class Install
     {
         global $tmpGlobalConfig, $controller, $model, $session, $usr, $office, $alerts, $logger;
 
+        // $this->callCookies()
+        // $this->callDb()
+        // $this->callAdmin()
+
         $tmpOk = null;
+        $tmpRedr = 'install';
 
         $tmp_db_host = $controller->post['dbhost'];
         $tmp_db_name = $controller->post['dbname'];
@@ -73,36 +78,45 @@ class Install
             }
         }
 
+
         if ($tmpOk) {
             $sql = '';
 
-            //foreach ($tmpGlobalConfig[DIR_APP] as $tmpVendor => $tmpClasses) {
-            foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
-                $tmpSql = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'install'.DIRECTORY_SEPARATOR.'install'.'.sql';
+foreach ($tmpGlobalConfig['packages'] as $tmpVendor => $tmpPack) {
+  foreach ($tmpPack as $tmpPackItem) {
+    $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
+    $tmpInstallPath = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPackItem.DIRECTORY_SEPARATOR.'install'.DIRECTORY_SEPARATOR;
 
-                if (file_exists($tmpSql)) {
-                    $sql .= file_get_contents($tmpSql);
-                }
-            }
+    $tmpAutoDiscoveredSqls = array_map( 'basename', glob($tmpInstallPath.'*.sql' , GLOB_BRACE) );
+
+    foreach ($tmpAutoDiscoveredSqls as $tmpAutoDiscoveredSqlFile) {
+      $tmpSqlToInstall = $tmpInstallPath.$tmpAutoDiscoveredSqlFile;
+      if (file_exists($tmpSqlToInstall)) {
+          $sql .= file_get_contents($tmpSqlToInstall);
+      }
+    }
+  }
+}
 
             $sql = str_replace("___", $tmp_db_pref, $sql);
 
-            try {
+            if (!empty($sql)) {
+              try {
                 $tmpDb->exec($sql);
-            } catch (PDOException $e) {
+              } catch (PDOException $e) {
                 echo $e->getMessage();
                 die();
+              }
             }
 
-            // $this->createAutoConfig();
-
-            //$xdata->redirect = '';
             $aValid = array('_','-');
             $err_uname = 0;
             $tmp_sup_ul = 32;
             $t = time();
 
-            $bbb = array(
+            $tmpReqWritableConf = array('db','cookies'); // config install !!!
+
+            $tmpReqWritableConfData['db']['define'] = array(
             'DB1_CHARSET' => $tmp_db_chrs,
 
             'DB1_HOST' => $tmp_db_host,
@@ -112,33 +126,21 @@ class Install
             'DB1_TABLE_PREFIX' => $tmp_db_pref,
             );
 
-            $ccc = array(
+            $tmpReqWritableConfData['cookies']['define'] = array(
             'CCID' => APP_COOKIE_PREFIX.'9a3f'.rand(12121212, 89898989),
             );
 
-            $cococo = '<?php';
-            $cococo .= "\n";
+            foreach ($tmpReqWritableConf as $tmpReqWritableConfFile) {
+              $tmpReqWritableConfFilePath = DIR_APP.DIRECTORY_SEPARATOR.DEF_VENDOR.DIRECTORY_SEPARATOR.DIR_PACKS.DIRECTORY_SEPARATOR.'core'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$tmpReqWritableConfFile.'.php';
+              if (file_exists($tmpReqWritableConfFilePath)) {
+                if (is_writable($tmpReqWritableConfFilePath)) {
 
-            $cococo .= "/** Auto-generated base configuration */\n";
+                  createConfig($tmpReqWritableConfFilePath, $tmpReqWritableConfData[$tmpReqWritableConfFile]);
 
-            foreach ($bbb as $ccc => $ddd) {
-                $cococo .= "define('$ccc', '$ddd');\n";
+                }
+              }
             }
 
-//            $cococo .= "";
-//            $cococo .= "\n";
-
-            $tmpConfig = ABSPATH.DIR_CONFIG.DIRECTORY_SEPARATOR.'config-auto.php';
-
-            if (is_writable(ABSPATH.DIR_CONFIG)) {
-                $res = file_put_contents($tmpConfig, $cococo);
-            } else {
-                //echo 'Config File can not be written, make it writable or..'; // !!!
-                //die();
-                $alerts->add('setup', 'CONFIG FILE / DIRECTORY IS NOT WRITABLE');
-            }
-
-            
 
             if (!empty($controller->post['email'])) {
 
@@ -149,15 +151,17 @@ class Install
                 $tmpUid = $this->addAdmin($tmpDb, $tmp_db_pref, 'usr', 'Admin', $tmp_email);
 
                 if ($tmpUid) {
-                    $this->addOffice($tmpDb, $tmp_db_pref, 'office', $tmpUid, $tmp_sup_ul);
+                    //$this->addOffice($tmpDb, $tmp_db_pref, 'office', $tmpUid, $tmp_sup_ul);
+
+                    $tmpRedr = 'welcome';
                 }
                 // $model->redirect = '111';
-            } else {
 
-// $alerts->add('setup2','ERROR: UNKNOWN'); // !!!
-// $model->redirect = 'x';
+            } else {
+              $alerts->add('setup_admin','ERROR: No Admin eMail Specified');
             }
         }
+        $model->redirect = $model->appinfo['url'].$tmpRedr;
     }
 /*
     private function addOffice($tmpDb, $tmp_db_pref, $tbl, $uid, $level)
@@ -171,6 +175,10 @@ class Install
         return $res;
     }
 */
+
+
+
+
 
     private function addAdmin($tmpDb, $tmp_db_pref, $tbl, $name, $email)
     {

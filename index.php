@@ -31,27 +31,19 @@
 /* Absolute path to the application directory. */
 define('ABSPATH', __DIR__.DIRECTORY_SEPARATOR);
 
-/* Default path to the main Application Configuration directory. */
 define('DIR_CONFIG', 'config');
+define('DIR_LIBS', 'libs');
 
-$tmpGlobalConfig = array();
+include ABSPATH.DIR_LIBS.DIRECTORY_SEPARATOR.'php'.DIRECTORY_SEPARATOR.'functions.php';
 
-include ABSPATH.DIR_CONFIG.DIRECTORY_SEPARATOR.'config.php';
+$tmpConfigFile = ABSPATH.DIR_CONFIG.DIRECTORY_SEPARATOR.'config.php';
+
+$tmpGlobalConfig = readConfig($tmpConfigFile);
 
 /* Set Encoding. */
 if (extension_loaded('mbstring')) {
   mb_internal_encoding(APP_ENCODING);
 }
-
-/*
- * Basic PHP environment setup !!! to config !!!
- * add loop !!!
- */
-ini_set('magic_quotes_runtime', 'off');
-ini_set('register_globals', 'off');
-ini_set('memory_limit', '64M');
-ini_set('max_execution_time', 300);
-set_time_limit(0);
 
 /*
  * Error display mode
@@ -65,11 +57,7 @@ if (DEBUG_MODE) {
     error_reporting(0);
 }
 
-/*
-if ( DEBUG_MODE && !in_array('mod_rewrite', apache_get_modules()) ) {
-  die('Error: mod_rewrite required! Exiting.');
-}
-*/
+set_time_limit(0);
 
 /**
  * Load main that does it all like load libraries and classes etc.
