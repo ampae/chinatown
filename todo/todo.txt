@@ -1,22 +1,31 @@
+. devices ++update, delete !!!
+~ finalize office.php , ac.php
+. check ac properly, send/sess_store uid, etc..
+. remember me
+
+1. move from view ALL add/get to htmlset !!!
+
 Packages!!!
-. --event controllers ->
-.. ++event model/get model/Post
+VIEW REDO !!!
 . --event view, event model set everything for the view !
 .. ++view as db & textfile with shortcodes for forms !!! and whatever data?
 .. ++view single html template with php for head, aside, main etc..
 . ++default page page_type
 . ++default redirect
-== --controllers, --models -> events/post|get , view -> txt files !!! --view/js -> --view/aside !!! pack/lib/js
+== view -> txt files !!! --view/js -> --view/aside !!! pack/lib/js
 rebuild core/lib/view.php
 
+?? def cont type appliction/php
+??. install -> sql ???
+. 'state' => config auth !!!
+
+. loc json -> ini !!! === write convert json to ini !!!
 
 1. install nested, db -> admin ..
 .. check if admin at least one is set !!!
 .. separate db, cookies, admin
 .. 3 functions.. check cookies if not do it.., check db-//-, check admin
 
-2. sessions
-3. remember me
 4. AC
 
 split core and other packages..

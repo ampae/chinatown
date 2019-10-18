@@ -50,7 +50,7 @@ class Mvc
 
         $tmpCmethod = strtolower($controller->method);
 
-        $tmpFireController = false;
+        //$tmpFireController = false;
         $tmpFireControllerMethod = false;
 
         if (isset($tmpGlobalConfig['mvc'][$tmpEvent])) {
@@ -59,10 +59,11 @@ class Mvc
 
           $tmpRealEvent = $tmpEvent;
           $tmpRealMethod = $tmpMethod;
-
+/*
           if (isset($tmpGlobalConfig['mvc'][$tmpEvent]['controller'])) {
             $tmpFireController = true;
           }
+*/
           if (isset($tmpGlobalConfig['mvc'][$tmpEvent][$tmpCmethod])) {
             $tmpFireControllerMethod = true;
           }
@@ -73,42 +74,16 @@ class Mvc
           //$tmpPack      = DEF_PACK;
           $tmpRealMethod    = TMP_METHOD; // DEFAULT CLASS METHOD !!!
 
-          $tmpFireController = true;
+          //$tmpFireController = true;
           $tmpFireControllerMethod = true;
         }
 
-
-
-        if ($tmpFireController) {
-
-            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['controller']['vendor'];
-            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['controller']['pack'];
-
-          $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
-
-          $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'controller'.DIRECTORY_SEPARATOR;
-          $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('controller').'\\';
-
-          $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
-          $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
-
-          if (class_exists($tmpCls)) {
-              $appRequest = new $tmpCls();
-              if ($tmpRealMethod && method_exists($appRequest, $tmpRealMethod)) {
-                  $appRequest->$tmpRealMethod();
-              } else {
-                  if (method_exists($appRequest, 'default')) {
-                      $appRequest->default();
-                  }
-              }
-          }
-        }
 
         if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod])) {
           $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['vendor'];
           $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['pack'];
           $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
-          $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'controller'.DIRECTORY_SEPARATOR.$tmpCmethod.DIRECTORY_SEPARATOR;
+          $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.$tmpCmethod.DIRECTORY_SEPARATOR;
           $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst($tmpCmethod).'\\';
           $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
           $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
@@ -130,12 +105,12 @@ class Mvc
 
     public function model()
     {
-        global $controller, $model, $auth, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
+        global $controller, $model, $state, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
 
         $tmpRealEvent = $model->appinfo['app'];
         $tmpMethod    = $model->appinfo['app_mtd'];
 
-        $tmpMeMe = 'model';
+        $tmpMeMe = 'request';
         $tmpFireMe = true;
         if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
           if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMeMe])) {
@@ -146,14 +121,14 @@ class Mvc
         if ($tmpFireMe) {
 
 //            if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent]['model'])) {
-                $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['model']['vendor'];
-                $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['model']['pack'];
+                $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['request']['vendor'];
+                $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['request']['pack'];
 //            }
 
             $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
 
-            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR;
-            $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('model').'\\';
+            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'request'.DIRECTORY_SEPARATOR;
+            $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('request').'\\';
 
             $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
             $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
@@ -174,7 +149,7 @@ class Mvc
 
     public function view()
     {
-        global $controller, $model, $auth, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
+        global $controller, $model, $state, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
 
         $tmpRealEvent = $model->appinfo['app'];
         $tmpMethod    = $model->appinfo['app_mtd'];
@@ -234,24 +209,14 @@ class Mvc
                         $appViewAsideLeft->default();
                     }
                 }
+/*
             } else {
               // tmpViewExists
-                if ($auth->is()) {
+                if ($state->get()) {
                   // !!! !!! !!!
-
-
-
-
-
-
-
-
-
-
-
-
                   //  $theme->asideleft(); // default menu
                 }
+*/                
             }
 
             // --- Right ---

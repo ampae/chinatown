@@ -26,23 +26,23 @@ class At
      */
     public function __construct()
     {
-        global $model,$auth,$alerts,$local,$view,$theme;
-        if ($auth->is()) {
+        global $model,$state,$alerts,$local,$view,$theme;
+        if ($state->get()) {
             $theme->asideRightOpen();
         }
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$auth;
-        if ($auth->is()) {
+        global $alerts,$local,$view,$theme,$state;
+        if ($state->get()) {
             $theme->asideRightClose();
         }
     }
 
     public function default()
     {
-        global $controller, $model, $db, $usr, $bal, $avatar, $html, $acl, $office, $smrecb, $alerts,$local,$view,$auth,$theme;
+        global $controller, $model, $db, $usr, $bal, $avatar, $html, $acl, $office, $smrecb, $alerts,$local,$view,$state,$theme;
 
 
         $tmpAt = '';
@@ -100,7 +100,7 @@ class At
 
                 echo $html->h5($local->translate('account'));
 
-                if ($auth->isMe($tmpUid)) {
+                if ($state->getMe($tmpUid)) {
                     echo '<p>'.$local->translate('its_you').'</p>';
                 } else {
                     if ($office->can()) {
@@ -134,7 +134,7 @@ class At
 
     private function chOff($uid, $list, $tmpOfficeLevel)
     {
-        global $sign,$auth,$alerts,$local,$view,$theme,$model,$html; ?>
+        global $sign,$state,$alerts,$local,$view,$theme,$model,$html; ?>
 
        <div class="container">
          <br />

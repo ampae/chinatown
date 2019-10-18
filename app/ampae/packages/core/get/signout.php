@@ -17,29 +17,19 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Model;
+namespace Ampae\Get;
 
-class Options
+class Signout
 {
-    const VENDOR = 'ampae';
-
     public function __construct()
     {
-        global $model, $theme, $view, $sign, $auth, $office;
+        global $model,$sign,$logger,$devices,$state;
 
-        $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-        $view->addScript('HEAD', $val2);
-
-        if (!$auth->is()) {
-            $model->redirect = $model->appinfo['url'].'login';
+        if ($state->get()) {
+            $sign->out();
+            $logger->info("AUTH SIGN OUT UID ".$tmpUid."");
         }
 
-        if (!$office->can()) {
-            $model->redirect = $model->appinfo['url'];
-        }
-    }
-
-    public function main()
-    {
+        $model->redirect = $model->appinfo['url'];
     }
 };

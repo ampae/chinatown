@@ -28,8 +28,8 @@ class Acc
      */
     public function __construct()
     {
-        global $model,$auth,$alerts,$local,$view,$theme;
-        //if (!$auth->is()) {
+        global $model,$state,$alerts,$local,$view,$theme;
+        //if (!$state->get()) {
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
         $view->addScript('HEAD', $val2);
@@ -50,7 +50,7 @@ class Acc
 
     public function index()
     {
-        global $model, $controller, $nonce, $sign, $auth, $html, $alerts, $local, $view, $theme; ?>
+        global $model, $controller, $nonce, $sign, $state, $html, $alerts, $local, $view, $theme; ?>
        <div class="container">
          <div class="row">
            <div class="col offset4 span4">

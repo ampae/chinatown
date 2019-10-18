@@ -85,9 +85,9 @@ class Activity
      */
     public function add($uid, $aid, $value)
     {
-        global $db, $auth;
+        global $db, $state;
         $time = time();
-        $data = $auth->is();
+        $data = $state->get();
         $q = "INSERT INTO `".DB1_TABLE_PREFIX."activity` (`uid`, `aid`, `value`, `data`, `status`, `time`) VALUES ('$uid', '$aid', '$value', '$data', '2', '$time') ";
         $res = $db->db1->query($q); // data ??
         return $res;

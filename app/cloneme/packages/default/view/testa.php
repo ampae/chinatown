@@ -27,7 +27,7 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email;
+     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email;
 
      $view->open();
 
@@ -38,7 +38,7 @@
 
    public function index() {
 
-      global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email;
+      global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email;
 
      echo $html->formOpen(
          $model->appinfo['url'].'testa/process',

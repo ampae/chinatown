@@ -8,7 +8,8 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
-$view->renderMeta();
+global $htmlrender,$state;
+$htmlrender->renderMeta();
 ?>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
 
@@ -16,7 +17,7 @@ $view->renderMeta();
 <link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/css/styles.css" />
 
 <?php
-$view->renderStyles();
+$htmlrender->renderStyles();
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/jquery/jquery.min.js"></script>
 
@@ -24,7 +25,7 @@ $view->renderStyles();
 
 
 <?php
-$view->renderScripts('HEAD');
+$htmlrender->renderScripts('HEAD');
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/js/app.js"></script>
 
@@ -47,8 +48,8 @@ echo 'var tmpChinaTownWebPath="'.$model->appinfo['url'].'"';
 
   	<header role="banner" aria-label="header banner">
 <?php
-global $auth;
-if ($auth->is()) {
+global $state;
+if ($state->get()) {
     ?>
       <div class="headerMobMenu">
       <label for="chkMenu" id="fufu" class="mobmenu-toggle">&#9776;</label>
@@ -64,7 +65,7 @@ if ($auth->is()) {
       </div>
 
 <?php
-if ($auth->is()) {
+if ($state->get()) {
     ?>
 
       <div class="headerSearch">
@@ -103,7 +104,7 @@ if ($auth->is()) {
  <div id="myDropdown2" class="dropdown-content" style="display:none;">
 
 <?php
-if ($auth->is()) {
+if ($state->get()) {
     ?>
 <a href="<?php echo $model->appinfo['url'].''; ?>settings"><?php echo $local->translate('settings'); ?></a>
 <a href="<?php echo $model->appinfo['url'].''; ?>signout"><?php echo $local->translate('signout'); ?></a>

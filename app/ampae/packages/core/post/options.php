@@ -19,45 +19,51 @@
 
 namespace Ampae\Post;
 
-class Acc
+class Options
 {
 
   function __construct()
   {
-    global $logger, $session, $alerts, $controller, $view;
+    global $logger, $session, $alerts, $controller, $view, $office;
     $model->appinfo['page_type'] = 'com';
+
+    if ( !$office->can() ) {
+      exit;
+    }
+
   }
 
   public function process()
   {
-    global $controller, $model, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $auth, $activity;
-
-    $tmpOk = null;
-
-    $tmpRedirect = $model->appinfo['url'].'acc';
-//    $tmpRedirect .= '?uid='.$controller->post['uid'];
-//    $tmpRedirect .= '&otp='.$controller->post['otp'];
-
-    $ct_tmp_usrarr = array();
-
-    if ( !empty($controller->post['ac']) ) {
-
-      $tmpAc = $controller->post['ac'];
-
-      // check AC
-
-      // if correct login uid !!!
-
-// print_r(  array_map('strtolower',explode('\\', __CLASS__))  );
-
-echo $tmpAc;
-exit;
+    global $controller, $state, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options;
 
 
-      $tmpRedirect = $model->appinfo['url'];
+
+//print_r($controller->post);
+//exit;
+
+foreach ($controller->post as $k => $v) {
+    if (is_array($v)) {
+        continue;
     }
-    $model->redirect = $tmpRedirect;
-    //die();
+    $rex = substr($k, 0, 4);
+    if ($rex!='opt_') {
+        continue;
+    }
+    $key = substr($k, 4);
+
+//                        echo $key.' {} '.$v.'||';
+
+    $options->update($key, $v);
+}
+
+      $tmpGroup = '';
+
+      if (isset($controller->post['group'])) {
+        $tmpGroup = '/'.$controller->post['group'];
+      }
+
+      $model->redirect = $model->appinfo['url'].'options'.$tmpGroup;
   }
 
 

@@ -78,7 +78,6 @@ class Install
             }
         }
 
-
         if ($tmpOk) {
             $sql = '';
 
@@ -111,7 +110,7 @@ foreach ($tmpGlobalConfig['packages'] as $tmpVendor => $tmpPack) {
 
             $aValid = array('_','-');
             $err_uname = 0;
-            $tmp_sup_ul = 32;
+            $tmp_sup_ul = 16;
             $t = time();
 
             $tmpReqWritableConf = array('db','cookies'); // config install !!!
@@ -132,13 +131,13 @@ foreach ($tmpGlobalConfig['packages'] as $tmpVendor => $tmpPack) {
 
             foreach ($tmpReqWritableConf as $tmpReqWritableConfFile) {
               $tmpReqWritableConfFilePath = DIR_APP.DIRECTORY_SEPARATOR.DEF_VENDOR.DIRECTORY_SEPARATOR.DIR_PACKS.DIRECTORY_SEPARATOR.'core'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$tmpReqWritableConfFile.'.php';
-              if (file_exists($tmpReqWritableConfFilePath)) {
-                if (is_writable($tmpReqWritableConfFilePath)) {
+              //if (file_exists($tmpReqWritableConfFilePath)) {
+                //if (is_writable($tmpReqWritableConfFilePath)) {
 
                   createConfig($tmpReqWritableConfFilePath, $tmpReqWritableConfData[$tmpReqWritableConfFile]);
 
-                }
-              }
+                //}
+              //}
             }
 
 
@@ -150,10 +149,15 @@ foreach ($tmpGlobalConfig['packages'] as $tmpVendor => $tmpPack) {
 
                 $tmpUid = $this->addAdmin($tmpDb, $tmp_db_pref, 'usr', 'Admin', $tmp_email);
 
-                if ($tmpUid) {
-                    //$this->addOffice($tmpDb, $tmp_db_pref, 'office', $tmpUid, $tmp_sup_ul);
+                $tmpAc = rand(11111111,99999999);
 
-                    $tmpRedr = 'welcome';
+                // !!! add AC to the table !!!
+
+                if ($tmpUid) {
+                    $this->addOffice($tmpDb, $tmp_db_pref, 'office', $tmpUid, $tmp_sup_ul); // !!! use class !!!
+                    $this->addAc($tmpDb, $tmp_db_pref, 'ac', $tmpUid, $tmp_email, $tmpAc); // !!! use class !!!
+
+                    $tmpRedr = 'welcome/AccessCode='.$tmpAc;
                 }
                 // $model->redirect = '111';
 
@@ -163,19 +167,44 @@ foreach ($tmpGlobalConfig['packages'] as $tmpVendor => $tmpPack) {
         }
         $model->redirect = $model->appinfo['url'].$tmpRedr;
     }
-/*
+
     private function addOffice($tmpDb, $tmp_db_pref, $tbl, $uid, $level)
     {
         $ts = time();
-        $exp = $ts + 946080000;
-        $dadata = array('uid' => $uid, 'level' => $level, 'st' => 1, 'ts' => $ts, 'exp' => $exp); // ts, exp !!!
-        $tmpPrep = "INSERT INTO `".$tmp_db_pref.$tbl."` (`uid`,`level`,`st`,`ts`,`exp`) VALUES (:uid, :level, :st, :ts, :exp)";
+        $exp = $ts + 946080000; // !!! config
+        $dadata = array('gl' => 1, 'uid' => $uid, 'crud' => $level, 'st' => 1, 'ts' => $ts, 'exp' => $exp); // ts, exp !!!
+        $tmpPrep = "INSERT INTO `".$tmp_db_pref.$tbl."` (`gl`,`uid`,`crud`,`st`,`ts`,`exp`) VALUES (:gl, :uid, :crud, :st, :ts, :exp)";
         $tmp_query = $tmpDb->prepare($tmpPrep);
         $res = $tmp_query->execute($dadata);
         return $res;
     }
-*/
 
+    private function addAc($tmpDb, $tmp_db_pref, $tbl, $uid, $email, $ac)
+    {
+        global $smreca;
+
+        //$ts = time();
+        //$exp = $ts + 96000; // !!! config
+
+        $adata = array(
+          'id' => $uid,
+          'key' => $email,
+          'val' => $ac,
+          'prv' => '0',
+          'grp' => '1',
+          'st' => '1'
+        );
+        return $smreca->insert($tmpDb, $tmp_db_pref.$tbl, $adata); // !!! add expiration !!!
+
+        /*
+        $dadata = array('ac' => $ac, 'uid' => $uid, 'val' => $val, 'st' => 6, 'ts' => $ts, 'exp' => $exp); // ts, exp !!!
+        $tmpPrep = "INSERT INTO `".$tmp_db_pref.$tbl."` (`ac`,`uid`,`val`,`st`,`ts`,`exp`) VALUES (:ac, :uid, :val, :st, :ts, :exp)";
+        $tmp_query = $tmpDb->prepare($tmpPrep);
+        $res = $tmp_query->execute($dadata);
+        return $res;
+        */
+
+    }
 
 
 

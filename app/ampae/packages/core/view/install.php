@@ -26,10 +26,10 @@ class Install
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme;
+        global $alerts,$local,$view,$theme,$htmlrender;
         $view->open();
         //echo '<BR><BR>';
-        $theme->displayAlerts();
+        $htmlrender->displayAlerts();
     }
 
     public function __destruct()
@@ -40,8 +40,8 @@ class Install
 
     public function index()
     {
-        global $alerts,$local,$view,$theme;
-        $theme->setUp();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->setUp();
         //$this->content();
         echo '<BR /><BR /><BR />';
         //echo '<br /><p class="text-center"><a class="align-center" rel="nofollow" href="./">'.$local->translate('home').' </a> | <a class="align-center" rel="nofollow" href="signup">'.$local->translate('signup').' </a> | <a class="align-center" rel="nofollow" href="signreq"><small>'.$local->translate('req_pass').'</small> </a></p>';

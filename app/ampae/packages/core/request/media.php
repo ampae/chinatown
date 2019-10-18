@@ -17,21 +17,28 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Get;
+namespace Ampae\Request;
 
-class Signin
+class Media
 {
     const VENDOR = 'ampae';
 
     public function __construct()
     {
-        global $model, $view, $theme, $sign, $auth;
+        global $model, $theme, $view, $sign, $state;
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
         $view->addScript('HEAD', $val2);
 
-        if ($auth->is()) {
-            $model->redirect = $model->appinfo['url'];
+        $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgup.js';
+        $view->addScript('HEAD', $val4);
+
+        if (!$state->get()) {
+            $model->redirect = $model->appinfo['url'].'login';
         }
+    }
+
+    public function main()
+    {
     }
 };

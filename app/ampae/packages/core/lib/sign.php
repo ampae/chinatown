@@ -21,24 +21,75 @@ namespace Ampae\Lib;
 
 class Sign
 {
-    public function __construct()
+  /**
+   * constructor; initialize autologin if set;.
+   */
+  public function __construct()
+  {
+    global $session, $cookies, $devices;
+      if (!$session->get('state')) {
+        // !!! check session if we need to check cookie, if value ==2 !!!
+
+        if (!$session->isxSet('dcc')) {
+          $session->set('dcc',1);
+
+        if (REMEMBER_ME) {
+          $tmpDevID = $cookies->get(CCID);
+          if ($tmpDevID!==null) {
+            $tmpUid = $devices->get($tmpDevID);
+              if ($tmpUid) {
+                $this->in($tmpUid);
+              }
+          }
+       }
+
+     }
+
+
+    }
+  }
+
+    public function check($login,$pword)
     {
+        global $activity, $session;
+        $tmp = 1111; // !!!
+        return $tmp;
     }
 
-    public function in($devRid, $uid, $newExp = HALF_LIFE)
+    public function do($login,$pword)
     {
-        global $activity, $devices;
-        $res = $devices->logIn($devRid, $uid, $newExp);
-        if ($res) {
-            $activity->add($uid, 0, 'login');
+      global $basic, $controller, $cookies, $devices, $db;
+      $tmp = $this->check($login,$pword);
+        if ($tmp) {
+          $this->in($tmp);
+          // !!! call rememberme
         }
-        return $res;
     }
 
-    public function out($tmpRid, $tmpUid = null)
+    public function in($uid)
     {
-        global $activity, $devices;
-        $activity->add($tmpUid, 0, 'logout');
-        return $devices->logOut($tmpRid, $tmpUid);
+        global $basic, $controller, $activity, $session, $cookies, $devices, $state;
+        $state->set($uid);
+
+// !!!move to rememberme !!!
+        if ( !$cookies->isxSet() ) {
+          $tmpDevID = $basic->uuid();
+          $cookies->set(CCID, $tmpDevID, DEV_TTL, $controller->info['app_path']);
+          $devices->set($tmpDevID, $uid);
+        } else {
+          // update cookie exp date !!!
+        }
+
+
+        //$activity->add($uid, 0, 'login');
+    }
+
+    public function out()
+    {
+        global $activity, $session, $cookies, $devices, $state;
+        // $activity->add($uid, 0, 'logout');
+        // kill cookies !!!
+        // kill device !!!
+        return $state->delete();
     }
 };

@@ -17,28 +17,44 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Model;
+namespace Ampae\Lib; // !!! !!!
 
-class Media
+class Rbac
 {
-    const VENDOR = 'ampae';
+	const RES = 'rbac';
 
-    public function __construct()
+		public function canIcreate($cid)
+		{
+		}
+
+		public function canIread($cid)
+		{
+		}
+
+		public function canIupdate($cid)
+		{
+		}
+
+		public function canIdelete($cid)
+		{
+		}
+
+    public function getMyRoleIn($cid)
     {
-        global $model, $theme, $view, $sign, $auth;
-
-        $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-        $view->addScript('HEAD', $val2);
-
-        $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgup.js';
-        $view->addScript('HEAD', $val4);
-
-        if (!$auth->is()) {
-            $model->redirect = $model->appinfo['url'].'login';
-        }
+      global $session, $state;
+			$tmp = $session->get('state');
+			$res = false;
+			if ( $tmp ) {
+				// $res $this->kkk($res,$cid);
+			} else {
+				//
+			}
+			$res = $session->get('state');
+			return $res;
     }
 
-    public function main()
+		public function getOrgNameByCid($cid)
     {
-    }
+		}
+
 };

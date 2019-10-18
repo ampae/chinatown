@@ -27,10 +27,10 @@ class Session
     public function __construct()
     {
       global $controller, $model;
-
+        session_set_cookie_params(0,$controller->info['app_path']);
+        ini_set('session.cookie_httponly', 1);
         ini_set('session.gc_maxlifetime', SESSION_TTL);
-        session_set_cookie_params(SESSION_TTL,$controller->info['app_path'],$controller->info['domain']);
-        //ini_set('session.cookie_httponly', 1);
+        ini_set('session.cookie_lifetime', SESSION_TTL);
         session_name(SESSION_NAME);
         session_start();
     }
@@ -40,8 +40,9 @@ class Session
      */
     public function kill()
     {
-        // session_regenerate_id();
-        $_SESSION[CCID] = array(); // session_unset(); // session_destroy();
+        session_regenerate_id();
+        $_SESSION[CCID] = array(); // session_unset();
+        session_destroy();
     }
 
     /**

@@ -20,23 +20,25 @@
 namespace Ampae\Lib;
 
 /**
- * Cookies.
+ * Access Codes.
  *
  * @category Class
  *
 
  */
-class Cookies
+class Ac
 {
+  const RES = 'ac';
     /**
-     * constructor; initialize cookies;.
+     * constructor; initialize dev;.
      */
     public function __construct()
     {
+      //global $cookies, $controller, $basic;
     }
 
     /**
-     * returns true if k has value
+     *
      *
      * @param string $k config
      *
@@ -44,58 +46,39 @@ class Cookies
      */
     public function isxSet($k = CCID)
     {
-        return isset($_COOKIE[$k]);
     }
 
     /**
-     * set & store v in cookie k.
+     * set
      *
      * @param string $k config
      * @param string $v config
      */
-    public function set($k = CCID, $v = null, $t = null, $p = null)
+    public function set($k, $v = null)
     {
-      global $controller;
-        if ($t==null) {
-            $t = time() + 3600;
-        } else {
-            $t = time() + $t;
-        }
-        if ($p==null) {
-            $p = "/";
-        }
-        //setcookie($k, $v, $t, $p,$controller->info['domain'],1);
-        setcookie($k, $v, $t, $p);
+      if (!DEBUG_MODE) {
+        $k = hash('sha256', $k); // never store cookie values in db !!!
+      }
+
+      // save to DB
     }
 
     /**
-     * get k value from session.
+     * get k value
      *
      * @param string $k key config
      *
      * @return string
      */
-    public function get($k = CCID)
+    public function get($k)
     {
-        $v = false;
-        if (isset($_COOKIE[$k])) {
-            $v = $_COOKIE[$k];
-        }
-        return $v;
-    }
-
-    /**
-     * get k value from cookies once, then delete it.
-     *
-     * @param string $k key config
-     *
-     * @return string
-     */
-    public function getOnce($k = CCID)
-    {
-        $v = $this->get($k);
-        $this->del($k);
-        return $v;
+      $res = false;
+      if (!DEBUG_MODE) {
+        $k = hash('sha256', $k); // never store cookie values in db !!!
+      }
+// check DB !!!
+//$res = '1234';
+      return $res;
     }
 
     /**
@@ -105,7 +88,11 @@ class Cookies
      */
     public function del($k = CCID)
     {
-        setcookie($k, "", time() - 3600);
-        unset($_COOKIE[$k]);
+// del DEV ID
+    }
+
+    private function dbSet($v)
+    {
+
     }
 }

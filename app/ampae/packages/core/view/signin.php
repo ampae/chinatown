@@ -28,9 +28,9 @@ class Signin
      */
     public function __construct()
     {
-        global $model,$auth,$alerts,$local,$view,$theme;
+        global $model,$state,$alerts,$local,$view,$theme;
 
-        if (!$auth->is()) {
+        if (!$state->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
             $view->addStyle($val3);
         }
@@ -47,14 +47,14 @@ class Signin
 
     public function index()
     {
-        global $model, $controller, $nonce, $sign, $auth, $html, $alerts, $local, $view, $theme, $options; ?>
+        global $model, $controller, $nonce, $sign, $state, $html, $alerts, $local, $view, $theme, $htmlrender, $options; ?>
        <div class="container">
 
          <div class="row">
            <div class="col offset4 span4">
              <?php
              if (!$options->get('signup')) {
-                 $theme->alert('Y', 'signup', $local->translate('signup_unavailable'));
+                 $htmlrender->alert('Y', 'signup', $local->translate('signup_unavailable'));
              } ?>
        <?php
 

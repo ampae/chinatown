@@ -356,9 +356,7 @@ class Smreca
         $q.= "`grp` tinyint(3) unsigned NOT NULL DEFAULT '0', ";
         $q.= "`st` tinyint(3) NOT NULL DEFAULT '0', ";
         $q.= "`ts` bigint(19) unsigned NOT NULL DEFAULT '0', ";
-        $q.= "`expwrn` int(10) unsigned NOT NULL DEFAULT '0', ";
-        $q.= "`expsft` int(10) unsigned NOT NULL DEFAULT '0', ";
-        $q.= "`exphrd` int(10) unsigned NOT NULL DEFAULT '0', ";
+        $q.= "`exp` int(10) unsigned NOT NULL DEFAULT '0', ";
         $q.= "PRIMARY KEY (`x`)) ";
         $q.= "ENGINE=".$eng." ";
         $q.= "DEFAULT CHARSET=".$enc." ";

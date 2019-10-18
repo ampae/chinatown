@@ -29,10 +29,10 @@ class Settings
 
     public function process()
     {
-        global $controller, $auth, $model, $office, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options, $view;
+        global $controller, $state, $model, $office, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options, $view;
 
         if (!$office->can()) {
-            $controller->post['xuid'] = $auth->is();
+            $controller->post['xuid'] = $state->get();
         }
 
         if (!empty($controller->post['xuid'])) {
@@ -68,10 +68,10 @@ class Settings
 
     public function processat()
     {
-        global $controller, $auth, $model, $avatar, $office, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options;
+        global $controller, $state, $model, $avatar, $office, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options;
 
         if (!$office->can()) {
-            $controller->post['xuid'] = $auth->is();
+            $controller->post['xuid'] = $state->get();
         }
 
         if (!empty($controller->post['xuid'])) {
@@ -104,10 +104,10 @@ class Settings
 
     public function processemail()
     {
-        global $controller, $auth, $model, $office, $alerts, $email, $pdo, $db, $usr, $devices, $logger, $sign, $local, $options;
+        global $controller, $state, $model, $office, $alerts, $email, $pdo, $db, $usr, $devices, $logger, $sign, $local, $options;
 
         if (!$office->can()) {
-            $controller->post['xuid'] = $auth->is();
+            $controller->post['xuid'] = $state->get();
         }
 
         if (!empty($controller->post['xuid'])) {
@@ -155,9 +155,9 @@ class Settings
 
     public function avatar()
     {
-        global $controller, $auth, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $media, $local;
+        global $controller, $state, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $media, $local;
 
-        $uid   = $auth->is();
+        $uid   = $state->get();
 
         $iid    = $controller->post['iid'];
 

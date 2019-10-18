@@ -30,9 +30,9 @@ class Media
 
   public function process()
   {
-    global $controller, $auth, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $media, $local;
+    global $controller, $state, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $media, $local;
 
-            $uid   = $auth->is();
+            $uid   = $state->get();
 
             $iid    = $controller->post['iid'];
 

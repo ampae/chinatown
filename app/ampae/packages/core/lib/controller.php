@@ -62,6 +62,9 @@ class Controller
         $tmp_ind = 'index.php';
         $this->info['app_path'] = chop($_SERVER['SCRIPT_NAME'], $tmp_ind);
 
+        if (!isset($this->info['app_path']) || empty($this->info['app_path']) || $this->info['app_path']=='') {
+          $this->info['app_path'] = '/';
+        }
         $tmp_last = str_replace($this->info['app_path'], '', urldecode($_SERVER['REQUEST_URI']));
 
         $tmp_str_arr = explode('?', $tmp_last);
@@ -71,8 +74,6 @@ class Controller
         }
 
         $this->argc = count($this->argv);
-
-// echo $_SERVER['SERVER_NAME'] .' - '. $_SERVER['HTTP_HOST'];
 
         $this->info['schema'] = ('on' == @$_SERVER['HTTPS']) ? 'https://' : 'http://';
         $this->info['domain'] = $_SERVER['SERVER_NAME'];

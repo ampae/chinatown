@@ -26,11 +26,11 @@ class Checklist
 
     public function __construct()
     {
-        global $controller, $model, $auth;
+        global $controller, $model, $state;
         $tmpRedirect = null;
 
-        if ($auth->is()) {
-            $tmpUid = $auth->is();
+        if ($state->get()) {
+            $tmpUid = $state->get();
 
             $tmpRedirect = $this->tz($tmpUid, $tmpRedirect);
             $tmpRedirect = $this->name($tmpUid, $tmpRedirect);

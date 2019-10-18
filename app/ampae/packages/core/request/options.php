@@ -17,27 +17,29 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Model;
+namespace Ampae\Request;
 
-class Install
+class Options
 {
-    /**
-     * constructor; nothing here to constructs.
-     */
+    const VENDOR = 'ampae';
+
     public function __construct()
     {
-        global $model, $theme;
-        $tmpBaseConfig = 'config/db.php';
+        global $model, $theme, $view, $sign, $state, $office;
 
-        if (!file_exists($tmpBaseConfig)) {
-            //$theme->alert('Y', 'NE', 'NE');
-            if (!is_writable($tmpBaseConfig)) {
-                //$theme->alert('Y', 'NW', 'NW');
-            }
+        $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
+        $view->addScript('HEAD', $val2);
+
+        if (!$state->get()) {
+            $model->redirect = $model->appinfo['url'].'login';
+        }
+
+        if (!$office->can()) {
+            $model->redirect = $model->appinfo['url'];
         }
     }
 
-    public function index()
+    public function main()
     {
     }
-}
+};

@@ -17,21 +17,16 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Get;
+namespace Ampae\Lib;
 
-class Signout
+class Htmlset
 {
+
+    /**
+     * constructor.
+     */
     public function __construct()
     {
-        global $model,$sign,$logger,$devices,$auth;
-
-        if ($auth->is()) {
-            $tmpUid = $auth->is();
-            $tmpRid = $devices->get();
-            $sign->out($tmpRid, $tmpUid);
-            $logger->info("AUTH SIGN OUT UID ".$tmpUid."");
-        }
-
-        $model->redirect = $model->appinfo['url'];
     }
-};
+
+}

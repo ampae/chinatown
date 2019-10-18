@@ -17,15 +17,15 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Model;
+namespace Ampae\Request;
 
 class Home
 {
     public function __construct()
     {
-        global $model,$auth,$alerts,$local,$view,$theme;
+        global $model,$state,$alerts,$local,$view,$theme;
 
-        if (!$auth->is()) {
+        if (!$state->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css'; // ???
             $view->addStyle($val3);
         }

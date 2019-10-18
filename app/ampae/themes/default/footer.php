@@ -20,12 +20,12 @@
     echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIR_LIBS.'/jquery/jquery.validate.min.js"></script>';
 
 /*
-if ($auth->is()){
+if ($state->get()){
     echo '<script type="text/javascript" src="'.$model->appinfo['theme_url'].'assets/js/modal-confirm.js"></script>';
 }
 */
-
-$view->renderScripts('FOOT'); //dash
+global $htmlrender;
+$htmlrender->renderScripts('FOOT'); //dash
 
 ?>
 

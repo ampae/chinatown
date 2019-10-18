@@ -1,5 +1,10 @@
 <?php
 /*
+mvcpm[]=get
+mvcpm[]=post
+mvcpm[]=request
+mvcpm[]=view
+
 [define]
 DEBUG_MODE=1
 APP_ENCODING=UTF-8
@@ -20,4 +25,5 @@ magic_quotes_runtime=off
 register_globals=off
 memory_limit=64M
 max_execution_time=300
+
 */

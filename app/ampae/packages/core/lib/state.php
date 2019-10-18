@@ -19,26 +19,27 @@
 
 namespace Ampae\Lib;
 
-class Auth
+class State
 {
-
-		function __construct()
-  	{
-
-    }
-
-    public function is()
+    public function get()
     {
-      global $db, $usr, $devices;
-			$res = 0;
+      global $session;
+			$res = $session->get('state');
 			return $res;
     }
 
-		public function isMe($i) {
-			global $db, $usr, $devices;
-
-			$res = false;
+    public function set($uid)
+    {
+      global $session;
+			$res = $session->set('state',$uid);
 			return $res;
-		}
+    }
+
+    public function delete()
+    {
+      global $session;
+      $session->del('state');
+      return $session->kill();
+    }
 
 };

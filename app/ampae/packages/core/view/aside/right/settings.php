@@ -26,16 +26,16 @@
       */
       public function __construct()
       {
-        global $model,$auth,$alerts,$local,$view,$theme;
-        if ($auth->is()) {
+        global $model,$state,$alerts,$local,$view,$theme;
+        if ($state->get()) {
           $theme->asideRightOpen();
         }
       }
 
       public function __destruct()
       {
-        global $alerts,$local,$view,$theme,$auth;
-        if ($auth->is()) {
+        global $alerts,$local,$view,$theme,$state;
+        if ($state->get()) {
           $theme->asideRightClose();
         }
       }
@@ -55,10 +55,10 @@
 
      private function getUser()
      {
-       global $sign, $auth, $usr, $db, $html, $view, $local;
+       global $sign, $state, $usr, $db, $html, $view, $local;
          //echo 'Home EVENTS GET Plugin Method MAIN (& default) >> ';
-         if ( $auth->is() ) {
-           $uid = $auth->is();
+         if ( $state->get() ) {
+           $uid = $state->get();
            echo "<BR />".$local->translate('hello')." ".$usr->get($uid, 'name')."<BR /><BR />";
            echo $html->h5('<i class="fa fa-user col-blue"></i> '.$local->translate('customer').' ID <span class="badge bg-default">'.$uid.'</span>');
            echo $html->h5('<i class="fa fa-globe col-blue"></i> '.$local->translate('timezone').' <span class="badge bg-default">'.$view->getTz($uid).'</span>');

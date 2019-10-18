@@ -67,11 +67,12 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
   foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
 
     // premap mvc
-    $tmpMvcPreIndex = array('controller','get','post','model','view'); // !!! add to config !!!
+    $tmpMvcPreIndex = $tmpGlobalConfig['mvcpm'];
+
     foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {
       $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
       if ($tmpMvcPreIndexTmp=='get' || $tmpMvcPreIndexTmp=='post') {
-        $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'controller'.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
+        $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
       }
       $tmpMvcPreArr = array_map( 'basename', glob($tmpMvcPreMap.'*.php' , GLOB_BRACE) );
       $tmpMvcPreArr = array_map(function($e){return pathinfo($e, PATHINFO_FILENAME);},$tmpMvcPreArr);

@@ -29,7 +29,7 @@ class Signin
 
     public function process()
     {
-        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $auth, $activity, $email;
+        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $state, $activity, $email;
 
         $tmpOk = null;
         $tmpOp = null;
@@ -42,15 +42,14 @@ class Signin
         if (!empty($controller->post['email'])) {
             $tmpEmail = $controller->post['email'];
 
+
             $tmpKnown = $usr->is($tmpEmail);
 
-            $tmpUid = $auth->is(); // or get UID based on device !!!
+            $tmpUid = $state->get();
 
             if (!$usr->checkUid($tmpUid)) {
                 $tmpUid = 0;
             }
-
-$tmpAc = '1111'; // !!!
 
             if ($tmpKnown) {
                 // signin or set as PRI if logged in !!! ($tmpUid) or do nothing if already PRI
@@ -79,6 +78,7 @@ $tmpAc = '1111'; // !!!
                 $tmp_next = 'acc';
                 $tmpRedirect = $model->appinfo['url'].$tmp_next;
                 if (DEBUG_MODE) {
+                  // get AC  ???
                     $tmpRedirect .= '?uid='.$tmpUid.'&ac='.$tmpAc;
                 }
             }
