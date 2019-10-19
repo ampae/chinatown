@@ -28,21 +28,21 @@ class Signin
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme;
+        global $model,$state,$alerts,$local,$view,$theme,$htmlrender;
 
         if (!$state->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
             $view->addStyle($val3);
         }
-        $view->open();
+        $htmlrender->open();
         echo '<BR><BR>';
         //$theme->displayAlerts();
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->close();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     public function index()

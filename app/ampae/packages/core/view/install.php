@@ -26,16 +26,16 @@ class Install
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
-        $view->open();
+        global $alerts,$local,$view,$theme,$htmlrender,$htmlrender;
+        $htmlrender->open();
         //echo '<BR><BR>';
         $htmlrender->displayAlerts();
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->close();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     public function index()

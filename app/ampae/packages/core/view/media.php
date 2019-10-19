@@ -26,16 +26,16 @@ class Media
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->open();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->open();
         echo '<BR><BR>';
         //$theme->displayAlerts();
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->close();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     public function index()

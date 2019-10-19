@@ -27,16 +27,16 @@ class At
     */
     public function __construct()
     {
-        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme;
-        $view->open();
+        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme,$htmlrender;
+        $htmlrender->open();
         //echo '<BR><BR>';
      //$theme->displayAlerts();
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$state,$view,$theme;
-        $view->close();
+        global $alerts,$local,$state,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     public function default()

@@ -60,12 +60,7 @@ class View
         }
     }
 
-
-//---
-
     // --- PRIVATE ---
-
-
 
     private function prepare($pageType)
     {
@@ -95,28 +90,6 @@ class View
             $model->appinfo['charset'] = DEFAULT_CHARSET;
         }
         return $tmpContentType.'; charset='.$model->appinfo['charset'];
-    }
-
-
-
-
-
-    public function open()
-    {
-        global $model;
-        if ($model->appinfo['page_type']=='html') {
-            $headerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
-            $model->load($headerFile);
-        }
-    }
-
-    public function close()
-    {
-        global $model;
-        if ($model->appinfo['page_type']=='html') {
-            $footerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
-            $model->load($footerFile);
-        }
     }
 
 };

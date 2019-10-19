@@ -1,6 +1,7 @@
 <?php
+global $htmlrender;
 $tmpMsg2 = $local->translate('404_error_msg');
-    $view->open();
+    $htmlrender->open();
 ?>
     <div class="container">
     <div class="well">
@@ -15,4 +16,4 @@ $tmpMsg2 = $local->translate('404_error_msg');
     </div>
 
 <?php
-    $view->close();
+    $htmlrender->close();

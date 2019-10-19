@@ -29,6 +29,27 @@ class Htmlrender
     {
     }
 
+
+    public function open()
+    {
+        global $model;
+        if ($model->appinfo['page_type']=='html') {
+            $headerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
+            $model->load($headerFile);
+        }
+    }
+
+    public function close()
+    {
+        global $model;
+        if ($model->appinfo['page_type']=='html') {
+            $footerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
+            $model->load($footerFile);
+        }
+    }
+
+
+
     public function theme()
     {
         global $model, $http, $local;
@@ -244,6 +265,7 @@ class Htmlrender
                         }
                     }
 
+/*
                     public function grid($val)
                     {
                         echo '<div class="col span'.$val.'">';
@@ -252,7 +274,7 @@ class Htmlrender
                     {
                         echo '</div><!--'.$val.'-->';
                     }
-
+*/
 
                     // --- MENU's ----------------------------------------------------------------
 

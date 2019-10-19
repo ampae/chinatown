@@ -26,9 +26,9 @@ class Welcome
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme,$view;
+        global $alerts,$local,$view,$theme,$view,$htmlrender;
 
-        $view->open();
+        $htmlrender->open();
 
 //       echo '<BR><BR>';
 //       $theme->displayAlerts();
@@ -36,7 +36,7 @@ class Welcome
 
     public function default()
     {
-        global $controller,$model,$alerts,$local,$view,$theme;
+        global $controller,$model,$alerts,$local,$view,$theme,$htmlrender;
 
         $tmpMsg2='';
         if (isset($controller->argv[1])) {
@@ -60,7 +60,7 @@ class Welcome
        <?php
 
 
-       $view->close();
+       $htmlrender->close();
 
 
 

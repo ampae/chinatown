@@ -26,8 +26,8 @@ class Home
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme;
-        $view->open();
+        global $model,$state,$alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->open();
         //echo '<BR><BR>';
        //$theme->displayAlerts();
 
@@ -36,8 +36,8 @@ class Home
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->close();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     // app logic route root content

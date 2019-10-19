@@ -28,7 +28,7 @@ class Acc
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$htmlset;
+        global $model,$state,$alerts,$local,$view,$theme,$htmlset,$htmlrender;
         //if (!$state->get()) {
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
@@ -37,15 +37,15 @@ class Acc
         $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
         $view->addStyle($val3);
         //}
-        $view->open();
+        $htmlrender->open();
         echo '<BR><BR>';
         //$theme->displayAlerts();
     }
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme;
-        $view->close();
+        global $alerts,$local,$view,$theme,$htmlrender;
+        $htmlrender->close();
     }
 
     public function index()

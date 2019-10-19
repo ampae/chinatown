@@ -27,9 +27,9 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email;
+     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email,$htmlrender;
 
-     $view->open();
+     $htmlrender->open();
 
      //echo '<BR><BR>';
      //$theme->displayAlerts();
@@ -57,8 +57,8 @@
 
    public function __destruct()
    {
-     global $alerts,$local,$view,$theme;
-     $view->close();
+     global $alerts,$local,$view,$theme,$htmlrender;
+     $htmlrender->close();
    }
 
 

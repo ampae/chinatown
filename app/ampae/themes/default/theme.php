@@ -40,14 +40,14 @@ class Theme
    */
   public function __construct()
   {
-      global $model,$state,$alerts,$local,$view,$theme;
-//      $view->open();
+      global $model,$state,$alerts,$local,$view,$theme,$htmlrender;
+//      $htmlrender->open();
   }
 
   public function __destruct()
   {
-      global $alerts,$local,$view,$theme;
-      //$view->close();
+      global $alerts,$local,$view,$theme,$htmlrender;
+      //$htmlrender->close();
   }
 
 };
