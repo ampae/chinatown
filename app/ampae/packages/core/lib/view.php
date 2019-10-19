@@ -63,28 +63,6 @@ class View
 
 //---
 
-    public function theme()
-    {
-        global $model, $http, $local;
-        if ($model->appinfo['page_type']=='html') {
-            $this->loadTheme();
-        }
-    }
-
-    public function loadTheme()
-    {
-        global $tmpGlobalConfig, $model, $theme, $logger, $local, $sign, $state;
-
-        $tmpThemesNs = ucfirst($model->appinfo['theme_vendor']).'\\'.ucfirst('themes').'\\'; // 'Vendor\\Theme\\';
-        $tmpRealThemePath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_directory']; //DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.$model->appinfo['theme_directory'];
-        $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpThemesNs] = $tmpRealThemePath;
-
-        $tmp_themes = '\\'.$tmpThemesNs.ucfirst('theme');
-        $theme = new $tmp_themes();
-
-        // $logger->info('VIEW / THEME - '.$tmp_themes);
-    }
-
     // --- PRIVATE ---
 
 
@@ -123,40 +101,6 @@ class View
 
 
 
-
-//---
-
-
-
-
-
-
-    public function menus()
-    {
-        global $office, $tmpGlobalConfig;
-        /*
-        foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
-          foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
-            include DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'menus.php';
-          }
-        }
-        */
-        if (!$office->is()) {
-            $tmpGlobalConfig['menu']['side']['user']['2990'] = '';
-            $tmpGlobalConfig['menu']['side']['office'] = array(); // not really needed, just an extra precaution..
-        }
-    }
-    /**
-     * load sidebar.
-     */
-    public function aside($path)
-    {
-        global $model;
-        if (isset($path)) {
-            $model->load($path);
-        }
-    }
-
     public function open()
     {
         global $model;
@@ -174,65 +118,5 @@ class View
             $model->load($footerFile);
         }
     }
-
-    // --- ex xTheme ---
-
-    public function addTitle($title)
-    {
-        global $model;
-        $model->appinfo['title'] = $title;
-    }
-
-    public function getTitle()
-    {
-        global $model, $options;
-        if (!isset($model->appinfo['title'])) {
-            $model->appinfo['title'] = DEFAULT_TITLE;
-        }
-        return $model->appinfo['title'];
-    }
-
-    /**
-     * add meta tag; marked for depreciation;.
-     *
-     * @param string $k config
-     * @param string $v config
-     */
-    public function addMeta($k, $v)
-    {
-        global $model;
-        $model->results['EX']['META'][] = '<meta name="'.$k.'" content="'.$v.'" />';
-    }
-
-
-
-    // -- scripts ---
-    public function addScript($level, $val)
-    {
-        global $model;
-        $model->results['EX']['SCRIPT'][$level][] = $val;
-    }
-
-    public function addSmallScript($level, $val)
-    {
-        global $model;
-        $model->results['EX']['SCRIPT_SMALL'][$level][] = $val;
-    }
-
-    // -- styles ---
-    public function addStyle($val)
-    {
-        global $model;
-        $model->results['EX']['STYLE'][] = $val;
-    }
-
-    public function addSmallStyle($val)
-    {
-        global $model;
-        $model->results['EX']['STYLE_SMALL'][] = $val;
-    }
-
-
-
 
 };

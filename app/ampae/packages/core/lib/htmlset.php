@@ -29,4 +29,61 @@ class Htmlset
     {
     }
 
+    public function addTitle($title)
+    {
+        global $model;
+        $model->appinfo['title'] = $title;
+    }
+
+    public function getTitle()
+    {
+        global $model, $options;
+        if (!isset($model->appinfo['title'])) {
+            $model->appinfo['title'] = DEFAULT_TITLE;
+        }
+        return $model->appinfo['title'];
+    }
+
+    /**
+     * add meta tag; marked for depreciation;.
+     *
+     * @param string $k config
+     * @param string $v config
+     */
+    public function addMeta($k, $v)
+    {
+        global $model;
+        $model->results['EX']['META'][] = '<meta name="'.$k.'" content="'.$v.'" />';
+    }
+
+
+
+    // -- scripts ---
+    public function addScript($level, $val)
+    {
+        global $model;
+        $model->results['EX']['SCRIPT'][$level][] = $val;
+    }
+
+    public function addSmallScript($level, $val)
+    {
+        global $model;
+        $model->results['EX']['SCRIPT_SMALL'][$level][] = $val;
+    }
+
+    // -- styles ---
+    public function addStyle($val)
+    {
+        global $model;
+        $model->results['EX']['STYLE'][] = $val;
+    }
+
+    public function addSmallStyle($val)
+    {
+        global $model;
+        $model->results['EX']['STYLE_SMALL'][] = $val;
+    }
+
+
+
 }

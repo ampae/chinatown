@@ -161,8 +161,8 @@ $local->go();
 $mvc->model();
 
 $view->headers();
-//$view->menus();
-$view->theme();
+//$menu->menus();
+$htmlrender->theme();
 $mvc->view();
 
 if (isset($logger)) {

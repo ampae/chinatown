@@ -38,10 +38,10 @@ class Settings
 
     public function at()
     {
-        global $model, $theme, $view, $sign, $state;
+        global $model, $theme, $view, $sign, $state, $htmlset;
 
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgupnew.js';
-        $view->addScript('HEAD', $val4);
+        $htmlset->addScript('HEAD', $val4);
     }
 
     public function confirm()
@@ -66,7 +66,7 @@ class Settings
                 $tmpOtpChk = true;
 
             }
-            */ 
+            */
         } else {
             // echo 'NOOP 2'; // limit reached !!!
         }

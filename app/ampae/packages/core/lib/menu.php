@@ -52,4 +52,20 @@ class Menu
         global $tmpGlobalConfig;
         $tmpGlobalConfig['menu'][$loc][$name] = array_replace_recursive($tmpGlobalConfig['menu'][$loc][$name], $menu);
     }
+
+    public function menus()
+    {
+        global $office, $tmpGlobalConfig;
+        /*
+        foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
+          foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
+            include DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'menus.php';
+          }
+        }
+        */
+        if (!$office->is()) {
+            $tmpGlobalConfig['menu']['side']['user']['2990'] = '';
+            $tmpGlobalConfig['menu']['side']['office'] = array(); // not really needed, just an extra precaution..
+        }
+    }
 }

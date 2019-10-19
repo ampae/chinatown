@@ -25,10 +25,10 @@ class Options
 
     public function __construct()
     {
-        global $model, $theme, $view, $sign, $state, $office;
+        global $model, $theme, $view, $sign, $state, $office,$htmlset;
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-        $view->addScript('HEAD', $val2);
+        $htmlset->addScript('HEAD', $val2);
 
         if (!$state->get()) {
             $model->redirect = $model->appinfo['url'].'login';

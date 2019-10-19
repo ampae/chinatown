@@ -28,11 +28,11 @@ class Acc
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme;
+        global $model,$state,$alerts,$local,$view,$theme,$htmlset;
         //if (!$state->get()) {
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-        $view->addScript('HEAD', $val2);
+        $htmlset->addScript('HEAD', $val2);
 
         $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
         $view->addStyle($val3);

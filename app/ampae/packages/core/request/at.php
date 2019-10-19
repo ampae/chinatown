@@ -25,11 +25,11 @@ class At
 
     public function __construct()
     {
-        global $office,$model,$view;
+        global $office,$model,$view, $htmlset;
 
         //if ($office->can()) {
             $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admusrlst.js'; // argc == 1
-            $view->addScript('HEAD', $val2);
+            $htmlset->addScript('HEAD', $val2);
         //} else {
             // $model->redirect = $model->appinfo['url'];
         //}
@@ -37,23 +37,23 @@ class At
 
     public function index()
     {
-        global $model, $view, $sign, $state, $office;
+        global $model, $view, $sign, $state, $office, $htmlset;
 
         //if ($office->can()) {
         $val5 = $model->appinfo['url'].DIR_LIBS.'/jquery/jquery.flot.min.js';
-        $view->addScript('HEAD', $val5);
+        $htmlset->addScript('HEAD', $val5);
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admchart.js';
-        $view->addScript('HEAD', $val4);
+        $htmlset->addScript('HEAD', $val4);
         //}
     }
 
     public function search()
     {
-        global $model, $view, $sign, $state, $office;
+        global $model, $view, $sign, $state, $office,$htmlset;
 
         //if ($office->can()) {
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admusearch.js'; // argc == 1
-        $view->addScript('HEAD', $val2);
+        $htmlset->addScript('HEAD', $val2);
 
         if (!$state->get()) {
             $model->redirect = $model->appinfo['url'].'login';

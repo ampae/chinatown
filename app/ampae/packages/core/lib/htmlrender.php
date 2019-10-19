@@ -29,6 +29,40 @@ class Htmlrender
     {
     }
 
+    public function theme()
+    {
+        global $model, $http, $local;
+        if ($model->appinfo['page_type']=='html') {
+            $this->loadTheme();
+        }
+    }
+
+    public function loadTheme()
+    {
+        global $tmpGlobalConfig, $model, $theme, $logger, $local, $sign, $state;
+
+        $tmpThemesNs = ucfirst($model->appinfo['theme_vendor']).'\\'.ucfirst('themes').'\\'; // 'Vendor\\Theme\\';
+        $tmpRealThemePath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_directory']; //DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.$model->appinfo['theme_directory'];
+        $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpThemesNs] = $tmpRealThemePath;
+
+        $tmp_themes = '\\'.$tmpThemesNs.ucfirst('theme');
+        $theme = new $tmp_themes();
+
+        // $logger->info('VIEW / THEME - '.$tmp_themes);
+    }
+
+
+
+        /**
+         * load sidebar.
+         */
+        public function aside($path)
+        {
+            global $model;
+            if (isset($path)) {
+                $model->load($path);
+            }
+        }
 
         public function renderMeta()
         {
