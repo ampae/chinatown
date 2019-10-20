@@ -8,7 +8,7 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
-global $htmlset,$htmlrender,$state;
+global $html,$htmlrender,$state;
 $htmlrender->renderMeta();
 ?>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
@@ -39,7 +39,7 @@ echo 'var tmpChinaTownWebPath="'.$model->appinfo['url'].'"';
 ?>
 </script>
 
-<title><?php echo $htmlset->getTitle(); ?></title>
+<title><?php echo $html->getTitle(); ?></title>
 
 
 </head>

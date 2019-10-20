@@ -28,11 +28,13 @@ class Signin
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$htmlrender;
+        global $model,$state,$alerts,$local,$view,$theme,$html,$htmlrender;
+
+        $model->getTheme();
 
         if (!$state->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
-            $view->addStyle($val3);
+            $html->addStyle($val3);
         }
         $htmlrender->open();
         echo '<BR><BR>';

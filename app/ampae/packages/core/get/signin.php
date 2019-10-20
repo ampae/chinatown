@@ -25,10 +25,10 @@ class Signin
 
     public function __construct()
     {
-        global $model, $view, $theme, $sign, $state, $htmlset;
+        global $model, $view, $theme, $sign, $state, $html;
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-        $htmlset->addScript('HEAD', $val2);
+        $html->addScript('HEAD', $val2);
 
         if ($state->get()) {
             $model->redirect = $model->appinfo['url'];

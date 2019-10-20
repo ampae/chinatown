@@ -18,15 +18,11 @@ ampae[] = state
 ampae[] = ac
 ampae[] = office
 ampae[] = sign
-ampae[] = mvc
 ampae[] = options
 ampae[] = media
 ampae[] = local
-ampae[] = menu
+ampae[] = mvc
 ampae[] = http
 ampae[] = view
 ampae[] = email
-ampae[] = htmlset
-ampae[] = html
-ampae[] = htmlrender
-*/
+ampae[] = menu

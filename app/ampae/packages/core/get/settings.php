@@ -38,10 +38,10 @@ class Settings
 
     public function at()
     {
-        global $model, $theme, $view, $sign, $state, $htmlset;
+        global $model, $theme, $view, $sign, $state, $html;
 
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgupnew.js';
-        $htmlset->addScript('HEAD', $val4);
+        $html->addScript('HEAD', $val4);
     }
 
     public function confirm()

@@ -26,60 +26,38 @@ class Html
     // add open tag, close tag
     // change all accordingly
 
-    /**
-     * constructor.
-     */
-    public function __construct()
-    {
-    }
 
-    /**
-     * HTML break encapsulation
-     * Usage: Html::br( NUMBER_OF_BREAKS ).
-     *
-     * @param int $nn config
-     */
-    public function br($nn=1)
-    {
-        $res = '';
-        for ($i = 0; $i < $nn; ++$i) {
-            $res.='<br />';
+        /**
+         * HTML space encapsulation
+         * Usage: Html::sp( NUMBER_OF_SPACES ).
+         *
+         * @param int $nn config
+         */
+        public function sp($nn)
+        {
+            $res = '';
+
+            for ($i = 0; $i < $nn; ++$i) {
+                $res.= '&nbsp;';
+            }
+            $res.="\n";
+            return $res;
         }
-        $res.="\n";
-        return $res;
-    }
 
-    /**
-     * HTML space encapsulation
-     * Usage: Html::sp( NUMBER_OF_SPACES ).
-     *
-     * @param int $nn config
-     */
-    public function sp($nn)
-    {
-        $res = '';
+        /**
+         * HTML remark
+         * Usage: Html::rem('This is Remark');.
+         *
+         * @param string $rr config
+         */
+        public function rem($rr)
+        {
+            $res = '';
 
-        for ($i = 0; $i < $nn; ++$i) {
-            $res.= '&nbsp;';
+            $res.= '<!-- '.$rr." -->";
+            $res.="\n";
+            return $res;
         }
-        $res.="\n";
-        return $res;
-    }
-
-    /**
-     * HTML remark
-     * Usage: Html::rem('This is Remark');.
-     *
-     * @param string $rr config
-     */
-    public function rem($rr)
-    {
-        $res = '';
-
-        $res.= '<!-- '.$rr." -->";
-        $res.="\n";
-        return $res;
-    }
 
     /**
      * HTML full tag encapsulation.
@@ -104,6 +82,23 @@ class Html
         $res.="\n";
         return $res;
     }
+
+    /**
+     * HTML break encapsulation
+     * Usage: Html::br( NUMBER_OF_BREAKS ).
+     *
+     * @param int $nn config
+     */
+    public function br($nn=1)
+    {
+        $res = '';
+        for ($i = 0; $i < $nn; ++$i) {
+            $res.='<br />';
+        }
+        $res.="\n";
+        return $res;
+    }
+
 
     /**
      * HTML H tag encapsulation
@@ -757,4 +752,72 @@ class Html
         $res.="\n";
         return $res;
     }
+
+    // === HTML set ===
+
+
+        public function addTitle($title)
+        {
+            global $model;
+            $model->appinfo['title'] = $title; // $html->title = ...
+        }
+
+        public function getTitle()
+        {
+            global $model, $options;
+            if (!isset($model->appinfo['title'])) {
+                $model->appinfo['title'] = DEFAULT_TITLE;
+            }
+            return $model->appinfo['title'];
+        }
+
+        /**
+         * add meta tag; marked for depreciation;.
+         *
+         * @param string $k config
+         * @param string $v config
+         */
+        public function addMeta($k, $v)
+        {
+            global $model;
+            $model->results['EX']['META'][] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
+        }
+
+
+
+        // -- scripts ---
+        public function addScript($level, $val)
+        {
+            global $model;
+            $model->results['EX']['SCRIPT'][$level][] = $val;
+        }
+
+        public function addSmallScript($level, $val)
+        {
+            global $model;
+            $model->results['EX']['SCRIPT_SMALL'][$level][] = $val;
+        }
+
+        // -- styles ---
+        public function addStyle($val)
+        {
+            global $model;
+            $model->results['EX']['STYLE'][] = $val;
+        }
+
+        public function addSmallStyle($val)
+        {
+            global $model;
+            $model->results['EX']['STYLE_SMALL'][] = $val;
+        }
+
+        // === PREPARE ---
+
+        public function go() {
+          global $model, $htmlrender;
+          $model->getTheme();
+          //$menu->menus();
+          $htmlrender->loadTheme();
+        }
+
 }

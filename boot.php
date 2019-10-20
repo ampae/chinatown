@@ -153,16 +153,17 @@ if (isset($logger)) {
     $logger->info('MAIN - All libs are loaded; Starting..');
 }
 
+// !!! MUST here get page type based on path !!! separate html from /com,  /jpeg , etc.. by path !!!
+
+$http->prepareHeaders();
+
 $mvc->controller();
-
-$model->getTheme();
-
-$local->go();
 $mvc->model();
 
-$view->headers();
-//$menu->menus();
-$htmlrender->theme();
+$local->go();
+
+$http->sendHeaders();
+
 $mvc->view();
 
 if (isset($logger)) {

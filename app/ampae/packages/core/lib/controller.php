@@ -33,6 +33,8 @@ class Controller
 
     public function __construct()
     {
+      // https://tools.ietf.org/html/rfc7231#section-4
+      // GET, POST, HEAD, PUT, PATCH, DELETE, CONNECT, OPTIONS, TRACE
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'POST':
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

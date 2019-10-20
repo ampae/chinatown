@@ -147,6 +147,33 @@ class Mvc
           }
     }
 
+    public function view1()
+    {
+        global $controller, $model, $state, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
+
+        $tmpRealEvent = $model->appinfo['app'];
+
+                if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent]['view'])) {
+                    $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['view']['vendor'];
+                    $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['view']['pack'];
+                }
+
+                $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
+
+                $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR;
+
+                $tmpView = $tmpPt.''.$tmpRealEvent.'.php';
+
+
+
+
+
+                if ( file_exists($tmpView) ) {
+                  include $tmpView; // !!! !!!
+                }
+
+    }
+
     public function view()
     {
         global $controller, $model, $state, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
@@ -216,7 +243,7 @@ class Mvc
                   // !!! !!! !!!
                   //  $theme->asideleft(); // default menu
                 }
-*/                
+*/
             }
 
             // --- Right ---

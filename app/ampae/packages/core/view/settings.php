@@ -28,13 +28,13 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$htmlset,$htmlrender;
+     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$html,$htmlrender;
 
      $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
-     $htmlset->addScript('HEAD', $val2);
+     $html->addScript('HEAD', $val2);
 
      // $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgup.js';
-     // $htmlset->addScript('HEAD', $val4);
+     // $html->addScript('HEAD', $val4);
 
      $htmlrender->open();
 

@@ -29,6 +29,64 @@ class Http
     {
     }
 
+    public function prepareHeaders()
+    {
+        global $model, $content, $html;
+
+        if (!isset($model->redirect)) {
+          if (!isset($model->appinfo['page_type'])) {
+              $model->appinfo['page_type'] = DEFAULT_PAGE_TYPE; // works for both html & json
+          }
+
+            if ('com' == $model->appinfo['page_type']) {
+                // ok, we can log here !!!
+              exit; // it's a com page, silently exiting before headers set or sent
+            }
+
+            if ('jpeg' == $model->appinfo['page_type']) {
+                // ok, we can log here !!!
+            }
+
+            if ('html' == $model->appinfo['page_type']) {
+              $html->go();
+            }
+
+            $model->appinfo['full_content_type'] = $this->prepare($tmpRes = $model->appinfo['page_type']);
+        }
+    }
+
+    // --- PRIVATE ---
+
+    private function prepare($pageType)
+    {
+        global $model, $controller;
+
+        $tmpContentType = NULL;
+
+        switch ($pageType) {
+            case 'html':
+                $tmpContentType = 'text/html';
+                break;
+            case 'json':
+                $tmpContentType = 'application/json';
+                break;
+            case 'jpeg':
+                $tmpContentType = 'image/jpeg';
+                break;
+            case 'png':
+                $tmpContentType = 'image/png';
+                break;
+        }
+        if (!isset($model->appinfo['charset'])) {
+            $model->appinfo['charset'] = DEFAULT_CHARSET;
+        }
+        if ($tmpContentType) {
+          $tmpContentType = $tmpContentType.'; charset='.$model->appinfo['charset'];
+        }
+        return $tmpContentType;
+    }
+
+
     /**
      * send headers;.
      */

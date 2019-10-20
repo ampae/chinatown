@@ -50,14 +50,6 @@ class Htmlrender
 
 
 
-    public function theme()
-    {
-        global $model, $http, $local;
-        if ($model->appinfo['page_type']=='html') {
-            $this->loadTheme();
-        }
-    }
-
     public function loadTheme()
     {
         global $tmpGlobalConfig, $model, $theme, $logger, $local, $sign, $state;
