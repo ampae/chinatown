@@ -117,11 +117,11 @@ class Avatar
          public function view()
          {
              global $xdata, $session, $state, $model, $local, $system, $logger;
-    
+
              $tmp_title = $local->translate('home');
      //        $tmp_description = $local->translate('home') . ' ' . $local->translate('adm');
              $system->addTitle($tmp_title);
-             $logger->info('Load Home Page View'); // info, warning, critical, emergency
+             $logger->debug('Load Home Page View'); // info, warning, critical, emergency
          }
     */
 /*

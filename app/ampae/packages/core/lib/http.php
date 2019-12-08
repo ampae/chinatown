@@ -27,31 +27,27 @@ class Http
      */
     public function __construct()
     {
+        $this->prepareHeaders();
+        $this->sendHeaders();
     }
 
     public function prepareHeaders()
     {
-        global $model, $content, $html;
+        global $controller, $model, $content, $html;
 
         if (!isset($model->redirect)) {
           if (!isset($model->appinfo['page_type'])) {
-              $model->appinfo['page_type'] = DEFAULT_PAGE_TYPE; // works for both html & json
+            if ($controller->method == 'POST') {
+              $tmpPageType = DEFAULT_PAGE_TYPE_POST;
+            } else {
+              $tmpPageType = DEFAULT_PAGE_TYPE_GET;
+            }
+              $model->appinfo['page_type'] = $tmpPageType;
           }
 
-            if ('com' == $model->appinfo['page_type']) {
-                // ok, we can log here !!!
-              exit; // it's a com page, silently exiting before headers set or sent
+            if ('com' != $model->appinfo['page_type']) {
+              $model->appinfo['full_content_type'] = $this->prepare($tmpRes = $model->appinfo['page_type']);
             }
-
-            if ('jpeg' == $model->appinfo['page_type']) {
-                // ok, we can log here !!!
-            }
-
-            if ('html' == $model->appinfo['page_type']) {
-              $html->go();
-            }
-
-            $model->appinfo['full_content_type'] = $this->prepare($tmpRes = $model->appinfo['page_type']);
         }
     }
 
@@ -92,15 +88,20 @@ class Http
      */
     public function sendHeaders()
     {
-        global $model;
+        global $model,$logger;
+
         /*
          * executing redirect, there is nothing to process if redirect has been set
          */
         if (isset($model->redirect)) {
+            $logger->debug('Redirecting to '.$model->redirect);
             header('Location: '.$model->redirect);
             exit;
         }
 
+        if ('com' == $model->appinfo['page_type']) {
+          exit; // com exit before header send!
+        }
 
         header('Pragma: no-cache');
         header('Cache-Control: no-store, no-cache, must-revalidate');

@@ -21,11 +21,12 @@
 /**
  * index
  *
+ * @package     CT_CORE
  * @category    Declaration
  * @author      V Bugroff <bugroff@protonmail.com>
  * @author      M Karodine <usr04@protonmail.com>
+ *
  * @since       0.1.1
- * @deprecated  NO
 **/
 
 /* Absolute path to the application directory. */
@@ -42,30 +43,22 @@ $tmpGlobalConfig = readConfig($tmpConfigFile);
 
 /* Set Encoding. */
 if (extension_loaded('mbstring')) {
-  mb_internal_encoding(APP_ENCODING);
+    mb_internal_encoding(APP_ENCODING);
 }
 
-/*
- * Error display mode
- *
- */
+/* Error display mode */
 if (DEBUG_MODE) {
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
+    set_time_limit(30);
 } else {
     ini_set('display_errors', 0);
     error_reporting(0);
+    set_time_limit(0);
 }
 
-set_time_limit(0);
+/* Load main that does it all like load libraries and classes etc. */
+include 'core.php';
 
-/**
- * Load main that does it all like load libraries and classes etc.
- */
-include 'boot.php';
-
-/*
- * All done, exiting
- *
- */
+/* All done, exiting */
 exit(0);

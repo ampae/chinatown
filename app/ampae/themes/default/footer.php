@@ -24,7 +24,7 @@ if ($state->get()){
     echo '<script type="text/javascript" src="'.$model->appinfo['theme_url'].'assets/js/modal-confirm.js"></script>';
 }
 */
-global $htmlrender;
+global $html, $htmlrender;
 $htmlrender->renderScripts('FOOT'); //dash
 
 ?>

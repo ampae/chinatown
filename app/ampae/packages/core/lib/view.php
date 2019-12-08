@@ -22,17 +22,22 @@ namespace Ampae\Lib;
 class View
 {
     /**
-     * constructor;.
+     * constructor.
      */
     public function __construct()
     {
-        //global $alerts,$local,$view,$theme;
+        $this->loadTheme();
     }
 
-    public function __destruct()
+    public function loadTheme()
     {
-        //global $alerts,$local,$view,$theme;
+        global $tmpGlobalConfig, $model, $theme, $logger, $local, $sign, $html, $state;
+            $tmpThemesNs = ucfirst($model->appinfo['theme_vendor']).'\\'.ucfirst('themes').'\\'; // 'Vendor\\Theme\\';
+            $tmpRealThemePath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_directory']; //DIR_THEMES.DIRECTORY_SEPARATOR.$model->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.$model->appinfo['theme_directory'];
+            $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpThemesNs] = $tmpRealThemePath;
+
+            $tmp_themes = '\\'.$tmpThemesNs.ucfirst('theme');
+            $theme = new $tmp_themes();
+            $logger->debug('VIEW / THEME - '.$tmp_themes);
     }
-
-
 };

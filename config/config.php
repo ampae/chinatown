@@ -1,10 +1,5 @@
 <?php
 /*
-mvcpm[]=get
-mvcpm[]=post
-mvcpm[]=request
-mvcpm[]=view
-
 [define]
 DEBUG_MODE=1
 APP_ENCODING=UTF-8
@@ -19,6 +14,9 @@ DIR_UPLOADS=uploads
 DIR_PACKS=packages
 DIR_THEMES=themes
 DIR_LIB=lib
+TMP_EVENT = e404 ; DEF_MVC_CLASS
+TMP_EVENT_HOME = home ; DEF_MVC_CLASS
+TMP_METHOD = index ; DEF_MVC_METHOD
 
 [php_ini_set]
 magic_quotes_runtime=off

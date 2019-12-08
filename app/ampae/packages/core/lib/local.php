@@ -24,16 +24,17 @@ class Local
     //    Constructor; define class parameters
     public function __construct()
     {
+        $this->go();
     }
 
     public function go()
     {
-        global $model;
+      global $model;
 
-        $ct_lng = $this->getUsrLocale();
-        $this->load($ct_lng);
-        $model->appinfo['language'] = $ct_lng;
-        $model->appinfo['text_direction'] = $this->getData('lang_dir');
+      $ct_lng = $this->getUsrLocale();
+      $this->load($ct_lng);
+      $model->appinfo['language'] = $ct_lng;
+      $model->appinfo['text_direction'] = $this->getData('lang_dir');
     }
 
     /**
@@ -86,22 +87,29 @@ class Local
         $model->results['local'] = array();
         $err = 0;
 
-//        foreach ($tmpGlobalConfig[DIR_APP] as $tmpVendor => $tmpClasses) {
         foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
-            $ct_tmp_def = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.DEFAULT_LANG.'.json';
-            $ct_tmp_lpf = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.$ct_lng.'.json';
-            $tmp_json = '';
-            if (file_exists($ct_tmp_lpf)) {
-                $tmp_json = file_get_contents($ct_tmp_lpf);
-            } elseif (file_exists($ct_tmp_def)) {
-                $tmp_json = file_get_contents($ct_tmp_def);
-            } else {
-                $err+=1;
-            }
-            if (!$err) {
-                $model->results['local'] = array_replace_recursive($model->results['local'], json_decode($tmp_json, true));
-                $err = 0;
-            }
+
+          $tmpVendorPrePath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR;
+
+          foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
+              $ct_tmp_def = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.DEFAULT_LANG.'.php';
+              $ct_tmp_lpf = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.$ct_lng.'.php';
+
+
+              if (file_exists($ct_tmp_lpf)) {
+                  $tmpRes = readConfig($ct_tmp_lpf);
+              } elseif (file_exists($ct_tmp_def)) {
+                  $tmpRes = readConfig($ct_tmp_def);
+              } else {
+                  $err+=1;
+              }
+              if (!$err) {
+                  $model->results['local'] = array_replace_recursive($model->results['local'], $tmpRes);
+                  $err = 0;
+              }
+
+          }
+
         }
     }
 }

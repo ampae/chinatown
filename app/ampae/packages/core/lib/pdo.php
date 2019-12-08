@@ -39,7 +39,7 @@ class Pdo
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
             if ($logger) {
-                $logger->info('MODEL / CONNECTED PDO DB: '.$tmp_db_name.'');
+                $logger->debug('MODEL / CONNECTED PDO DB: '.$tmp_db_name.'');
             }
         } catch (\PDOException $Exception) {
             $this->dbh = false;

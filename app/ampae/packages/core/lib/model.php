@@ -34,11 +34,41 @@ class Model
         global $controller;
 //        $this->appinfo['domain'] = $controller->info['domain'];
         $this->appinfo['url'] = $controller->info['url'];
-        $this->appinfo['content_flag'] = null;
-
         if ($controller->argc > APP_URL_MAX_LEVEL) {
             $this->redirect = $this->appinfo['url'];
+        } else {
+            $this->getTheme();
         }
+    }
+
+    public function getTheme()
+    {
+        //TODO: to database !!!
+        $this->appinfo['theme_vendor']      = DEF_VENDOR;
+        $this->appinfo['theme_directory']   = DEF_THEME;
+        $this->appinfo['theme_path']        = DIR_APP.DIRECTORY_SEPARATOR.$this->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.DIR_THEMES.DIRECTORY_SEPARATOR.$this->appinfo['theme_directory'];
+        $this->appinfo['theme_webpath']     = DIR_APP.'/'.$this->appinfo['theme_vendor'].'/'.DIR_THEMES.'/'.$this->appinfo['theme_directory'];
+    }
+
+    public function getMainContent()
+    {
+        echo 'MODEL Main CONTENT';
+    }
+
+    public function load($file)
+    {
+        global $session, $sign, $controller, $model, $view, $local, $theme;
+
+        $ret = false;
+
+        $tmpPage = realpath($file);
+
+        if (file_exists($tmpPage)) {
+            include $tmpPage;
+            $ret = true;
+        }
+
+        return $ret;
     }
 
     /**
@@ -65,34 +95,5 @@ class Model
     public function add($k, $v)
     {
         $this->results[$k][] = $v;
-    }
-
-    // --- !!! !!!
-
-    public function getTheme()
-    {
-        //TODO: to database !!!
-        $this->appinfo['theme_vendor']      = DEF_VENDOR;
-        $this->appinfo['theme_directory']   = DEF_THEME;
-        $this->appinfo['theme_path']        = DIR_APP.DIRECTORY_SEPARATOR.$this->appinfo['theme_vendor'].DIRECTORY_SEPARATOR.DIR_THEMES.DIRECTORY_SEPARATOR.$this->appinfo['theme_directory'];
-        $this->appinfo['theme_webpath']     = DIR_APP.'/'.$this->appinfo['theme_vendor'].'/'.DIR_THEMES.'/'.$this->appinfo['theme_directory'];
-    }
-
-    // ---
-
-    public function load($file)
-    {
-        global $session, $sign, $controller, $model, $view, $local;
-
-        $ret = false;
-
-        $tmpPage = realpath($file);
-
-        if (file_exists($tmpPage)) {
-            include $tmpPage;
-            $ret = true;
-        }
-
-        return $ret;
     }
 }

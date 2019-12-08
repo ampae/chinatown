@@ -8,7 +8,7 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
-global $html,$htmlrender,$state;
+global $html, $htmlrender;
 $htmlrender->renderMeta();
 ?>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
@@ -127,3 +127,5 @@ if ($state->get()) {
   	</header>
 
     <main role="main">
+<?php
+$model->getMainContent();

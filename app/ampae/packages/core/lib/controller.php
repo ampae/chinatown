@@ -21,8 +21,6 @@ namespace Ampae\Lib;
 
 class Controller
 {
-    public $get     = array(); // User input after purification
-    public $post    = array(); // User input after purification
     public $request = array(); // User input after purification
     public $info    = array(); // Application data like path etc.
     public $params  = array(); //
@@ -33,25 +31,17 @@ class Controller
 
     public function __construct()
     {
-      // https://tools.ietf.org/html/rfc7231#section-4
-      // GET, POST, HEAD, PUT, PATCH, DELETE, CONNECT, OPTIONS, TRACE
-        switch ($_SERVER['REQUEST_METHOD']) {
+        $this->method = $_SERVER['REQUEST_METHOD'];
+        switch ($this->method) {
             case 'POST':
-                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $this->post = $_POST;
-                $this->request = $_POST;
-                $this->method = 'POST';
+                $tmpCleanInput = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 break;
-
             case 'GET':
-                $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-                $this->get = $_GET;
-                $this->request = $_GET;
-                $this->method = 'GET';
+                $tmpCleanInput = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
                 break;
-
-            // default: exit;
+            default: exit;
         }
+        $this->request = $tmpCleanInput;
         $this->argX();
     }
 

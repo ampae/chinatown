@@ -30,8 +30,8 @@ class Nonce
             $nonceParams = $controller->params['nonce'];
         }
 
-        if ($controller->method=='POST' && isset($controller->post['nonce']) && $nonceParams===null) {
-            $nonceParams = $controller->post['nonce'];
+        if ($controller->method=='POST' && isset($controller->request['nonce']) && $nonceParams===null) {
+            $nonceParams = $controller->request['nonce'];
         }
 
         if ($nonceParams) {

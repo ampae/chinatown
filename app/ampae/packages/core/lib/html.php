@@ -22,6 +22,14 @@ namespace Ampae\Lib;
 class Html
 {
 
+  public $meta            = array();
+  public $script          = array();
+  public $style           = array();
+  public $scriptSmall     = array();
+  public $styleSmall      = array();
+//  public $x    = array(); // 
+
+
   // add some consts like space, new line, etc..
     // add open tag, close tag
     // change all accordingly
@@ -780,7 +788,7 @@ class Html
         public function addMeta($k, $v)
         {
             global $model;
-            $model->results['EX']['META'][] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
+            $this->meta[] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
         }
 
 
@@ -789,35 +797,26 @@ class Html
         public function addScript($level, $val)
         {
             global $model;
-            $model->results['EX']['SCRIPT'][$level][] = $val;
+            $this->script[$level][] = $val;
         }
 
         public function addSmallScript($level, $val)
         {
             global $model;
-            $model->results['EX']['SCRIPT_SMALL'][$level][] = $val;
+            $this->scriptSmall[$level][] = $val;
         }
 
         // -- styles ---
         public function addStyle($val)
         {
             global $model;
-            $model->results['EX']['STYLE'][] = $val;
+            $this->style[] = $val;
         }
 
         public function addSmallStyle($val)
         {
             global $model;
-            $model->results['EX']['STYLE_SMALL'][] = $val;
-        }
-
-        // === PREPARE ---
-
-        public function go() {
-          global $model, $htmlrender;
-          $model->getTheme();
-          //$menu->menus();
-          $htmlrender->loadTheme();
+            $this->styleSmall[] = $val;
         }
 
 }

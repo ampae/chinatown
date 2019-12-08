@@ -1,16 +1,22 @@
-VIEW REDO !!!
-. --event view, event model set everything for the view !
+!!! view feeds ?? multilevel ..
+
+main.php, asideLeft.php, etc.. dialog.php
+
+. !!! menus !!!
+. theme=>html (+articles). theme && htmlrender ???
+. then theme=> view !!!
+
 .. ++view as db & textfile with shortcodes for forms !!! and whatever data?
 .. ++view single html template with php for head, aside, main etc..
 
-. ++default page page_type
-. ++default redirect
-== view -> txt files !!! --view/js -> --view/aside !!! pack/lib/js
+$model->results['local']['lang'] -> local->data, local->lang
 
-. loc json -> ini !!! === write convert json to ini !!!
-?? def cont type appliction/php
+make all forms work (like options and settings) !!!
+iso => ini convert all !!!
 
-//---
+!!! add global list, use global on every level !!!
+
+//=== AUTH =================================================
 
 . devices ++update, delete !!!
 ~ finalize office.php , ac.php
@@ -38,12 +44,6 @@ var templateUrl = '<?= get_bloginfo("template_url"); ?>';
 
 Reset.style.background = " url('"+templateUrl+"/images/searchfield_clear.png') ";
 
-POST MODEL if redirect not set it must die!!! config set def?
-GET VIEW - if redirect, if no
-
-~. bring back session auth, redo device based auth to work as "remember me", make it part of the config.
-~. change OTP to AC (access code), add table to store ALL codes ever given.. last sent code should be treated as password.
-
 . add auto post view (redirect or die!!!),  view must engage anyway, no more com pages??
 .. view get default action die? if not set..
 . post controller redirection from form data
@@ -57,14 +57,10 @@ GET VIEW - if redirect, if no
 . fix nonce
 
 . repackage core / ext/def/ ???
-. add get/post model !!!
 . make alerts works in signin and install
-. install !!! combine cookies & db => one autoconfig.php ??
 . install !!! use appexch to add admin !!!
 . add cleanup.php,, delete logs, configs, DB!, etc.. make ready for install! chmod!!!
 
-
-. clean up all controllers -> model !!!
 
 . get {home,activity,avatar,jpg,otp}
 . global config encapsulation:: $config->add('array_level', $array_values);
@@ -72,9 +68,6 @@ GET VIEW - if redirect, if no
 3. redo ACL/RBAC, new concept !!!
 
 . add documentation
-
-. + config - app_use_default_method..
-. + config - controller_method_strict - use folder controller in addition with method controller
 
 MAIN_ADMIN_EMAIL
 
