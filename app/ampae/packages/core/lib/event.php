@@ -31,7 +31,7 @@ class Event
 
     public function go()
     {
-        global $controller, $model, $state, $appRequest, $appController;
+        global $logger, $controller, $model, $state, $appRequest, $appController;
         global $appView, $appModel, $tmpGlobalConfig, $theme;
 
         $tmpEvent     = TMP_EVENT_HOME;
@@ -82,55 +82,36 @@ class Event
           //$tmpFireControllerMethod = true;
         }
 
-        // $model->appinfo['page_type']
-        /*
-                switch ($tmpRealMethod) {
-                    case 'index':
-                        $model->appinfo['page_type'] = 'html'; // !!!
-                        break;
-                    case 'default':
-                        $model->appinfo['page_type'] = 'html'; // !!!
-                        break;
-                    case 'create':
-                        $model->appinfo['page_type'] = 'com'; // !!!
-                        break;
-                    case 'read':
-                        $model->appinfo['page_type'] = 'com'; // !!!
-                        break;
-                    case 'update':
-                        $model->appinfo['page_type'] = 'com'; // !!!
-                        break;
-                    case 'delete':
-                        $model->appinfo['page_type'] = 'com'; // !!!
-                        break;
-                    case 'check':
-                        $model->appinfo['page_type'] = 'json'; // !!!
-                        break;
-                    default:
-                        $model->appinfo['page_type'] = DEFAULT_PAGE_TYPE; // !!! http prep head !!!
-                        break;
-                }
-        */
         $model->appinfo['app'] = $tmpRealEvent;
         $model->appinfo['app_mtd'] = $tmpRealMethod;
 
 
 
+//print_r($tmpGlobalConfig['mvc']);
 
+//echo $tmpRealEvent.' = '.$tmpRealMethod;
 
         $tmpMeMe = 'events';
         $tmpFireMe = true;
-        if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
-            if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMeMe])) {
+        //if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
+            if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
                 $tmpFireMe = false;
+            } else {
+              $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
+              $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
+              $logger->debug('CURRENT: '.$model->appinfo['curr_vendor'].'/'.$model->appinfo['curr_pack']);
             }
-        }
+        //}
+
+//print_r($model->appinfo);
+
+//echo $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMeMe].' --';
 
         if ($tmpFireMe) {
 
 //            if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent]['model'])) {
-            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['events']['vendor'];
-            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['events']['pack'];
+            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
+            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
 //            }
 
             $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
@@ -141,16 +122,22 @@ class Event
             $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
             $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
 
+            //echo $tmpCls.' ==';
+
             if (class_exists($tmpCls)) {
                 $appRequest = new $tmpCls();
                 if ($tmpRealMethod && method_exists($appRequest, $tmpRealMethod)) {
                     $appRequest->$tmpRealMethod();
+                    $logger->debug('EVENT: '.$tmpRealMethod);
                 } else {
                     if (method_exists($appRequest, 'default')) {
                         $appRequest->default();
+                        $logger->debug('EVENT: Default');
                     }
                 }
             }
         }
     }
-}
+
+
+};

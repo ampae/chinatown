@@ -73,7 +73,8 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
         $tmpMvcPreRes = array_flip($tmpMvcPreArr);
         $tmpMvcPreRes = array_map(function () {
             global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
-            return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
+            return array('vendor'=>$tmpVendor,'pack'=>$tmpPack);
+            //return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
         }, $tmpMvcPreRes);
 
         $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);

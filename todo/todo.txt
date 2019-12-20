@@ -1,13 +1,13 @@
-!!! view feeds ?? multilevel ..
+++ifVendorExists, ifPackExists, ifClassExists(minVer!), getClassVersion()
 
-main.php, asideLeft.php, etc.. dialog.php
+
+//--main.php, asideLeft.php, etc.. dialog.php
+//.. ++view as db & textfile with shortcodes for forms !!! and whatever data?
+//.. ++view single html template with php for head, aside, main etc..
 
 . !!! menus !!!
 . theme=>html (+articles). theme && htmlrender ???
 . then theme=> view !!!
-
-.. ++view as db & textfile with shortcodes for forms !!! and whatever data?
-.. ++view single html template with php for head, aside, main etc..
 
 $model->results['local']['lang'] -> local->data, local->lang
 

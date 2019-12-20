@@ -1,0 +1,7 @@
+<?php
+$aaa = 'varVar';
+?>
+<h2>Login Form</h2>
+<?php
+echo '<h2>'.$aaa.'</h2>';
+?>

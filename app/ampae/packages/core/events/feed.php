@@ -19,18 +19,15 @@
 
 namespace Ampae\Event;
 
-class Home
+class Feed
 {
-
     public function index()
     {
-      global $model,$loger;
-      //$model->setContentExt('');
-      $tmp = $model->getRawPath('signin');
-      $model->setExtContent($tmp);
-      $model->setContent($tmp.'<h2>Yea!</h2>');
+        global $model;
+        $model->setContent('[{"value":"test1","key":"test2"}]');
+        $model->appinfo['page_type'] = 'json'; // !!!
+      //echo 'feed lala<BR>';
       //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }
-
 };

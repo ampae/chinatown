@@ -128,4 +128,3 @@ if ($state->get()) {
 
     <main role="main">
 <?php
-$model->getMainContent();

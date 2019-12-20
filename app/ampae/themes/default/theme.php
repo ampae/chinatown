@@ -42,13 +42,14 @@ class Theme
     {
         global $model,$state,$alerts,$local,$view;
         $this->open();
-        $this->asm();
+        $this->raw();
+        $this->close();
     }
 
     public function __destruct()
     {
         global $alerts,$local,$view;
-        $this->close();
+        //$this->close();
     }
 
 
@@ -56,7 +57,7 @@ class Theme
     {
         global $model;
         if ($model->appinfo['page_type']=='html') {
-            $headerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
+            $headerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
             $model->load($headerFile);
         }
     }
@@ -65,18 +66,17 @@ class Theme
     {
         global $model;
         if ($model->appinfo['page_type']=='html') {
-            $footerFile = ABSPATH.$model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
+            $footerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
             $model->load($footerFile);
         }
     }
 
-    public function asm()
+    public function raw()
     {
         global $model;
-        // load main
-        // load asideLeft
-        // load asideRight
-        // load dialog
+        echo $model->getExtContent();
+        echo $model->getContent();
+
     }
 
 

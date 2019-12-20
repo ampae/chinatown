@@ -50,25 +50,72 @@ class Model
         $this->appinfo['theme_webpath']     = DIR_APP.'/'.$this->appinfo['theme_vendor'].'/'.DIR_THEMES.'/'.$this->appinfo['theme_directory'];
     }
 
-    public function getMainContent()
+    public function setExtContent($file,$pos='main')
     {
-        echo 'MODEL Main CONTENT';
+        $this->results['raw'][$pos]=$file;
+    }
+
+    public function getExtContent($pos='main')
+    {
+      $allowed = '<p><h2><h3><h4><h5><ul><li><button><form><input><a>';
+      $ret = null;
+      if (isset($this->results['raw'][$pos])) {
+        $ret = $this->loadRaw( $this->results['raw'][$pos] );
+        //$ret = htmlentities($ret, ENT_QUOTES, 'UTF-8');
+        $ret = strip_tags($ret, $allowed);
+      }
+      return $ret;
+    }
+
+    public function setContent($data, $element='main', $position=null)
+    {
+        if (isset($position)) {
+          $element=$element.'-'.$position;
+        }
+        $this->results[$element]=$data;
+    }
+
+    public function getContent($element='main', $position=null)
+    {
+        $ret = null;
+        if (isset($position)) {
+            $element=$element.'-'.$position;
+        }
+        if (isset($this->results[$element])) {
+          $ret = $this->results[$element];
+        }
+        return $ret;
     }
 
     public function load($file)
     {
         global $session, $sign, $controller, $model, $view, $local, $theme;
-
         $ret = false;
-
-        $tmpPage = realpath($file);
-
+        $tmpPage = realpath(ABSPATH.$file);
         if (file_exists($tmpPage)) {
             include $tmpPage;
             $ret = true;
         }
-
         return $ret;
+    }
+
+// TODO check functions !!!
+    public function loadRaw($file)
+    {
+        global $session, $sign, $controller, $model, $view, $local, $theme;
+        $ret = false;
+        $tmpPage = realpath(ABSPATH.$file);
+        if (file_exists($tmpPage)) {
+            $ret = file_get_contents($tmpPage);
+        }
+        return $ret;
+    }
+
+// TODO !!! add allowed html of external files to config !!!
+// TODO 1. add raw to config, 2. add raw file ext to config. !!!
+    public function getRawPath($file) {
+      $ret = DIR_APP.DIRECTORY_SEPARATOR.$this->appinfo['curr_vendor'].DIRECTORY_SEPARATOR.DIR_PACKS.DIRECTORY_SEPARATOR.$this->appinfo['curr_pack'].DIRECTORY_SEPARATOR.'raw'.DIRECTORY_SEPARATOR.$file.'.txt';
+      return $ret;
     }
 
     /**
