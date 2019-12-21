@@ -21,16 +21,14 @@ namespace Ampae\Rest;
 
 class Home
 {
-
     public function index()
     {
-      global $model,$loger;
-      //$model->setContentExt('');
-      $tmp = $model->getRawPath('signin');
-      $model->setExtContent($tmp);
-      $model->setContent($tmp.'<h2>Yea!</h2>');
-      //$model->redirect = $model->appinfo['url'].'login';
+        global $model,$loger;
+        //$model->setContentExt('');
+        $tmp = $model->getRawPath('signin');
+        $model->setExtContent($tmp);
+        $model->setContent($tmp.'<h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }
-
 };

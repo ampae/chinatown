@@ -57,14 +57,15 @@ class Model
 
     public function getExtContent($pos='main')
     {
-        global $io;
+        global $io, $shortcode;
         // TODO allowed to config !!!
-        $allowed = '<p><h2><h3><h4><h5><ul><li><button><form><input><a>';
+        $allowed = '<p><h2><h3><h4><h5><ul><li><button><form><input><br><a>';
         $ret = null;
         if (isset($this->results['raw'][$pos])) {
-            $ret = $io->loadRaw($this->results['raw'][$pos]);
+            $ret = strip_tags($io->loadRaw($this->results['raw'][$pos]), $allowed);
+            //$ret = strip_tags($ret, $allowed);
             //$ret = htmlentities($ret, ENT_QUOTES, 'UTF-8');
-            $ret = strip_tags($ret, $allowed);
+            $ret = $shortcode->do($ret);
         }
         return $ret;
     }
@@ -79,6 +80,7 @@ class Model
 
     public function getContent($element='main', $position=null)
     {
+        global $shortcode;
         $ret = null;
         if (isset($position)) {
             $element=$element.'-'.$position;
@@ -86,6 +88,7 @@ class Model
         if (isset($this->results[$element])) {
             $ret = $this->results[$element];
         }
+        $ret = $shortcode->do($ret);
         return $ret;
     }
 

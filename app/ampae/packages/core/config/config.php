@@ -18,6 +18,7 @@ ampae[] = io
 ampae[] = model
 
 ampae[] = alerts
+ampae[] = shortcode
 ampae[] = rest
 ampae[] = local
 ampae[] = http

@@ -22,7 +22,7 @@ namespace Ampae\Lib;
 class Basic
 {
     /**
-     * constructor; initialize cookies;.
+     * constructor; initialize;.
      */
     public function __construct()
     {
