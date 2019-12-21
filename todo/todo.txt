@@ -9,6 +9,7 @@
 
 make all forms work (like options and settings) !!!
 iso => ini convert all !!!
++shortcodes other vendor !!!
 
 ++ifVendorExists, ifPackExists, ifClassExists(minVer!), getClassVersion()
 
