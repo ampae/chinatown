@@ -19,7 +19,7 @@
 
 namespace Ampae\Lib;
 
-class Event
+class Rest
 {
     /**
      * constructor.
@@ -39,7 +39,7 @@ class Event
 
         $tmpC = 0;
         if (!empty($controller->argc) && $controller->argc >= 1) {
-            $tmpEvent     = TMP_EVENT_HOME; // 404
+            $tmpEvent     = TMP_EVENT_HOME; // 404 !!!
             $tmpC = $controller->argc;
         }
 
@@ -51,7 +51,7 @@ class Event
             $tmpMethod = $controller->argv[1];
         }
 
-        // $tmpCmethod = strtolower($controller->method);
+        $tmpCmethod = strtolower($controller->method);
 
         //$tmpFireController = false;
         $tmpFireControllerMethod = false;
@@ -62,6 +62,9 @@ class Event
 
             $tmpRealEvent = $tmpEvent;
             $tmpRealMethod = $tmpMethod;
+
+//echo '== '.$tmpRealEvent.' == '.$tmpRealMethod;
+
         /*
                   if (isset($tmpGlobalConfig['mvc'][$tmpEvent]['controller'])) {
                     $tmpFireController = true;
@@ -91,33 +94,37 @@ class Event
 
 //echo $tmpRealEvent.' = '.$tmpRealMethod;
 
-        $tmpMeMe = 'events';
         $tmpFireMe = true;
         //if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
             if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
                 $tmpFireMe = false;
             } else {
-              $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
-              $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
+              $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['vendor'];
+              $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['pack'];
               $logger->debug('CURRENT: '.$model->appinfo['curr_vendor'].'/'.$model->appinfo['curr_pack']);
             }
         //}
 
 //print_r($model->appinfo);
 
-//echo $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMeMe].' --';
+//echo $tmpGlobalConfig['mvc'][$tmpRealEvent][DIR_REST].' --';
 
         if ($tmpFireMe) {
 
 //            if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent]['model'])) {
-            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
-            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
+            //$tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
+            //$tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
 //            }
+
+            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['vendor'];
+            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['pack'];
 
             $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
 
-            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.$tmpMeMe.DIRECTORY_SEPARATOR;
-            $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('event').'\\';
+//            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
+            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$tmpCmethod.DIRECTORY_SEPARATOR;
+
+            $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('rest').'\\';
 
             $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
             $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
@@ -128,7 +135,7 @@ class Event
                 $appRequest = new $tmpCls();
                 if ($tmpRealMethod && method_exists($appRequest, $tmpRealMethod)) {
                     $appRequest->$tmpRealMethod();
-                    $logger->debug('EVENT: '.$tmpRealMethod);
+                    $logger->debug('REST: '.$tmpRealMethod);
                 } else {
                     if (method_exists($appRequest, 'default')) {
                         $appRequest->default();

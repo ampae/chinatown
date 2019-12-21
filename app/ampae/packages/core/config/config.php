@@ -13,6 +13,7 @@ ampae[] = session
 ampae[] = nonce
 ampae[] = alerts
 
+ampae[] = io
 ampae[] = model
 ampae[] = usr
 ampae[] = state
@@ -23,7 +24,7 @@ ampae[] = options
 ampae[] = media
 ampae[] = local
 ampae[] = email
-ampae[] = event
+ampae[] = rest
 ampae[] = http
 ampae[] = html
 ampae[] = htmlrender

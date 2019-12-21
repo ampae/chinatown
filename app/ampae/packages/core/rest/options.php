@@ -17,20 +17,26 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Event;
+namespace Ampae\Rest;
 
-class Home
+class Options
 {
+    const VENDOR = 'ampae';
+  
 
     public function index()
     {
-      global $model,$loger;
-      //$model->setContentExt('');
-      $tmp = $model->getRawPath('signin');
-      $model->setExtContent($tmp);
-      $model->setContent($tmp.'<h2>Yea!</h2>');
-      //$model->redirect = $model->appinfo['url'].'login';
-      //echo $this->vendor(__CLASS__);
-    }
+      global $model, $theme, $view, $sign, $state, $office,$html;
 
+      $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
+      $html->addScript('HEAD', $val2);
+
+      if (!$state->get()) {
+          $model->redirect = $model->appinfo['url'].'login';
+      }
+
+      //if (!$office->can()) {
+      //    $model->redirect = $model->appinfo['url'];
+      //}
+    }
 };

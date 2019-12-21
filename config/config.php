@@ -1,5 +1,9 @@
 <?php
 /*
+
+rest[]=get
+rest[]=post
+
 [define]
 DEBUG_MODE=1
 APP_ENCODING=UTF-8
@@ -12,6 +16,7 @@ DIR_ASSETS=assets
 DIR_LOG=log
 DIR_UPLOADS=uploads
 DIR_PACKS=packages
+DIR_REST=rest
 DIR_THEMES=themes
 DIR_LIB=lib
 TMP_EVENT = e404 ; DEF_MVC_CLASS

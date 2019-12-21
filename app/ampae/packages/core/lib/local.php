@@ -29,12 +29,12 @@ class Local
 
     public function go()
     {
-      global $model;
+        global $model;
 
-      $ct_lng = $this->getUsrLocale();
-      $this->load($ct_lng);
-      $model->appinfo['language'] = $ct_lng;
-      $model->appinfo['text_direction'] = $this->getData('lang_dir');
+        $ct_lng = $this->getUsrLocale();
+        $this->load($ct_lng);
+        $model->appinfo['language'] = $ct_lng;
+        $model->appinfo['text_direction'] = $this->getData('lang_dir');
     }
 
     /**
@@ -88,28 +88,25 @@ class Local
         $err = 0;
 
         foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
+            $tmpVendorPrePath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR;
 
-          $tmpVendorPrePath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR;
-
-          foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
-              $ct_tmp_def = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.DEFAULT_LANG.'.php';
-              $ct_tmp_lpf = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.$ct_lng.'.php';
+            foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
+                $ct_tmp_def = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.DEFAULT_LANG.'.php';
+                $ct_tmp_lpf = $tmpVendorPrePath.$tmpPack.DIRECTORY_SEPARATOR.'loc'.DIRECTORY_SEPARATOR.$ct_lng.'.php';
 
 
-              if (file_exists($ct_tmp_lpf)) {
-                  $tmpRes = readConfig($ct_tmp_lpf);
-              } elseif (file_exists($ct_tmp_def)) {
-                  $tmpRes = readConfig($ct_tmp_def);
-              } else {
-                  $err+=1;
-              }
-              if (!$err) {
-                  $model->results['local'] = array_replace_recursive($model->results['local'], $tmpRes);
-                  $err = 0;
-              }
-
-          }
-
+                if (file_exists($ct_tmp_lpf)) {
+                    $tmpRes = readConfig($ct_tmp_lpf);
+                } elseif (file_exists($ct_tmp_def)) {
+                    $tmpRes = readConfig($ct_tmp_def);
+                } else {
+                    $err+=1;
+                }
+                if (!$err) {
+                    $model->results['local'] = array_replace_recursive($model->results['local'], $tmpRes);
+                    $err = 0;
+                }
+            }
         }
     }
 }

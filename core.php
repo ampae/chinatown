@@ -63,26 +63,49 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
 
     // loop inside each vendor package
     foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
-        $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'events'.DIRECTORY_SEPARATOR;
 
-        $tmpMvcPreArr = array_map('basename', glob($tmpMvcPreMap.'*.php', GLOB_BRACE));
-        $tmpMvcPreArr = array_map(function ($e) {
-            return pathinfo($e, PATHINFO_FILENAME);
-        }, $tmpMvcPreArr);
+      // premap mvc
+        $tmpMvcPreIndex = $tmpGlobalConfig['rest'];
 
-        $tmpMvcPreRes = array_flip($tmpMvcPreArr);
-        $tmpMvcPreRes = array_map(function () {
-            global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
-            return array('vendor'=>$tmpVendor,'pack'=>$tmpPack);
-            //return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
-        }, $tmpMvcPreRes);
+        foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {
+            $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
+// TODO add request NODIR !!!
+            $tmpMvcPreArr = array_map('basename', glob($tmpMvcPreMap.'*.php', GLOB_BRACE));
+            $tmpMvcPreArr = array_map(function ($e) {
+                return pathinfo($e, PATHINFO_FILENAME);
+            }, $tmpMvcPreArr);
+            $tmpMvcPreRes = array_flip($tmpMvcPreArr);
+            $tmpMvcPreRes = array_map(function () {
+                global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
+                return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
+            }, $tmpMvcPreRes);
+            $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);
+        }
 
-        $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);
+        /*
+                $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
+
+                $tmpMvcPreArr = array_map('basename', glob($tmpMvcPreMap.'*.php', GLOB_BRACE));
+                $tmpMvcPreArr = array_map(function ($e) {
+                    return pathinfo($e, PATHINFO_FILENAME);
+                }, $tmpMvcPreArr);
+
+                $tmpMvcPreRes = array_flip($tmpMvcPreArr);
+                $tmpMvcPreRes = array_map(function () {
+                    global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
+                    return array('vendor'=>$tmpVendor,'pack'=>$tmpPack);
+                    //return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
+                }, $tmpMvcPreRes);
+
+                $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);
+        */
+
+        //print_r($tmpGlobalConfig['mvc']); // !!!
 
         // dealing with libraries..
         $tmp_psr4_ns = ucfirst($tmpVendor).'\\'.ucfirst('lib').'\\';
 
-        $tmp_psr4_pt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR;
+        $tmp_psr4_pt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_LIB.DIRECTORY_SEPARATOR;
         $tmpGlobalConfig['autoload']['main']['psr-4'][$tmp_psr4_ns] = $tmp_psr4_pt;
 
         $tmpAutoDiscoveredLibs = array_map('basename', glob($tmp_psr4_pt.'*.php', GLOB_BRACE));

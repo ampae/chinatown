@@ -17,17 +17,26 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Event;
+namespace Ampae\Rest;
 
-class Feed
+class Login
 {
+    const VENDOR = 'ampae';
+    const PACKAGE = 'core';
+
     public function index()
     {
-        global $model;
-        $model->setContent('[{"value":"test1","key":"test2"}]');
-        $model->appinfo['page_type'] = 'json'; // !!!
-      //echo 'feed lala<BR>';
-      //$model->redirect = $model->appinfo['url'].'login';
-      //echo $this->vendor(__CLASS__);
+      global $model, $theme, $view, $sign, $state, $office,$html;
+
+      // if (!$state->get()) {
+        $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css'; // ???
+        $html->addStyle($val3);
+      // }
+
+      $tmpLibJsPath = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/'.self::PACKAGE.'/lib/js/';
+
+      $val2 = $tmpLibJsPath . 'validate-custom.js';
+      $html->addScript('HEAD', $val2);
+
     }
 };

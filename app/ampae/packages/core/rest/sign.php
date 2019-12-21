@@ -17,7 +17,7 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Event;
+namespace Ampae\Rest;
 
 class Sign
 {

@@ -17,26 +17,24 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Event;
+namespace Ampae\Rest;
 
-class Options
+class Media
 {
     const VENDOR = 'ampae';
-  
 
     public function index()
     {
-      global $model, $theme, $view, $sign, $state, $office,$html;
+      global $model, $theme, $view, $sign, $state,$html;
 
       $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
       $html->addScript('HEAD', $val2);
 
+      $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgup.js';
+      $html->addScript('HEAD', $val4);
+
       if (!$state->get()) {
           $model->redirect = $model->appinfo['url'].'login';
       }
-
-      //if (!$office->can()) {
-      //    $model->redirect = $model->appinfo['url'];
-      //}
     }
 };
