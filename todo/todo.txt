@@ -1,18 +1,16 @@
-++ifVendorExists, ifPackExists, ifClassExists(minVer!), getClassVersion()
-
-
-//--main.php, asideLeft.php, etc.. dialog.php
 //.. ++view as db & textfile with shortcodes for forms !!! and whatever data?
-//.. ++view single html template with php for head, aside, main etc..
+//.. ++view single html template for head, aside, main etc..
+
+// ++core load stoplist for html*
 
 . !!! menus !!!
 . theme=>html (+articles). theme && htmlrender ???
 . then theme=> view !!!
 
-$model->results['local']['lang'] -> local->data, local->lang
-
 make all forms work (like options and settings) !!!
 iso => ini convert all !!!
+
+++ifVendorExists, ifPackExists, ifClassExists(minVer!), getClassVersion()
 
 !!! add global list, use global on every level !!!
 
@@ -83,6 +81,8 @@ app/
     /themes/  - from db
 
 each package has:: install, mvc, lib(s), loc, scripts(js)
+$model->results['local']['lang'] -> local->data, local->lang
+
 
 check for php-mbstring
 -- bal, rbal, exch, acl, rbac, act

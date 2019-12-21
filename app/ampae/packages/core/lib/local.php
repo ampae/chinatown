@@ -21,6 +21,9 @@ namespace Ampae\Lib;
 
 class Local
 {
+    public $lang = array();
+    public $data = array();
+
     //    Constructor; define class parameters
     public function __construct()
     {

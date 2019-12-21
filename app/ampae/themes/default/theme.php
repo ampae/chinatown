@@ -40,41 +40,5 @@ class Theme
    */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view;
-        $this->open();
-        $this->raw();
-        $this->close();
-    }
-
-    public function __destruct()
-    {
-        global $alerts,$local,$view;
-        //$this->close();
-    }
-
-
-    public function open()
-    {
-        global $model,$io;
-        if ($model->appinfo['page_type']=='html') {
-            $headerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
-            $io->load($headerFile);
-        }
-    }
-
-    public function close()
-    {
-        global $model,$io;
-        if ($model->appinfo['page_type']=='html') {
-            $footerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
-            $io->load($footerFile);
-        }
-    }
-
-    public function raw()
-    {
-        global $model;
-        echo $model->getExtContent();
-        echo $model->getContent();
     }
 };
