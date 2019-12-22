@@ -1,0 +1,157 @@
+forms encapsulation !!!
+make all forms work (like options and settings) !!!
+
++head, aside, main etc..
+. !!! menus !!!
+. theme=>html (+articles). theme && htmlrender ???
+. then theme=> view !!!
+
+404
+
+//=== AUTH =================================================
+
+. devices ++update, delete !!!
+~ finalize office.php , ac.php
+. check ac properly, send/sess_store uid, etc..
+. remember me
+
+??. install -> sql ???
+. 'state' => config auth !!!
+
+
+1. install nested, db -> admin ..
+.. check if admin at least one is set !!!
+.. separate db, cookies, admin
+.. 3 functions.. check cookies if not do it.., check db-//-, check admin
+
+#=========
+. finalize config to ini (menu,iso[2]) MENUS!!!->DB !!!
+iso => ini convert all !!!
+++ifVendorExists, ifPackExists, ifClassExists(minVer!), getClassVersion()
+// ++core load stop-list for html*
++shortcodes other vendor !!!
+!!! add global list, use global on every level !!!
+
+4. AC
+
+split core and other packages..
+
+--Base Structure?
+
+<script type="text/javascript">
+var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+</script>
+
+Reset.style.background = " url('"+templateUrl+"/images/searchfield_clear.png') ";
+
+. add auto post view (redirect or die!!!),  view must engage anyway, no more com pages??
+.. view get default action die? if not set..
+. post controller redirection from form data
+
+. menu add encapsulation $menu->add('level', 'label', '$path')
+. clean up boot.php, mvc.php, update appropriate variable names !!!
+. names !!! 'smreca', 'smrecb' CRUD for DB structure !!!
+
+. basic move some functions to atricles, social, etc..
+. fix / automate timezones
+. fix nonce
+
+. repackage core / ext/def/ ???
+. make alerts works in signin and install
+. install !!! use appexch to add admin !!!
+. add cleanup.php,, delete logs, configs, DB!, etc.. make ready for install! chmod!!!
+
+
+. get {home,activity,avatar,jpg,otp}
+. global config encapsulation:: $config->add('array_level', $array_values);
+
+3. redo ACL/RBAC, new concept !!!
+
+. add documentation
+
+MAIN_ADMIN_EMAIL
+
+
+ACRUMD
+actions:            std_methods:
+A - 1 - add             GET/POST
+C - 2 - count           GET
+R - 3 - read/browse     GET
+U - 4 - update/replace  POST/GET
+M - 5 - update/modify   POST/GET
+D - 6 - delete          GET
+
+Allow action READ resource  MedicalJournal,
+                          Subject DesignatedDoctorOfPatient
+                          attribute patientID=x
+/*
+obligation
+              on Permit: doLog_Inform(patientID, Subject, time)
+              on Deny  : doLog_UnauthorizedLogin(patientID, Subject, time)
+*/
+
+<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>HTTP Verb</th>
+								<th>CRUD</th>
+								<th>Entire Collection (e.g. /customers)</th>
+								<th>Specific Item (e.g. /customers/{id})</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>POST</td>
+								<td>Create</td>
+								<td>201 (Created), 'Location' header with link to /customers/{id} containing new ID.</td>
+								<td>404 (Not Found), 409 (Conflict) if resource already exists..</td>
+							</tr>
+							<tr>
+								<td>GET</td>
+								<td>Read</td>
+								<td>200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.</td>
+								<td>200 (OK), single customer. 404 (Not Found), if ID not found or invalid.</td>
+							</tr>
+							<tr>
+								<td>PUT</td>
+								<td>Update/Replace</td>
+								<td>405 (Method Not Allowed), unless you want to update/replace every resource in the entire collection.</td>
+								<td>200 (OK) or 204 (No Content).  404 (Not Found), if ID not found or invalid.</td>
+							</tr>
+							<tr>
+								<td>PATCH</td>
+								<td>Update/Modify</td>
+								<td>405 (Method Not Allowed), unless you want to modify the collection itself.</td>
+								<td>200 (OK) or 204 (No Content).  404 (Not Found), if ID not found or invalid.</td>
+							</tr>
+							<tr>
+								<td>DELETE</td>
+								<td>Delete</td>
+								<td>405 (Method Not Allowed), unless you want to delete the whole collection—not often desirable.</td>
+								<td>200 (OK).  404 (Not Found), if ID not found or invalid.</td>
+							</tr>
+						</tbody>
+					</table>
+
+VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+Structure:
+
+app/
+    --/core/    - from config !!!
+    /packages
+    /plugins/ - from db
+    /themes/  - from db
+
+each package has:: install, mvc, lib(s), loc, scripts(js)
+$model->results['local']['lang'] -> local->data, local->lang
+
+
+check for php-mbstring
+-- bal, rbal, exch, acl, rbac, act
+remove version in app
+add packages !!! make it work as plugins !!!
+. change core to packages
+. raname chinatown.php to vendors.php or packages.php or framework.php or boot.php
+~. finalize libs, array order list && add rest!!!, keep default_vendor!
+. move js struct folder under view folder
+. cookie prefix ct5_ => ct-c- , ct-s- !!!
