@@ -3,6 +3,7 @@
 
 rest[]=get
 rest[]=post
+rest[]=request
 
 [define]
 DEBUG_MODE=1

@@ -1,3 +1,5 @@
+setContent loop, array add !!!
+model getRawPath view detection !!!
 forms encapsulation !!!
 make all forms work (like options and settings) !!!
 

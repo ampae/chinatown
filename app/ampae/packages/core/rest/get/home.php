@@ -17,7 +17,7 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Rest;
+namespace Ampae\Get;
 
 class Home
 {
@@ -27,7 +27,7 @@ class Home
         //$model->setContentExt('');
         $tmp = $model->getRawPath('signin');
         $model->setExtContent($tmp);
-        $model->setContent($tmp.'<h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        $model->setContent($tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
         //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }

@@ -69,36 +69,24 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
 
         foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {
             $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$tmpMvcPreIndexTmp.DIRECTORY_SEPARATOR;
-// TODO add request NODIR !!!
+
+            if ($tmpMvcPreIndexTmp=='request') {
+                $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
+            }
+
             $tmpMvcPreArr = array_map('basename', glob($tmpMvcPreMap.'*.php', GLOB_BRACE));
             $tmpMvcPreArr = array_map(function ($e) {
                 return pathinfo($e, PATHINFO_FILENAME);
             }, $tmpMvcPreArr);
+
             $tmpMvcPreRes = array_flip($tmpMvcPreArr);
             $tmpMvcPreRes = array_map(function () {
                 global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
                 return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
             }, $tmpMvcPreRes);
+
             $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);
         }
-
-        /*
-                $tmpMvcPreMap = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
-
-                $tmpMvcPreArr = array_map('basename', glob($tmpMvcPreMap.'*.php', GLOB_BRACE));
-                $tmpMvcPreArr = array_map(function ($e) {
-                    return pathinfo($e, PATHINFO_FILENAME);
-                }, $tmpMvcPreArr);
-
-                $tmpMvcPreRes = array_flip($tmpMvcPreArr);
-                $tmpMvcPreRes = array_map(function () {
-                    global $tmpMvcPreIndexTmp,$tmpVendor,$tmpPack;
-                    return array('vendor'=>$tmpVendor,'pack'=>$tmpPack);
-                    //return array($tmpMvcPreIndexTmp=>array('vendor'=>$tmpVendor,'pack'=>$tmpPack));
-                }, $tmpMvcPreRes);
-
-                $tmpGlobalConfig['mvc'] = array_merge_recursive($tmpGlobalConfig['mvc'], $tmpMvcPreRes);
-        */
 
         //print_r($tmpGlobalConfig['mvc']); // !!!
 

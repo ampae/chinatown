@@ -17,17 +17,13 @@
  * @copyright  2009 - 2019 AMPAE
 **/
 
-namespace Ampae\Get;
+namespace Ampae\Request;
 
-class Feed
+class Home
 {
     public function index()
     {
-        global $model;
-        $model->setContent('[{"value":"test1","key":"test2"}]');
-        $model->appinfo['page_type'] = 'json'; // !!!
-      //echo 'feed lala<BR>';
-      //$model->redirect = $model->appinfo['url'].'login';
-      //echo $this->vendor(__CLASS__);
+        global $model,$loger;
+        $model->setContent('<p>HOME REQUEST</p>');
     }
 };

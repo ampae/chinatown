@@ -31,11 +31,11 @@ class Rest
 
     public function go()
     {
-        global $logger, $controller, $model, $state, $appRequest, $appController;
-        global $appView, $appModel, $tmpGlobalConfig, $theme;
+        global $logger, $controller, $model, $state;
+        global $appRequest, $appRequestR, $tmpGlobalConfig;
 
-        $tmpEvent     = TMP_EVENT_HOME;
-        $tmpMethod    = TMP_METHOD; // DEFAULT CLASS METHOD !!!
+        $tmpEvent           = TMP_EVENT_HOME;
+        $tmpClassRealMethod = TMP_METHOD; // DEFAULT CLASS METHOD !!!
 
         $tmpC = 0;
         if (!empty($controller->argc) && $controller->argc >= 1) {
@@ -48,103 +48,105 @@ class Rest
         }
 
         if ($tmpC > 1) {
-            $tmpMethod = $controller->argv[1];
+            $tmpClassRealMethod = $controller->argv[1];
         }
 
-        $tmpCmethod = strtolower($controller->method);
-
-        //$tmpFireController = false;
-        $tmpFireControllerMethod = false;
+        $serverRequestMethod = strtolower($controller->method);
+        $tmpFireMe = false;
 
         if (isset($tmpGlobalConfig['mvc'][$tmpEvent])) {
-
-          // $model->appinfo['app_real_event'] = $tmpEvent;
-
             $tmpRealEvent = $tmpEvent;
-            $tmpRealMethod = $tmpMethod;
-
-//echo '== '.$tmpRealEvent.' == '.$tmpRealMethod;
-
-        /*
-                  if (isset($tmpGlobalConfig['mvc'][$tmpEvent]['controller'])) {
-                    $tmpFireController = true;
-                  }
-
-                  if (isset($tmpGlobalConfig['mvc'][$tmpEvent][$tmpCmethod])) {
-                    $tmpFireControllerMethod = true;
-                  }
-        */
+            $tmpClassMethod = $tmpClassRealMethod;
         } else {
             $tmpRealEvent = TMP_EVENT_HOME;
-
-            //$tmpPack      = DEF_PACK;
-          $tmpRealMethod    = TMP_METHOD; // DEFAULT CLASS METHOD !!!
-
-          //$tmpFireController = true;
-
-          //$tmpFireControllerMethod = true;
+            $tmpClassMethod    = TMP_METHOD; // DEFAULT CLASS METHOD !!!
         }
 
         $model->appinfo['app'] = $tmpRealEvent;
-        $model->appinfo['app_mtd'] = $tmpRealMethod;
+        $model->appinfo['app_mtd'] = $tmpClassMethod;
 
+        // model getRawPath view detection !!!
+        //$model->appinfo['curr_vendor'] = null;
+        //$model->appinfo['curr_pack'] = null;
 
-
-//print_r($tmpGlobalConfig['mvc']);
-
-//echo $tmpRealEvent.' = '.$tmpRealMethod;
-
-        $tmpFireMe = true;
-        //if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
-            if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
-                $tmpFireMe = false;
-            } else {
-              $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['vendor'];
-              $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['pack'];
-              $logger->debug('CURRENT: '.$model->appinfo['curr_vendor'].'/'.$model->appinfo['curr_pack']);
+        if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
+            // model getRawPath view detection !!!
+            if ($serverRequestMethod=='get') {
+                $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['get']['vendor'];
+                $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['get']['pack'];
             }
-        //}
 
-//print_r($model->appinfo);
+            if ($serverRequestMethod=='get' || $serverRequestMethod=='post') {
+                $tmpCls = $this->prepare($tmpRealEvent, $serverRequestMethod);
+                $this->load($tmpCls, $tmpClassMethod);
+            }
 
-//echo $tmpGlobalConfig['mvc'][$tmpRealEvent][DIR_REST].' --';
+            $tmpClsR = $this->prepare($tmpRealEvent, 'request');
+            $this->loadR($tmpClsR, $tmpClassMethod);
+        }
+    }
 
-        if ($tmpFireMe) {
+    private function prepare($tmpRealEvent, $serverRequestMethod)
+    {
+        global $tmpGlobalConfig;
 
-//            if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent]['model'])) {
-            //$tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent]['vendor'];
-            //$tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent]['pack'];
-//            }
-
-            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['vendor'];
-            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpCmethod]['pack'];
-
+        if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod])) {
+            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['vendor'];
+            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['pack'];
             $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
+        } else {
+          return;
+        }
 
-//            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
-            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$tmpCmethod.DIRECTORY_SEPARATOR;
+        $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$serverRequestMethod.DIRECTORY_SEPARATOR;
+        if ($serverRequestMethod=='request') {
+          $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
+        }
+        $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst($serverRequestMethod).'\\';
+        $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
+        $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
 
-            $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst('rest').'\\';
+        return $tmpCls;
+    }
 
-            $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
-            $tmpCls = '\\'.$tmpNs.ucfirst($tmpRealEvent);
+    public function load($tmpCls, $tmpClassMethod)
+    {
+        global $logger;
+        global $appRequest;
 
-            //echo $tmpCls.' ==';
-
-            if (class_exists($tmpCls)) {
-                $appRequest = new $tmpCls();
-                if ($tmpRealMethod && method_exists($appRequest, $tmpRealMethod)) {
-                    $appRequest->$tmpRealMethod();
-                    $logger->debug('REST: '.$tmpRealMethod);
-                } else {
-                    if (method_exists($appRequest, 'default')) {
-                        $appRequest->default();
-                        $logger->debug('EVENT: Default');
-                    }
+        if (class_exists($tmpCls)) {
+            $appRequest = new $tmpCls();
+            if ($tmpClassMethod && method_exists($appRequest, $tmpClassMethod)) {
+                $appRequest->$tmpClassMethod();
+                $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod);
+            } else {
+                if (method_exists($appRequest, 'default')) {
+                    $appRequest->default();
+                    $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod.'\\<==DEFAULT!');
                 }
             }
         }
     }
 
+    public function loadR($tmpCls, $tmpClassMethod)
+    {
+        global $logger;
+        global $appRequestR;
+        if (class_exists($tmpCls)) {
+            $appRequestR = new $tmpCls();
+            if ($tmpClassMethod && method_exists($appRequestR, $tmpClassMethod)) {
+                $appRequestR->$tmpClassMethod();
+                $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod);
+            } else {
+                if (method_exists($appRequestR, 'default')) {
+                    $appRequest->default();
+                    $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod.'\\<==DEFAULT!');
+                }
+            }
+        }
+    }
 
-};
+    public function get()
+    {
+    }
+}
