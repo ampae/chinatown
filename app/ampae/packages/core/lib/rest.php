@@ -81,8 +81,8 @@ class Rest
                 $this->load($tmpCls, $tmpClassMethod);
             }
 
-            $tmpClsR = $this->prepare($tmpRealEvent, 'request');
-            $this->loadR($tmpClsR, $tmpClassMethod);
+            $tmpCls = $this->prepare($tmpRealEvent, 'request');
+            $this->load($tmpCls, $tmpClassMethod);
         }
     }
 
@@ -110,41 +110,20 @@ class Rest
     public function load($tmpCls, $tmpClassMethod)
     {
         global $logger;
-        global $appRequest;
-
         if (class_exists($tmpCls)) {
-            $appRequest = new $tmpCls();
-            if ($tmpClassMethod && method_exists($appRequest, $tmpClassMethod)) {
-                $appRequest->$tmpClassMethod();
-                $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod);
+            $appRequest = lcfirst(stripslashes($tmpCls));
+
+            global $$appRequest;
+
+            $$appRequest = new $tmpCls();
+            if ($tmpClassMethod && method_exists($$appRequest, $tmpClassMethod)) {
+                $$appRequest->$tmpClassMethod();
             } else {
-                if (method_exists($appRequest, 'default')) {
-                    $appRequest->default();
-                    $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod.'\\<==DEFAULT!');
+                if (method_exists($$appRequest, 'default')) {
+                    $$appRequest->default();
                 }
             }
+            $logger->debug('REST:EVENT CLASS INSTANCE ACTIVATED: $'.$appRequest);
         }
-    }
-
-    public function loadR($tmpCls, $tmpClassMethod)
-    {
-        global $logger;
-        global $appRequestR;
-        if (class_exists($tmpCls)) {
-            $appRequestR = new $tmpCls();
-            if ($tmpClassMethod && method_exists($appRequestR, $tmpClassMethod)) {
-                $appRequestR->$tmpClassMethod();
-                $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod);
-            } else {
-                if (method_exists($appRequestR, 'default')) {
-                    $appRequest->default();
-                    $logger->debug('REST: '.$tmpCls.'\\'.$tmpClassMethod.'\\<==DEFAULT!');
-                }
-            }
-        }
-    }
-
-    public function get()
-    {
     }
 }
