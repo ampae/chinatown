@@ -90,17 +90,15 @@ class Rest
     {
         global $tmpGlobalConfig;
 
-        if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod])) {
-            $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['vendor'];
-            $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['pack'];
-            $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
-        } else {
-          return;
+        if (!isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod])) {
+            return;
         }
-
+        $tmpVendor  = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['vendor'];
+        $tmpPack    = $tmpGlobalConfig['mvc'][$tmpRealEvent][$serverRequestMethod]['pack'];
+        $tmpVendorPath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR;
         $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR.$serverRequestMethod.DIRECTORY_SEPARATOR;
         if ($serverRequestMethod=='request') {
-          $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
+            $tmpPt = $tmpVendorPath.DIR_PACKS.DIRECTORY_SEPARATOR.$tmpPack.DIRECTORY_SEPARATOR.DIR_REST.DIRECTORY_SEPARATOR;
         }
         $tmpNs = ucfirst($tmpVendor).'\\'.ucfirst($serverRequestMethod).'\\';
         $tmpGlobalConfig['autoload']['main']['psr-4'][$tmpNs] = $tmpPt;
