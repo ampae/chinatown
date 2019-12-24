@@ -19,8 +19,8 @@ ampae[] = model
 
 ampae[] = alerts
 ampae[] = shortcode
-ampae[] = rest
 ampae[] = local
+ampae[] = rest
 ampae[] = http
 
 ampae[] = options
@@ -34,5 +34,6 @@ ampae[] = office
 ampae[] = sign
 
 ampae[] = html
+ampae[] = html5
 ampae[] = htmlrender
 ampae[] = view

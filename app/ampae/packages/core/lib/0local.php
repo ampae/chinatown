@@ -33,6 +33,7 @@ class Local
     public function go()
     {
         global $model;
+
         $ct_lng = $this->getUsrLocale();
         $this->load($ct_lng);
         $model->appinfo['language'] = $ct_lng;
@@ -44,17 +45,20 @@ class Local
      *
      * @param string $word config
      */
-    public function translate($word)
+    public static function translate($word)
     {
+        global $model;
         $res = $word;
-        if (!empty($this->lang[$word])) {
-            $res = $this->lang[$word];
+        if (!empty($model->results['local']['lang'][$word])) {
+            $res = $model->results['local']['lang'][$word];
         }
         return $res;
     }
 
     private function getUsrLocale()
     {
+        global $model;
+
         $browser_lang = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',') : '';
         //$browser_lang = 'nl'; // easy way to test different locale
         return $browser_lang;
@@ -70,9 +74,10 @@ class Local
      */
     private function getData($k)
     {
+        global $model;
         $res = $k;
-        if (!empty($this->data[$k])) {
-            $res = $this->data[$k];
+        if (!empty($model->results['local']['data'][$k])) {
+            $res = $model->results['local']['data'][$k];
         }
 
         return $res;
@@ -80,10 +85,10 @@ class Local
 
     private function load($ct_lng)
     {
-        global $tmpGlobalConfig;
+        global $tmpGlobalConfig, $model;
 
-        $tmpArr = array();
-        $err    = 0;
+        $model->results['local'] = array();
+        $err = 0;
 
         foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
             $tmpVendorPrePath = DIR_APP.DIRECTORY_SEPARATOR.$tmpVendor.DIRECTORY_SEPARATOR.'packages'.DIRECTORY_SEPARATOR;
@@ -101,12 +106,10 @@ class Local
                     $err+=1;
                 }
                 if (!$err) {
-                    $tmpArr = array_replace_recursive($tmpArr, $tmpRes);
+                    $model->results['local'] = array_replace_recursive($model->results['local'], $tmpRes);
                     $err = 0;
                 }
             }
-            $this->lang = $tmpArr['lang'];
-            $this->data = $tmpArr['data'];
         }
     }
 }

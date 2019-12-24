@@ -23,7 +23,7 @@ class Home
 {
     public function index()
     {
-        global $model,$loger;
-        $model->setContent('<p>HOME REQUEST</p>');
+        global $model,$loger,$local;
+        $model->add('html-main','<p>'.$local->translate('home').' REQUEST</p>');
     }
 };

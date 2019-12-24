@@ -24,9 +24,8 @@ class Feed
     public function index()
     {
         global $model;
-        $model->setContent('[{"value":"test1","key":"test2"}]');
+        $model->add('html-main','[{"value":"test1","key":"test2"}]');
         $model->appinfo['page_type'] = 'json'; // !!!
-      //echo 'feed lala<BR>';
       //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }

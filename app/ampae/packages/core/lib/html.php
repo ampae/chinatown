@@ -21,51 +21,50 @@ namespace Ampae\Lib;
 
 class Html
 {
+    public $meta            = array();
+    public $script          = array();
+    public $style           = array();
+    public $scriptSmall     = array();
+    public $styleSmall      = array();
+    //  public $x    = array(); //
 
-  public $meta            = array();
-  public $script          = array();
-  public $style           = array();
-  public $scriptSmall     = array();
-  public $styleSmall      = array();
-//  public $x    = array(); // 
 
-
-  // add some consts like space, new line, etc..
+    // add some consts like space, new line, etc..
     // add open tag, close tag
     // change all accordingly
 
 
-        /**
-         * HTML space encapsulation
-         * Usage: Html::sp( NUMBER_OF_SPACES ).
-         *
-         * @param int $nn config
-         */
-        public function sp($nn)
-        {
-            $res = '';
+    /**
+     * HTML space encapsulation
+     * Usage: Html::sp( NUMBER_OF_SPACES ).
+     *
+     * @param int $nn config
+     */
+    public function sp($nn)
+    {
+        $res = '';
 
-            for ($i = 0; $i < $nn; ++$i) {
-                $res.= '&nbsp;';
-            }
-            $res.="\n";
-            return $res;
+        for ($i = 0; $i < $nn; ++$i) {
+            $res.= '&nbsp;';
         }
+        $res.="\n";
+        return $res;
+    }
 
-        /**
-         * HTML remark
-         * Usage: Html::rem('This is Remark');.
-         *
-         * @param string $rr config
-         */
-        public function rem($rr)
-        {
-            $res = '';
+    /**
+     * HTML remark
+     * Usage: Html::rem('This is Remark');.
+     *
+     * @param string $rr config
+     */
+    public function rem($rr)
+    {
+        $res = '';
 
-            $res.= '<!-- '.$rr." -->";
-            $res.="\n";
-            return $res;
-        }
+        $res.= '<!-- '.$rr." -->";
+        $res.="\n";
+        return $res;
+    }
 
     /**
      * HTML full tag encapsulation.
@@ -73,7 +72,7 @@ class Html
      * @param string $k config
      * @param string $v config
      */
-    public function tag($k, $v, $id=null, $class=null)
+    public function tag($k, $v, $id = null, $class = null)
     {
         $res = '<'.$k;
         if ($id) {
@@ -97,11 +96,11 @@ class Html
      *
      * @param int $nn config
      */
-    public function br($nn=1)
+    public function br($nn = 1)
     {
         $res = '';
         for ($i = 0; $i < $nn; ++$i) {
-            $res.='<br />';
+            $res.='<br />'; // tagZ br
         }
         $res.="\n";
         return $res;
@@ -115,7 +114,7 @@ class Html
      * @param int    $hn   config
      * @param string $text config
      */
-    public function h($h, $v, $id=null, $class=null)
+    public function h($h, $v, $id = null, $class = null)
     {
         return $this->tag('h'.$h, $v, $id, $class);
     }
@@ -760,63 +759,69 @@ class Html
         $res.="\n";
         return $res;
     }
-
+    
     // === HTML set ===
 
+    // !!! !!! !!! like this ALL !!!
 
-        public function addTitle($title)
-        {
-            global $model;
-            $model->appinfo['title'] = $title; // $html->title = ...
+    public function addTitle($title)
+    {
+        global $model;
+        $model->appinfo['title'] = $title; // $html->title = ...
+    }
+
+    public function getTitle()
+    {
+        global $model, $options;
+        if (!isset($model->appinfo['title'])) {
+            $model->appinfo['title'] = DEFAULT_TITLE;
         }
+        return $model->appinfo['title'];
+    }
 
-        public function getTitle()
-        {
-            global $model, $options;
-            if (!isset($model->appinfo['title'])) {
-                $model->appinfo['title'] = DEFAULT_TITLE;
-            }
-            return $model->appinfo['title'];
-        }
 
-        /**
-         * add meta tag; marked for depreciation;.
-         *
-         * @param string $k config
-         * @param string $v config
-         */
-        public function addMeta($k, $v)
-        {
-            global $model;
-            $this->meta[] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
-        }
+// !!!
 
 
 
-        // -- scripts ---
-        public function addScript($level, $val)
-        {
-            global $model;
-            $this->script[$level][] = $val;
-        }
 
-        public function addSmallScript($level, $val)
-        {
-            global $model;
-            $this->scriptSmall[$level][] = $val;
-        }
+    /**
+     * add meta tag; marked for depreciation;.
+     *
+     * @param string $k config
+     * @param string $v config
+     */
+    public function addMeta($k, $v)
+    {
+        global $model;
+        $this->meta[] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
+    }
 
-        // -- styles ---
-        public function addStyle($val)
-        {
-            global $model;
-            $this->style[] = $val;
-        }
 
-        public function addSmallStyle($val)
-        {
-            global $model;
-            $this->styleSmall[] = $val;
-        }
 
+    // -- scripts ---
+    public function addScript($level, $val)
+    {
+        global $model;
+        $this->script[$level][] = $val;
+    }
+
+    public function addSmallScript($level, $val)
+    {
+        global $model;
+        $this->scriptSmall[$level][] = $val;
+    }
+
+    // -- styles ---
+    public function addStyle($val)
+    {
+        global $model;
+        $this->style[] = $val;
+    }
+
+    public function addSmallStyle($val)
+    {
+        global $model;
+        $this->styleSmall[] = $val;
+    }
 }

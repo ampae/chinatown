@@ -1,14 +1,17 @@
-setContent loop, array add !!!
 model getRawPath view detection !!!
-forms encapsulation !!!
-make all forms work (like options and settings) !!!
 
+html forms encapsulation $html->newForm($id,$class,etc..1);  $html->addToForm(id,'email',...)
+html articles +loop
+make all forms work (like options and settings) !!!
 +head, aside, main etc..
-. !!! menus !!!
 . theme=>html (+articles). theme && htmlrender ???
-. then theme=> view !!!
+. !!! menus !!!
+!!! do html load loops for meta, styles, scripts with model !!!
 
 404
+rest<=core?
+crud? (replace,count)
+CHUP Remote Update !!!!
 
 //=== AUTH =================================================
 
@@ -16,6 +19,10 @@ make all forms work (like options and settings) !!!
 ~ finalize office.php , ac.php
 . check ac properly, send/sess_store uid, etc..
 . remember me
+
+. office/root !!!
+
+!!! Groups/Brands + RBAC
 
 ??. install -> sql ???
 . 'state' => config auth !!!
@@ -145,7 +152,6 @@ app/
     /themes/  - from db
 
 each package has:: install, mvc, lib(s), loc, scripts(js)
-$model->results['local']['lang'] -> local->data, local->lang
 
 
 check for php-mbstring

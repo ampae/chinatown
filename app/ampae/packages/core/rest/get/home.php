@@ -23,11 +23,11 @@ class Home
 {
     public function index()
     {
-        global $model,$loger;
+        global $model,$loger, $local;
         //$model->setContentExt('');
         $tmp = $model->getRawPath('signin');
-        $model->setExtContent($tmp);
-        $model->setContent($tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        $model->addExtContent($tmp);
+        $model->add('html-main',$tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
         //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }
