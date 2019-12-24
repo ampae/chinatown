@@ -76,7 +76,7 @@ class View
     public function raw()
     {
         global $model,$shortcode;
-        echo $shortcode->do($model->getExtContent());
+        echo $model->getExtContent();
         echo $shortcode->do($model->get('html-main'));
     }
 }

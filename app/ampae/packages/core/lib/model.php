@@ -57,7 +57,7 @@ class Model
 
     public function getExtContent($pos = 'main')
     {
-        global $io;
+        global $io, $shortcode;
         $allowed = ALLOWED_HTML; // view config !
         $ret = null;
         if (isset($this->results['raw-file'][$pos])) {
@@ -65,6 +65,7 @@ class Model
                 $tmp2 = strip_tags($io->loadRaw($tmp), $allowed);
                 //$ret = strip_tags($ret, $allowed);
                 //$ret = htmlentities($ret, ENT_QUOTES, 'UTF-8');
+                $tmp2 = $shortcode->do($tmp2);
                 $ret.= $tmp2;
             }
         }
@@ -99,7 +100,7 @@ class Model
     public function get($k)
     {
         $res = null;
-        if ($this->results[$k]) {
+        if (isset($this->results[$k])) {
             foreach ($this->results[$k] as $tmp) {
                 $res.= $tmp;
             }

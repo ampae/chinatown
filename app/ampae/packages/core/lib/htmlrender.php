@@ -369,7 +369,7 @@ class Htmlrender
 
     public function logIn()
     {
-        global $model, $controller, $sign, $state, $html, $local, $view;
+        global $model, $controller, $sign, $state, $html, $local, $view, $nonce;
 
         $id = 'sin';
         $tmpNonce = '';

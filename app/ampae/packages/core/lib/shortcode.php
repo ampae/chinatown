@@ -36,11 +36,12 @@ class Shortcode
     public function do($string)
     {
         return preg_replace_callback('#\[\[(.*?)\]\]#', function ($matches) {
+            $ares = array();
             $tmpWex = explode(" ", $matches[1]);
             foreach ($tmpWex as $wtmp) {
                 $atmp   = explode('=', $wtmp);
                 if (isset($atmp[1])) {
-                  $ares[$atmp[0]] = $atmp[1];
+                    $ares[$atmp[0]] = $atmp[1];
                 }
             }
 

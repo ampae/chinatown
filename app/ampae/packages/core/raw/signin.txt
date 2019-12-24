@@ -1,10 +1,1 @@
-<?php
-$aaa = 'varVar';
-?>
-<h2>Login Form</h2>
-[[shortcode.test lname=roce fname=ata mname=10]]
-lalala <br />
-kkk
-<?php
-echo '<h2>'.$aaa.'</h2>';
-?>
+[[htmlrender.logIn]]

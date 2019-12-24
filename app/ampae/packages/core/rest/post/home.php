@@ -25,7 +25,7 @@ class Home
     {
         global $model,$loger;
         echo 'POST HOME';
-        die('???');
+        //die('???');
 //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }
