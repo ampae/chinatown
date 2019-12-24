@@ -71,10 +71,15 @@ class Model
         return $ret;
     }
 
-    // TODO 1. add raw to config, 2 add raw file ext to config. !!!
-    public function getRawPath($file)
+    // TODO add 'raw' to config, add raw file ext 'txt' to config !!!
+    public function getRaw($file)
     {
-        $ret = DIR_APP.DIRECTORY_SEPARATOR.$this->appinfo['curr_vendor'].DIRECTORY_SEPARATOR.DIR_PACKS.DIRECTORY_SEPARATOR.$this->appinfo['curr_pack'].DIRECTORY_SEPARATOR.'raw'.DIRECTORY_SEPARATOR.$file.'.txt';
+        global $model;
+        $tmpRawPath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['rest_vendor'];
+        $tmpRawPath.= DIRECTORY_SEPARATOR.DIR_PACKS;
+        $tmpRawPath.= DIRECTORY_SEPARATOR.$model->appinfo['rest_pack'];
+        $tmpRawPath.= DIRECTORY_SEPARATOR.'raw'.DIRECTORY_SEPARATOR;
+        $ret = $tmpRawPath.$file.'.txt';
         return $ret;
     }
 

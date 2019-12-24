@@ -19,55 +19,66 @@
 
 namespace Ampae\Lib;
 
-class Html5
+class Html5 extends Html
 {
-    public function article($id, $class)
+    public function open()
     {
-        $res.= '<article id="'.$id.'" class="'.$class.'">';
-        /*
-                  <figure>
-                      <div class="panel-thumbnail">
-                        <span class="qt-lightbox" data-source="https://placeimg.com/640/480/any" title="Image Title" desc="Image Description">
-                          <a href="https://placeimg.com/640/480/any">
-                            <img width="250" height="250" src="https://placeimg.com/640/480/any" class="" alt="Hello World" />
-                          </a>
-                        </span>
-                      </div>
-                  </figure>
+        return '';
+    }
 
-                  <header class="entry-header">
+    public function close()
+    {
+        return '';
+    }
 
-                      <section class="author">
-                          <a class="author vcard" href="#"><img alt='' src='https://placeimg.com/640/480/any' class='avatar avatar-50 photo' height='50' width='50' /> &bull; avatar</a>
-                      </section>
+    public function article($id, $class, $img = null, $title = null, $desc = null)
+    {
+        $res = null;
+        $res.= $this->tagOpen('article', array('id'=>$id,'class'=>$class));
+        if ($img) {
+            $res.= $this->tagOpen('figure');
+            $res.= $this->div(array('class'=>'panel-thumbnail'));
+            $res.= $this->span(array('class'=>'qt-lightbox', 'data-source'=>$img, 'title'=>$title, 'desc'=>$desc));
+            $res.= $this->a(array('href'=>$img));
+            $res.= $this->img($img, null, $title, "250", "250");
+            $res.= $this->tagClose('a');
+            $res.= $this->tagClose('span');
+            $res.= $this->tagClose('div');
+            $res.= $this->tagClose('figure');
+        }
 
-                      <section class="time-loc">
-                          <time class="updated" datetime="2019-05-18">May 18, 2019</time>
-                      </section>
+        $res.= $this->tagOpen('header', array('class'=>'entry-header'));
 
-                  </header>
-                  <!-- .entry-header -->
+        $res.= '<section class="author">';
+        $res.= '<a class="author vcard" href="#"><img alt="" src="https://placeimg.com/640/480/any" class="avatar avatar-50 photo" height="50" width="50" /> &bull; avatar</a>';
+        $res.= '</section>';
 
-                  <section class="entry-content">
-                      <h2 class="entry-title"><a href="#" rel="bookmark">Hello World</a></h2>
-                      <p>Hello World X</p>
-                      <br />
-                  </section>
-                  <!-- .entry-content -->
+        $res.= '<section class="time-loc">';
+        $res.= '<time class="updated" datetime="2019-05-18">May 18, 2019</time>';
+        $res.= '</section>';
 
-                  <footer class="entry-footer">
-                      <div class="pull-right">
-                          <a class="btn btn-small btn-orange-inverse" href="#">read | comment</a>
-                      </div>
-                      <p class="">
-                          <a href="#">comments</a>
-                      </p>
-                      <a href="#" rel="category tag">HTML</a>
-                      <br /> # <a href="#" rel="tag">css</a>
-                  </footer>
-                  <!-- .entry-footer -->
-              </article>
-        */
+        $res.= '</header>';
+        $res.= '<!-- .entry-header -->';
+
+        $res.= $this->tagOpen('section', array('class'=>'entry-content'));
+        $res.= '<h2 class="entry-title"><a href="#" rel="bookmark">Hello World</a></h2>';
+        $res.= $this->p('Hello World X');
+        $res.= $this->br();
+        $res.= $this->tagClose('section');
+        $res.= $this->rem('.entry-content');
+
+        $res.= $this->tagOpen('footer', array('class'=>'entry-footer'));
+        $res.= '<div class="pull-right">';
+        $res.= '<a class="btn btn-small btn-orange-inverse" href="#">read | comment</a>';
+        $res.= '</div>';
+        $res.= '<p class="">';
+        $res.= '<a href="#">comments</a>';
+        $res.= '</p>';
+        $res.= '<a href="#" rel="category tag">HTML</a>';
+        $res.= '<br /> # <a href="#" rel="tag">css</a>';
+        $res.= '</footer>';
+        $res.= $this->rem('.entry-footer');
+        $res.= '</article>';
         return $res;
     }
 }

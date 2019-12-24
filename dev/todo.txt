@@ -1,5 +1,7 @@
 model getRawPath view detection !!!
 
+. 
+
 html forms encapsulation $html->newForm($id,$class,etc..1);  $html->addToForm(id,'email',...)
 html articles +loop
 make all forms work (like options and settings) !!!

@@ -63,8 +63,7 @@ foreach ($tmpGlobalConfig['vendor'] as $tmpVendor) {
 
     // loop inside each vendor package
     foreach ($tmpGlobalConfig['packages'][$tmpVendor] as $tmpPack) {
-
-      // premap mvc
+        // premap mvc
         $tmpMvcPreIndex = $tmpGlobalConfig['rest'];
 
         foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {

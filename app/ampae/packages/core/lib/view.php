@@ -79,4 +79,4 @@ class View
         echo $shortcode->do($model->getExtContent());
         echo $shortcode->do($model->get('html-main'));
     }
-};
+}

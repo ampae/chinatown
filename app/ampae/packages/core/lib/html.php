@@ -72,24 +72,62 @@ class Html
      * @param string $k config
      * @param string $v config
      */
-    public function tag($k, $v, $id = null, $class = null)
+    public function tag($k, $v = null, $attr = null)
+    {
+        $c = true;
+        if ($v) {
+            $c = false;
+        }
+        $ret = $this->tagOpen($k, $attr, $c);
+        if ($v) {
+            $ret .= $v;
+            $ret .= $this->tagClose($k);
+        }
+        return $ret;
+    }
+/*
+    public function tag($k, $v = null, $attr = null)
     {
         $res = '<'.$k;
-        if ($id) {
-            $res.=' id="'.$id.'"';
+        foreach ($attr as $ak => $av) {
+            if ($av) {
+                $res.=' '.$ak.'="'.$av.'"';
+            }
         }
-        if ($class) {
-            $res.=' class="'.$class.'"';
+        if ($v) {
+            $res.='>';
+            $res.=$v;
+            $res.='</'.$k.">";
+        } else {
+            $res.=' />';
         }
-        $res.='>'; // tag open
-
-        $res.=$v;
-
-        $res.='</'.$k.">"; // tag close
         $res.="\n";
         return $res;
     }
+*/
+    public function tagOpen($k, $attr = null, $c = false)
+    {
+        $res = null;
+        $res = "<".$k;
+        if (isset($attr) && $attr!==null) {
+            foreach ($attr as $ak => $av) {
+                if ($av) {
+                    $res.=' '.$ak.'="'.$av.'"';
+                }
+            }
+        }
+        if ($c) {
+            $res.=" />\n";
+        } else {
+            $res.=">\n";
+        }
+        return $res;
+    }
 
+    public function tagClose($k)
+    {
+        return "</".$k.">\n";
+    }
     /**
      * HTML break encapsulation
      * Usage: Html::br( NUMBER_OF_BREAKS ).
@@ -100,7 +138,7 @@ class Html
     {
         $res = '';
         for ($i = 0; $i < $nn; ++$i) {
-            $res.='<br />'; // tagZ br
+            $res.= $this->tagOpen('br', null, true);
         }
         $res.="\n";
         return $res;
@@ -114,9 +152,9 @@ class Html
      * @param int    $hn   config
      * @param string $text config
      */
-    public function h($h, $v, $id = null, $class = null)
+    public function h($h, $v, $atts = null)
     {
-        return $this->tag('h'.$h, $v, $id, $class);
+        return $this->tag('h'.$h, $v, $atts);
     }
 
     /**
@@ -125,9 +163,9 @@ class Html
      *
      * @param string $text config
      */
-    public function h1($v, $id=null, $class=null)
+    public function h1($v, $atts = null)
     {
-        return $this->tag('h1', $v, $id, $class);
+        return $this->tag('h1', $v, $atts);
     }
 
     /**
@@ -136,9 +174,9 @@ class Html
      *
      * @param string $text config
      */
-    public function h2($v, $id=null, $class=null)
+    public function h2($v, $atts = null)
     {
-        return $this->tag('h2', $v, $id, $class);
+        return $this->tag('h2', $v, $atts);
     }
 
     /**
@@ -147,9 +185,9 @@ class Html
      *
      * @param string $text config
      */
-    public function h3($v, $id=null, $class=null)
+    public function h3($v, $atts = null)
     {
-        return $this->tag('h3', $v, $id, $class);
+        return $this->tag('h3', $v, $atts);
     }
 
     /**
@@ -158,9 +196,9 @@ class Html
      *
      * @param string $text config
      */
-    public function h4($v, $id=null, $class=null)
+    public function h4($v, $atts = null)
     {
-        return $this->tag('h4', $v, $id, $class);
+        return $this->tag('h4', $v, $atts);
     }
 
 
@@ -170,9 +208,9 @@ class Html
      *
      * @param string $text config
      */
-    public function h5($v, $id=null, $class=null)
+    public function h5($v, $atts = null)
     {
-        return $this->tag('h5', $v, $id, $class);
+        return $this->tag('h5', $v, $atts);
     }
 
     /**
@@ -182,9 +220,9 @@ class Html
      * @param string $text config
      */
 
-    public function h6($v, $id=null, $class=null)
+    public function h6($v, $atts = null)
     {
-        return $this->tag('h6', $v, $id, $class);
+        return $this->tag('h6', $v, $atts);
     }
 
     /**
@@ -193,14 +231,22 @@ class Html
      *
      * @param string $text config
      */
-    public function p($v, $id=null, $class=null)
+    public function p($v, $atts = null)
     {
-        return $this->tag('p', $v, $id, $class);
+        return $this->tag('p', $v, $atts);
+    }
+    public function a($atts = null)
+    {
+        return $this->tagOpen('a', $atts);
+    }
+    public function span($atts = null)
+    {
+        return $this->tagOpen('span', $atts);
     }
 
-    public function div($v, $id=null, $class=null)
+    public function div($atts = null)
     {
-        return $this->tag('div', $v, $id, $class);
+        return $this->tagOpen('div', $atts);
     }
 
     /**
@@ -209,11 +255,19 @@ class Html
      *
      * @param string $text config
      */
-    public function img($file, $alt=null, $height=null, $width=null)
+    public function img($src, $class = null, $alt = ' ', $height = null, $width = null)
     {
-        $res='<img src="'.$file.'" alt="'.$alt.'" height="'.$height.'" width="'.$width.'" />';
+        $atts = array (
+          'src' => $src,
+          'class' => $class,
+          'alt' => $alt,
+          'height' => $height,
+          'width' => $width
+        );
+        $res = $this->tag('img', null, $atts);
         return $res;
     }
+
     /*
      * === TABLES ===
      *
@@ -759,7 +813,7 @@ class Html
         $res.="\n";
         return $res;
     }
-    
+
     // === HTML set ===
 
     // !!! !!! !!! like this ALL !!!
@@ -780,7 +834,7 @@ class Html
     }
 
 
-// !!!
+    // !!!
 
 
 

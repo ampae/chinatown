@@ -23,11 +23,14 @@ class Home
 {
     public function index()
     {
-        global $model,$loger, $local;
+        global $model,$loger, $html5, $local;
         //$model->setContentExt('');
-        $tmp = $model->getRawPath('signin');
+        $tmp = $model->getRaw('signin');
         $model->addExtContent($tmp);
-        $model->add('html-main',$tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        $model->add('html-main', $tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
+        //$model->add('html-main', $html5->article('a2', null, 'https://placeimg.com/640/480/any'));
+
         //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }

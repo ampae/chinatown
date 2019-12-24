@@ -65,15 +65,16 @@ class Rest
         $model->appinfo['app'] = $tmpRealEvent;
         $model->appinfo['app_mtd'] = $tmpClassMethod;
 
-        // model getRawPath view detection !!!
-        //$model->appinfo['curr_vendor'] = null;
-        //$model->appinfo['curr_pack'] = null;
+        $model->appinfo['rest_vendor'] = null;
+        $model->appinfo['rest_pack'] = null;
 
         if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent])) {
-            // model getRawPath view detection !!!
-            if ($serverRequestMethod=='get') {
-                $model->appinfo['curr_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['get']['vendor'];
-                $model->appinfo['curr_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent]['get']['pack'];
+            $tmpMvcPreIndex = $tmpGlobalConfig['rest'];
+            foreach ($tmpMvcPreIndex as $tmpMvcPreIndexTmp) {
+                if (isset($tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMvcPreIndexTmp])) {
+                    $model->appinfo['rest_vendor'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMvcPreIndexTmp]['vendor'];
+                    $model->appinfo['rest_pack'] = $tmpGlobalConfig['mvc'][$tmpRealEvent][$tmpMvcPreIndexTmp]['pack'];
+                }
             }
 
             if ($serverRequestMethod=='get' || $serverRequestMethod=='post') {
