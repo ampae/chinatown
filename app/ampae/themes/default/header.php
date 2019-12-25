@@ -1,23 +1,12 @@
 <!DOCTYPE HTML>
-<html dir="<?php echo $model->appinfo['text_direction']; ?>" lang="<?php echo $model->appinfo['language']; // xtheme->renderLangAttr()?>">
-
-<head>
-<meta charset="<?php echo $model->appinfo['charset']; ?>" />
-<!--
-<meta http-equiv="Content-Type" content="" />
--->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
-global $html, $render;
-$render->renderMeta();
-?>
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
+$render->html($model->appinfo['text_direction'], $model->appinfo['language']);
 
-<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/fa-5/css/fontawesome-all.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/css/styles.css" />
+echo $html->tagOpen('head');
 
-<?php
-$render->renderStyles();
+$render->meta();
+$render->link();
+//$render->renderStyles();
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/jquery/jquery.min.js"></script>
 
@@ -25,7 +14,7 @@ $render->renderStyles();
 
 
 <?php
-$render->renderScripts('HEAD');
+$render->script('HEAD');
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/js/app.js"></script>
 
@@ -46,7 +35,7 @@ echo 'var tmpChinaTownWebPath="'.$model->appinfo['url'].'"';
 
 <body>
 
-  	<header role="banner" aria-label="header banner">
+<header role="banner" aria-label="header banner">
 <?php
 global $state;
 if ($state->get()) {

@@ -21,28 +21,33 @@ namespace Ampae\Lib;
 
 class Render
 {
-
-    /**
-     * constructor.
-     */
-    public function __construct()
+    public function html($dir, $lang)
     {
+        global $model, $html;
+        echo $html->open($dir, $lang);
     }
 
-
-    public function renderMeta()
+    public function meta()
     {
         global $model,$html;
-
         if (!empty($html->meta)) {
             foreach ($html->meta as $v) {
-                echo $v."\n";
+                echo $v;
             }
         }
     }
 
+    public function link()
+    {
+        global $model,$html;
+        if (!empty($html->link)) {
+            foreach ($html->link as $v) {
+                echo $v;
+            }
+        }
+    }
 
-    public function renderScripts($pos)
+    public function script($pos)
     {
         global $model,$html;
         if (!empty($html->script[$pos])) {

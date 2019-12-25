@@ -26,7 +26,7 @@ class View
      */
     public function __construct()
     {
-        global $model,$alerts,$local; //$state,$view
+        global $model,$html,$html5,$render,$alerts,$local; //$state,$view
         if ($model->appinfo['page_type']=='html') {
             $this->loadTheme();
             $this->open();
@@ -57,8 +57,9 @@ class View
 
     public function open()
     {
-        global $model,$io;
+        global $model,$html,$html5,$render,$io;
         if ($model->appinfo['page_type']=='html') {
+            $html5->setup();
             $headerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'header.php';
             $io->load($headerFile);
         }
@@ -68,6 +69,7 @@ class View
     {
         global $model,$io;
         if ($model->appinfo['page_type']=='html') {
+            // TODO !!! css, js
             $footerFile = $model->appinfo['theme_path'].DIRECTORY_SEPARATOR.'footer.php';
             $io->load($footerFile);
         }

@@ -29,7 +29,7 @@ class Io
 
     public function load($file)
     {
-        global $session, $sign, $controller, $model, $view, $local, $theme;
+        global $session, $sign, $controller, $model,$html,$html5,$render, $view, $local, $theme;
         $ret = false;
         $tmpPage = realpath(ABSPATH.$file);
         if (file_exists($tmpPage)) {

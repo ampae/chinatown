@@ -21,7 +21,7 @@ if ($state->get()){
 }
 */
 global $html, $render;
-$render->renderScripts('FOOT'); //dash
+$render->script('FOOT'); //dash
 ?>
 
     </body>

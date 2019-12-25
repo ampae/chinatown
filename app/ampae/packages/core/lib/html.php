@@ -23,6 +23,7 @@ class Html
 {
     public $meta            = array();
     public $script          = array();
+    public $link            = array();
     public $style           = array();
     public $scriptSmall     = array();
     public $styleSmall      = array();
@@ -30,11 +31,25 @@ class Html
 
     //  public $x    = array(); //
 
-
     // add some consts like space, new line, etc..
     // add open tag, close tag
     // change all accordingly
 
+    /**
+     * HTML space encapsulation
+     * Usage: Html::sp( NUMBER_OF_SPACES ).
+     *
+     * @param int $nn config
+     */
+    public function open($dir, $lang)
+    {
+        global $model;
+        $res = $this->tagOpen('html', array(
+          'dir'=>$dir,
+          'lang'=>$lang,
+        ));
+        return $res;
+    }
 
     /**
      * HTML space encapsulation
@@ -882,18 +897,26 @@ class Html
 
 
     /**
-     * add meta tag; marked for depreciation;.
+     * add meta tag;
      *
-     * @param string $k config
-     * @param string $v config
+     * @param string $atts config
      */
-    public function addMeta($k, $v)
+    public function metaAdd($atts)
     {
         global $model;
-        $this->meta[] = '<meta name="'.$k.'" content="'.$v.'" />'; // $html->meta[] !!!
+        $this->meta[] = $this->tagOpen('meta', $atts, true);
     }
 
-
+    /**
+     * add link tag;
+     *
+     * @param string $atts config
+     */
+    public function linkAdd($atts)
+    {
+        global $model;
+        $this->link[] = $this->tagOpen('link', $atts, true);
+    }
 
     // -- scripts ---
     public function addScript($level, $val)

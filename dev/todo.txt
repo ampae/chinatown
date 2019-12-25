@@ -5,6 +5,8 @@
 make all forms work (like options and settings) !!!
 auto add/update on POST !!!
 
+$render => view/tmpl
+
 html articles +loop
 +head, aside, main etc..
 . theme=>html (+articles). theme && htmlrender ???
