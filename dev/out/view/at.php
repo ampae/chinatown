@@ -27,7 +27,7 @@ class At
     */
     public function __construct()
     {
-        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme,$htmlrender;
+        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme,$render;
         $theme->open();
         //echo '<BR><BR>';
      //$theme->displayAlerts();
@@ -35,7 +35,7 @@ class At
 
     public function __destruct()
     {
-        global $alerts,$local,$state,$view,$theme,$htmlrender;
+        global $alerts,$local,$state,$view,$theme,$render;
         $theme->close();
     }
 

@@ -1,19 +1,12 @@
-model getRawPath view detection !!!
-
-. 
-
 html forms encapsulation $html->newForm($id,$class,etc..1);  $html->addToForm(id,'email',...)
-html articles +loop
 make all forms work (like options and settings) !!!
+auto add/update on POST !!!
+
+html articles +loop
 +head, aside, main etc..
 . theme=>html (+articles). theme && htmlrender ???
 . !!! menus !!!
 !!! do html load loops for meta, styles, scripts with model !!!
-
-404
-rest<=core?
-crud? (replace,count)
-CHUP Remote Update !!!!
 
 //=== AUTH =================================================
 
@@ -42,6 +35,13 @@ iso => ini convert all !!!
 // ++core load stop-list for html*
 +shortcodes other vendor !!!
 !!! add global list, use global on every level !!!
+
+
+404
+
+rest<=core?
+crud? (replace,count)
+CHUP Remote Update !!!!
 
 4. AC
 

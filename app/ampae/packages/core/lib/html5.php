@@ -31,6 +31,35 @@ class Html5 extends Html
         return '';
     }
 
+    public function asideLeftOpen()
+    {
+        $ret = '<aside id="asideLeft" role="complementary" aria-label="aside left">';
+        $ret.= '<nav role="navigation" id="leftside-navigation" class="nano" aria-label="aside left navigation">';
+        return $ret;
+    }
+
+    public function asideLeftClose()
+    {
+        $ret = '</nav>';
+        $ret.= '</aside>';
+        return $ret;
+    }
+
+    public function asideRightOpen()
+    {
+        $ret = '<aside id="asideRight" role="complementary" aria-label="aside right">';
+        $ret.= '<div class="container">';
+        return $ret;
+    }
+    public function asideRightClose()
+    {
+        $ret = '<nav id="asideRightNavigation" role="navigation" aria-label="aside right navigation">';
+        $ret.= '</nav>';
+        $ret.= '</div>';
+        $ret.= '</aside>';
+        return $ret;
+    }
+
     public function article($id, $class, $img = null, $title = null, $desc = null)
     {
         $res = null;
@@ -80,5 +109,84 @@ class Html5 extends Html
         $res.= $this->rem('.entry-footer');
         $res.= '</article>';
         return $res;
+    }
+
+    /*
+     * --- ALETS ---
+     */
+
+    //    Usage: $theme->alert( COLOR, TITLE, DESCRIPTION );
+    //    COLOR: R= Red, G= Green, B= Blue, Y= Yellow
+    public function alert($type, $title, $desc = '')
+    {
+        global $local;
+        $type = strtoupper(substr($type, 0, 1));
+
+        switch ($type) {
+            case 'R':
+                $ct_bs_type = 'danger';
+                $fa = 'minus-circle';
+                break;
+
+            case 'Y':
+                $ct_bs_type = 'warning';
+                $fa = 'exclamation-triangle';
+                break;
+
+            case 'G':
+                $ct_bs_type = '';
+                $fa = '';
+                break;
+
+            default:
+                $ct_bs_type = 'info';
+                $fa = 'info';
+                break;
+        }
+
+        $ret = '<div data-alert class="alert alert-'.$ct_bs_type.'" tabindex="0" aria-live="assertive" role="alertdialog">';
+        $ret.= '<button type="button" tabindex="0" class="close" data-dismiss="alert" aria-label="Close Alert">&times;</button>';
+        $ret.= '<i class="fa fa-'.$fa.' "></i> <strong>'.$local->translate($title).'</strong> <br />'.$local->translate($desc);
+
+        $ret.= '</div>';
+        return $ret;
+    }
+
+    //    Usage: $theme->alert( COLOR, TITLE, DESCRIPTION, FLAG, BUTTON_TITLE, BUTTON_ICON, LINK );
+    //    COLOR: R= Red, G= Green, B= Blue, Y= Yellow
+    //    FLAG: 1= Show Button
+    //    BUTTON_ICON = Font Awesome Icon name (without fa-)
+    public function alertLink($type, $title, $desc, $butf, $but, $bico, $link)
+    {
+        $type = strtoupper(substr($type, 0, 1));
+        switch ($type) {
+            case 'R':
+                $ct_bs_type = 'danger';
+                $fa = 'minus-circle';
+                break;
+
+            case 'Y':
+                $ct_bs_type = 'warning';
+                $fa = 'exclamation-triangle';
+                break;
+
+            case 'G':
+                $ct_bs_type = '';
+                $fa = '';
+                break;
+
+            default:
+                $ct_bs_type = 'info';
+                $fa = 'info';
+                break;
+        }
+        $ret = '<div class="alert alert-block alert-'.$ct_bs_type.' fade in text-center">';
+        $ret.= '<button data-dismiss="alert" class="close close-sm" type="button"><i class="fa fa-close"></i></button>';
+        $ret.= '<i class="fa fa-'.$fa.' "></i> <strong>'.$title.'</strong> <br />'.$desc.'<br />';
+        if ($butf == 1) {
+            $ret.= '<a href="'.$link.'"><button type="button" class="btn btn-'.$ct_bs_type.'"><i class="fa fa-'.$bico.'"></i> '.$but.'</button></a>';
+        }
+        $ret.= '</div>';
+        return $ret;
     }
 }

@@ -26,7 +26,7 @@ class Install
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender,$htmlrender;
+        global $alerts,$local,$view,$theme,$render,$render;
         $theme->open();
         //echo '<BR><BR>';
         $theme->displayAlerts();
@@ -34,13 +34,13 @@ class Install
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->close();
     }
 
     public function index()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->setUp();
         //$this->content();
         echo '<BR /><BR /><BR />';

@@ -28,7 +28,7 @@ class Signin
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$html,$htmlrender;
+        global $model,$state,$alerts,$local,$view,$theme,$html,$render;
 
         $model->getTheme();
 
@@ -43,13 +43,13 @@ class Signin
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->close();
     }
 
     public function index()
     {
-        global $model, $controller, $nonce, $sign, $state, $html, $alerts, $local, $view, $theme, $htmlrender, $options; ?>
+        global $model, $controller, $nonce, $sign, $state, $html, $alerts, $local, $view, $theme, $render, $options; ?>
        <div class="container">
 
          <div class="row">

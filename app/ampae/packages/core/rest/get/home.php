@@ -29,7 +29,7 @@ class Home
         //$model->addExtContent($tmp);
         //$model->add('html-main', $tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
 
-        $model->add('html-main', '[[htmlrender.logIn]]');
+        //$model->add('html-main', '[[render.logIn]]');
 
         //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
         //$model->add('html-main', $html5->article('a2', null, 'https://placeimg.com/640/480/any'));

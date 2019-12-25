@@ -28,7 +28,7 @@ class Acc
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$html,$htmlrender;
+        global $model,$state,$alerts,$local,$view,$theme,$html,$render;
 
         $model->getTheme();
 
@@ -47,7 +47,7 @@ class Acc
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->close();
     }
 

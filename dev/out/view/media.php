@@ -26,7 +26,7 @@ class Media
      */
     public function __construct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->open();
         echo '<BR><BR>';
         //$theme->displayAlerts();
@@ -34,7 +34,7 @@ class Media
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->close();
     }
 

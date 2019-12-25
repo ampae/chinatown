@@ -8,8 +8,8 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php
-global $html, $htmlrender;
-$htmlrender->renderMeta();
+global $html, $render;
+$render->renderMeta();
 ?>
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $model->appinfo['url'].DIR_ASSETS; ?>/img/favicon.ico" />
 
@@ -17,7 +17,7 @@ $htmlrender->renderMeta();
 <link rel="stylesheet" type="text/css" href="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/css/styles.css" />
 
 <?php
-$htmlrender->renderStyles();
+$render->renderStyles();
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].DIR_LIBS; ?>/jquery/jquery.min.js"></script>
 
@@ -25,7 +25,7 @@ $htmlrender->renderStyles();
 
 
 <?php
-$htmlrender->renderScripts('HEAD');
+$render->renderScripts('HEAD');
 ?>
 <script type='text/javascript' src="<?php echo $model->appinfo['url'].$model->appinfo['theme_webpath']; ?>/js/app.js"></script>
 

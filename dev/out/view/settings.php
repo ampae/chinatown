@@ -28,7 +28,7 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$html,$htmlrender;
+     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$html,$render;
 
      $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
      $html->addScript('HEAD', $val2);
@@ -49,7 +49,7 @@
 
    public function __destruct()
    {
-     global $alerts,$local,$view,$theme,$htmlrender;
+     global $alerts,$local,$view,$theme,$render;
      $theme->close();
    }
 

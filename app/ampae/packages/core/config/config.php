@@ -22,6 +22,7 @@ ampae[] = shortcode
 ampae[] = local
 ampae[] = html
 ampae[] = html5
+ampae[] = form
 ampae[] = rest
 ampae[] = http
 
@@ -35,5 +36,5 @@ ampae[] = ac
 ampae[] = office
 ampae[] = sign
 
-ampae[] = htmlrender
+ampae[] = render
 ampae[] = view

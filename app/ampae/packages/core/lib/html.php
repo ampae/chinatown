@@ -26,6 +26,8 @@ class Html
     public $style           = array();
     public $scriptSmall     = array();
     public $styleSmall      = array();
+    public $form            = array();
+
     //  public $x    = array(); //
 
 
@@ -877,5 +879,18 @@ class Html
     {
         global $model;
         $this->styleSmall[] = $val;
+    }
+
+
+
+    public function newForm($atts)
+    {
+        $this->form[$atts['id']]['open'] = $this->tagOpen('form', $atts);
+    }
+
+    //$html->formField('email', 'email', 'form-control', 'fa fa-envelope-o', $local->translate('email'), ''); // , 'autocomplete="off"'
+    public function addFormField($atts)
+    {
+        $this->form[$atts['id']]['field'] = '';
     }
 }

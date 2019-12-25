@@ -26,7 +26,7 @@ class Home
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$htmlrender;
+        global $model,$state,$alerts,$local,$view,$theme,$render;
         $theme->open();
         //echo '<BR><BR>';
        //$theme->displayAlerts();
@@ -36,7 +36,7 @@ class Home
 
     public function __destruct()
     {
-        global $alerts,$local,$view,$theme,$htmlrender;
+        global $alerts,$local,$view,$theme,$render;
         $theme->close();
     }
 

@@ -27,7 +27,7 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email,$htmlrender;
+     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email,$render;
 
      $theme->open();
 
@@ -113,7 +113,7 @@
 
    public function __destruct()
    {
-     global $alerts,$local,$view,$theme,$htmlrender;
+     global $alerts,$local,$view,$theme,$render;
      $theme->close();
    }
 
