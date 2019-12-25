@@ -1,4 +1,7 @@
-html forms encapsulation $html->newForm($id,$class,etc..1);  $html->addToForm(id,'email',...)
+. form legend
+. input formCgOpen / close +$atts !!! ico, etc..
+. cleanup forms !!!
+. make all work !!!
 make all forms work (like options and settings) !!!
 auto add/update on POST !!!
 

@@ -50,12 +50,12 @@ class Model
         $this->appinfo['theme_webpath']     = DIR_APP.'/'.$this->appinfo['theme_vendor'].'/'.DIR_THEMES.'/'.$this->appinfo['theme_directory'];
     }
 
-    public function addExtContent($file, $pos = 'main')
+    public function addTmpl($file, $pos = 'main')
     {
         $this->results['raw-file'][$pos][]=$file;
     }
 
-    public function getExtContent($pos = 'main')
+    public function getTmpl($pos = 'main')
     {
         global $io, $shortcode;
         $allowed = ALLOWED_HTML; // view config !
@@ -73,7 +73,7 @@ class Model
     }
 
     // TODO add 'raw' to config, add raw file ext 'txt' to config !!!
-    public function getRaw($file)
+    public function findTmpl($file)
     {
         global $model;
         $tmpRawPath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['rest_vendor'];

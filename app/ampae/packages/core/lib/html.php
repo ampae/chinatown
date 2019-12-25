@@ -503,6 +503,46 @@ class Html
      * === FORMS ===
      *
      */
+
+    public function form($atts)
+    {
+        global $model;
+        if (!isset($atts['method'])) {
+            $atts['method'] = 'POST'; //TODO to config !!!
+        }
+        $res = $this->tagOpen('form', $atts);
+        $res .= $this->tagOpen('fieldset');
+        return $res;
+    }
+
+    public function input($atts)
+    {
+        global $model;
+        if (!isset($atts['type'])) {
+            $atts['type'] = 'hidden'; //TODO to config !!!
+        }
+        $res = $this->tagOpen('input', $atts, true);
+        return $res;
+    }
+
+    public function formFieldNew($atts)
+    {
+        $ret = null;
+        $ret.= $this->input($atts);
+        return $ret;
+    }
+
+    public function formCloseNew()
+    {
+        $res = $this->tagClose('fieldset');
+        $res.= $this->tagClose('form');
+        return $res;
+    }
+
+    /*
+     * === FORMS REDO/DELETE !!! ===
+     *
+     */
     //    Usage: echo $html->FormCheck($id, $label)
     public function formCheck($id, $label, $val = '')
     {

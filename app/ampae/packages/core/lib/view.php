@@ -73,10 +73,10 @@ class View
         }
     }
 
-    public function raw()
+    public function raw($pos = 'html-main')
     {
         global $model,$shortcode;
-        echo $model->getExtContent();
-        echo $shortcode->do($model->get('html-main'));
+        echo $model->getTmpl();
+        echo $shortcode->do($model->get($pos));
     }
 }

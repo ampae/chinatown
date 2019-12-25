@@ -23,18 +23,20 @@ class Home
 {
     public function index()
     {
-        global $model,$loger, $html5, $local;
-        //$model->setContentExt('');
-        //$tmp = $model->getRaw('signin');
-        //$model->addExtContent($tmp);
-        //$model->add('html-main', $tmp.' <h2>Yea!</h2>[[shortcode.test lname=bedouin fname=bulbul mname=10]]');
+        global $model, $loger, $html5, $form, $local;
+        $form->set(array('id'=>'kkk','action'=>'fff'));
+        $form->add('kkk', array('name'=>'aaa','value'=>'zzz'));
+        $form->add('kkk', array('name'=>'bbb','value'=>'uuuuu'));
 
+        $tmp = '<h2>HOME</h2>';
+
+        $tmp.= $form->get('kkk');
+
+        $tmp.= '<p>home</p>';
+        $model->add('html-main', $tmp);
+
+        //$model->addTmpl($model->findTmpl('signin'));
         //$model->add('html-main', '[[render.logIn]]');
-
         //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
-        //$model->add('html-main', $html5->article('a2', null, 'https://placeimg.com/640/480/any'));
-
-        //$model->redirect = $model->appinfo['url'].'login';
-      //echo $this->vendor(__CLASS__);
     }
 };

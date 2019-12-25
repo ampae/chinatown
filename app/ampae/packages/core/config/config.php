@@ -23,12 +23,10 @@ ampae[] = local
 ampae[] = html
 ampae[] = html5
 ampae[] = form
+ampae[] = email
+
 ampae[] = rest
 ampae[] = http
-
-ampae[] = options
-ampae[] = email
-ampae[] = media
 
 ampae[] = usr
 ampae[] = state
@@ -36,5 +34,7 @@ ampae[] = ac
 ampae[] = office
 ampae[] = sign
 
+ampae[] = options
+ampae[] = media
 ampae[] = render
 ampae[] = view

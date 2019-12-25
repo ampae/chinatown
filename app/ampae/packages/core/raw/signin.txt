@@ -1,1 +1,1 @@
-[[htmlrender.logIn]]
+[[render.logIn]]

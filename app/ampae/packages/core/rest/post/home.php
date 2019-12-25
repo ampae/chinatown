@@ -23,10 +23,11 @@ class Home
 {
     public function index()
     {
-        global $model,$loger;
+        global $controller, $model,$loger;
         echo 'POST HOME';
+        print_r($controller->request);
         //die('???');
-//$model->redirect = $model->appinfo['url'].'login';
+        //$model->redirect = $model->appinfo['url'].'login';
       //echo $this->vendor(__CLASS__);
     }
 };
