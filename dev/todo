@@ -1,0 +1,481 @@
+. ADM transactions add
+. USR transactions fix!
+
+. !!! add funds !!! send funds !!!
+
+. add funds to usr with pp
+. usr send funds to another user
+
+. user search, invite, etc..
+. follow suggestions..
+
+
+
+. usr request payment
+. send back to pp
+
+.. adm/usr/funds
+.. adm/usr/funds/manage
+... ++ BALANCE 0,00 Manage ; Statement
+.admin .. billing?
+
+//---- $options->get('crc', 'usd')
+
+location! / emty post check in?!
+
+home_feed_at
+.. BUG !!! Comments # Comments are Closed
+
+// --- ####################### --- !!! DONE !!! --- ######################## ---
+. CRC !!! fix one currency
+. settings profile avatar round curve %%
+. rebuild feed ++add_weight_to post table
+.. !!! timeline table xx-who(usr/admin),yy-to-whom(usr/group),zz-post-id (2H
+. post search!!! {rebuild feed!}
+.. add comments# to feed and profile feed, also add there ability to star it all
+.. show (post status), don't show post with low status but to owner and admin, don't let owner change status, only admin can!
+
+. lang settings/browser view.php? !!! (1H
+. TRANSLATions !!! (PRO) (4H {en,nl,} (2H
+
+. remove all config files ($xdata->config) => db (2H userlevel, locale, priv ?, defaults
+. Theme . top bar menu (admin?) in config !!! (2H --config menus.. header menu into database !!!
+
+. activity/messages (go home button fix)
+. finalize path top alerts/messages (2H
+
+. rebuild themes
+. plugins structure !!!
+
+. paid membership
+. group shop
+
+. gfonts settings dropdown
+
+. admin usr reset password
+. req forms make it work !!!
+
+. check if user want to be contacted by PM with no followers messages/aaaaa, admin can send PM to any !!!
+. adm/usr sidebar => send PM to all, send email to all
+. aside_right option NO_HTML_PARSE option !!!
+
+. usr description !!!
+. remember me feature (4H
+. # of views to SQL TABLE
+. img size to config/options
+. ALERTS --- likes/stars, ++all_alerts.. ++numbers_of_alerts
+. signup/settings: live reg check (2H (LITE)
+
+. /hashtags -> add cloud in the center! .js ??
+
+. GROUPs (PRO->LITE) (16H
+
+. add active light status to side contacts!
+
+. home video on/off
+
+. remove all shit chars from posts !!!
+
+. messages - limit conversation to 50 last/7days => see full/?/week/month/?/etc..
+. media page; ++stars/++flags/++delete
+
+. instant posts >> numbers !!! ++add_numbers of new feed messages (same as twitter) TIMER!!! (2H
+. disable buttons after click !!!
+. auto signup option
+. first login (force) finalize signup..
+
+. ADS ! (PRO) (8H
+
+. make msg/comment invisible when XX flags set. (PRO) (4H
+
+ACL !!!
+. small user list for aside!!! {suggestions to follow,friends,etc..} (LITE) | (PRO - cards) (4H
++plugins +db (???)
+
+.. FB signup ..
+. login by phone, username, email (4H
+
+. play with db errors, theme redirection !!! on error !!!
+. reset password (by email only!) : email link, click, send email with new password. (???->LITE) (8H
+
+.. site/usr/followers/following function $tmp_arrr = $colibri->getFollowers(offset,offset) | statistics | remove button for own profile !!!
+
+!!! change all json requests to rest
+. follow/unfollow ajax.. (4H
+
+. admin ALERTS {admin added, admin login attempts, tickets, backup, tech alerts}
+
+. post VIDEO !!! yt,vmo
+. finalize cards (++video,++location/map) (4H
+. adm/* - css cards !!!
+
+... ++ last login
+. primary records !!
+. profanity filter, hashtag fiter, etc..
+
+LITE:: --media,--avatars,--custom bg,--most of js!!!
+
+. move all to PDO prepared !!!
+. usr/proc => signup/signin,etc..
+
+. --cid,xcid,ycid => uid
+. brush code ++add/check_code_headers (4H
+
+. list of all methods: system, admin, user, fin, etc..
+
+. 2nd level menu
+
+################################################################################
+////////////////////////////////////////////////////////////////////////////////
+################################################################################
+
+. fix Mod(erator) functionality (4H
+. ?-postid!!!
+. base_convert(md5(rand()), 10, 36 ) - for full post URL - see test
+
+
+default_charset	    UTF-8
+default_mimetype	text/html
+
+. deletion posts/comments(owner{time?})
+. track has been removed for now !!!
+
+################################################################################
+!!! Post to other soc net: FB,TW
+################################################################################
+
+################################################################################
+1. AD - (Bonzai) - Admin Dashboard
+2. CME - () - Content Management Engine (WP -blog)
+3. SE - (Colibri) - Social Engine
+4. RSUE - (Zebra) - Remote Soft Update Engine
+5. API 
+################################################################################
+################################################################################
+################################################################################
+
+// $this->removeUserPosts($xuid);
+// $this->removeUserStars($xuid);
+
+// $this->removeUserPrivatePosts($xuid);
+
+// $this->removeUserComments($xuid);
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// $this->removeUserFlags($xuid); (PRO)
+// $this->removeUserMedia($xuid); (PRO)
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+.. +++tracking !!!
+. err handling
+
+. auto flagging!
+
+. Sign functions to main TMPL?
+
+. ?admin -> latest comments feed
+. ?admin -> latest messages feed
+################################################################################
+!!! theme ++page-activity.php etc.. -- site/content.php
+. setup Admin specify password must !!!
+. flag on profile
+
+. +SETUP!INSTALL !!!  1). hello world post 2).sub_config - setup 1/0 (1H
+. hello world post #admin @admin_name !!!
+
+################################################################################
+http://xml.dgcsc.org/samples/SampleGoldJBAE.json
+https://openexchangerates.org/api/latest.json?app_id=fdccc56c45264840a9bc852de606eaf1
+################################################################################
+
+. add json handle inside into the theme !!!
+.. activity +graph?(visitors, logins) (2H
+
+admin import; super admin, mods,
+. demo users 
+. plugins, real config extend!!!
+. register (ajax un test!)
+
+. finalize resmart/PDO prep_stats (4H
+
+http://codepen.io/SitePoint/pen/GgOzwX
+
+//------------------------------------------------------------------------------
+
+
+
+http://localhost/colibri/526/usr/ava/趁香
+http://localhost/colibri/526/usr/ava/ขอ
+
+### CODE #######################################################################
+################################################################################
+
+FAQ:
+
+Q: is there any "borrowed" code from WordPress?
+A: No, this application is inspired by simplicity and eficency of t wordpress but it does not contain any borrowed code from wordpress, this application written from scratch and use different object oriented approach that makes this application lighter and faster. All new PSR recommendations also has been utilized..
+
+//------------------------------------------------------------------------------
+
+/* Execute a prepared statement by passing an array of values */
+$sth = $dbh->prepare('SELECT name, colour, calories
+                      FROM fruit
+                      WHERE calories < ? AND colour = ?');
+
+$sth->execute(array(150, 'red'));
+
+$red = $sth->fetchAll();
+
+//---
+
+/* Execute a prepared statement by passing an array of values */
+$sql = 'SELECT name, colour, calories
+        FROM fruit
+        WHERE calories < :calories AND colour = :colour';
+
+$sth = $dbh->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+$sth->execute(array(':calories' => 150, ':colour' => 'red'));
+
+$red = $sth->fetchAll();
+
+//---
+
+$query = $db->prepare('SELECT id FROM users WHERE username = :username AND password = :password');
+
+$array = array(
+  'username' => 'Carrot',
+  'password' => 'sup homie'
+);
+
+$query->execute($array);
+
+//------------------------------------------------------------------------------
+
+
+# a simple object
+class person {
+    public $name;
+    public $addr;
+    public $city;
+ 
+    function __construct($n,$a,$c) {
+        $this->name = $n;
+        $this->addr = $a;
+        $this->city = $c;
+    }
+    # etc ...
+}
+ 
+$cathy = new person('Cathy','9 Dark and Twisty','Cardiff');
+ 
+# here's the fun part:
+$STH = $DBH->("INSERT INTO folks (name, addr, city) value (:name, :addr, :city)");
+$STH->execute((array)$cathy);
+
+//----------------
+
+        $xdata->results['HEADER'] = 'text/json';
+        $xdata->results['EX']['PGTP'] = 'json';
+//        $xdata->results['REDIRECT'] = 'proc';
+
+        $view->loadTmpl('json');
+
+        $ps = implode($p);
+
+        print_r($p);
+        print_r($xdata->request);
+
+//            $dadata = array( 'k' => 'uname', 'v' => $v );
+//            $tmp_query = $model->db1->prepare("INSERT INTO `ct_test2` (`k`, `v`) VALUES (:k, :v)");
+//            $tmp_query->execute($dadata);
+
+//            $dadata = array( 'key' => 'uname', 'value' => $v );
+//            $tmp_query = $model->db1->prepare("INSERT INTO `ct_test` (`key`, `value`) VALUES (:key, :value)");
+//            $tmp_query->execute($dadata);
+
+//            $tmp_query = $model->db1->prepare("INSERT INTO `ct_test2` (`k`,`v`) VALUES ('uname','$v')");
+//            $data = array( 'uname', $v );
+//            $tmp_query = $model->db1->prepare('INSERT INTO ct_test(key, value) VALUES(?, ?)');
+//            $tmp_query->execute();
+/*
+            $tmp_query = $model->db1->prepare('SELECT * FROM ct_test');
+            $tmp_query->execute();
+            $tmp_query->setFetchMode(\PDO::FETCH_ASSOC);
+            $res = $tmp_query->fetch();
+//            print_r($res);
+*/
+
+$search = "%$search%";
+$stmt  = $pdo->prepare("SELECT * FROM table WHERE name LIKE ?");
+$stmt->execute([$search]);
+$data = $stmt->fetchAll();
+
+https://www.thesoftwareguy.in/ajax-scroll-pagination-php-mysql/
+
+// --- DONE --------------------------------------------------------------------
+1. better MVC
+2. PDO
+3. compatibility with wordpress rewrite rules make it play on all web servers
+4. controller and methods
+5. templates
+6. code cleanup
+7. documentation update
+
+//------------------------------------------------------------------------------
+
+.-default,
+.-primary,
+.-success,
+.-info,
+.-warning,
+.-danger
+
+
+// ---
+
+
+Colibri:
+        . Admin! theme, make it all work (4H
+        ~ internal messageing system, chat (2H
+        . make search work, # & @ tags (4H
+        . left menu? => dropdown! (1H
+        . SIGNUP ajax check pri=1 NAME, EMAIL => complete profile! (check old setup!)
+        .. photo albums, masonry?
+
+        ~ ALL CT settings add to DB (table ct_settings) (4H
+
+====
+
+.. check sign-up, fb-sign-up, forget;
+
+. translation languages (en, de, fr, es, pt, ru, ch, nl)
+
+// ---
+OiwOPFH8Rjk
+Privacy · Terms · Advertising · Cookies · About
+Colibri © 2016
+
+/var/www/html/colibri/519/plugins/emtly/corex/html.php:523:    public function formField($name, $val = '', $ico = '')
+/var/www/html/colibri/519/plugins/emtly/corex/bstheme.php:248:    public function formField($type, $id, $icon, $label, $val = '')
+
+INSERT INTO `ct_colibri_options` (`option_id`, `option_group`, `option_name`, `option_value`, `autoload`) VALUES
+(14, 'home', 'home_feed_at', 'aaaaa', 1),
+(17, 'home', 'home_video', 'OiwOPFH8Rjk', 1),
+(15, 'main', 'about', 'This is About Colibri Text, change it in the options..', 1),
+(16, 'main', 'copyright', 'Colibri', 1),
+(19, 'email', 'SMTP_HOST', 'smtp.zoho.com', 1),
+(20, 'email', 'SMTP_SEC', 'ssl', 1),
+(21, 'email', 'SMTP_PORT', '465', 1),
+(22, 'email', 'SMTP_NAME', 'noreply@emtly.com', 1),
+(23, 'email', 'SMTP_PASS', 'wfWeDNWenZ5ty4', 1),
+(24, 'email', 'smtp', '1', 1),
+(25, 'home', 'TITLE', 'Collaborative Social Network', 1),
+(26, 'home', 'DESC_LINE_1', 'Light, Clean & Powerful GroupWare LAMP Application', 1),
+(27, 'home', 'DESC_LINE_2', 'Create and Manage your Own Community', 1),
+(28, 'sign', 'FORM_UNDER', 'Text under the Forms, change me in the Admin Options', 1);
+
+{
+"subject" : "{{ct_name}} - Registration at {{ct_org}}","body" : " Dear {{ct_name}},
+{{ct_br}} {{ct_br}} Here is your account details for {{ct_org_url}} Please log in by clicking on this link or copying and pasting it into your browser: {{ct_br}} {{ct_br}} {{ct_signin_url}} {{ct_br}} {{ct_br}} You may log in to {{ct_org}} by using the following credentials: {{ct_br}} {{ct_br}} Login: {{ct_email}} {{ct_br}} Password: {{ct_opass}} {{ct_br}} {{ct_br}} After signing in you would be able to change your password. {{ct_br}} {{ct_br}} Welcome to {{ct_org}} {{ct_br}} {{ct_org}} Support Team {{ct_br}}"
+}
+
+
+
+            "57"    : {
+                "slog"        : "options",
+                "icon"        : "cog",
+"1" : {
+                "slog"        : "opt_add",
+                "icon"        : "cog",
+                "link"        : "adm/settings/add"
+}
+            },
+
+
+,
+            "50"    : {
+                "slog"        : "groups",
+                "type"        : "title"
+            },
+            "60"    : {
+                "slog"        : "mygroups",
+                "icon"        : "group",
+                "link"        : "groups"
+            },
+           "70"    : {
+                "slog"        : "newgroup",
+                "icon"        : "user-plus",
+                "link"        : "groups/add"
+            }
+
+// --- UPDATE `alerts` SET `status` = '2'
+
+// ---
+
+try{
+    $dbh = new pdo( 'mysql:host=127.0.0.1:3308;dbname=axpdb',
+                    'admin',
+                    '1234',
+                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    die(json_encode(array('outcome' => true)));
+}
+catch(PDOException $ex){
+    die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
+}
+
+// ---
+
+$db = new PDO($dsn, $user, $password);
+$sql = file_get_contents('file.sql');
+$qr = $db->exec($sql);
+
+
+// ---
+
+$db = new PDO("mysql:host=localhost;dbname=test", 'root', '');
+
+// works regardless of statements emulation
+$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
+
+$sql = "
+DELETE FROM car; 
+INSERT INTO car(name, type) VALUES ('car1', 'coupe'); 
+INSERT INTO car(name, type) VALUES ('car2', 'coupe');
+";
+
+try {
+    $db->exec($sql);
+}
+catch (PDOException $e)
+{
+    echo $e->getMessage();
+    die();
+}
+
+// ---
+
+$db = new PDO("mysql:host=localhost;dbname=test", 'root', '');
+
+// works not with the following set to 0. You can comment this line as 1 is default
+$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
+
+$sql = "
+DELETE FROM car; 
+INSERT INTO car(name, type) VALUES ('car1', 'coupe'); 
+INSERT INTO car(name, type) VALUES ('car2', 'coupe');
+";
+
+try {
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+}
+catch (PDOException $e)
+{
+    echo $e->getMessage();
+    die();
+}

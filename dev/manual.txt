@@ -1,0 +1,84 @@
+https://www.boonex.com/features
+https://www.siteground.com/tutorials/dolphin/dolphin_installation.htm
+
+Advanced social profiles, timelines, likes, shares, voting, friends and comments.
+
+Social networking permeate through the entire community site and drive engagement. Users can create beautiful customisable profiles, share content, repost, comment, react and create viral growth. Friends connections build your site’s social graphs network and define content flow.
+
+Responsive, mobile-friendly site layout.
+
+DolphinPro is mobile on all levels. The website layouts is fully responsive and tap-friendly. All design elements are optimised to adapt to any screen size right down to smartphones. On top of that you can deploy customisable native iOS and Android apps - universal, integrated with your site, branded as your own.
+
+Private Chat
+
+Good chat can be the most active place for community to hang-out. So, we equipped DolphinPro with a GREAT chat! Based on WebRTC technnology, Chat+ created direct peer-to-peer connection between users, minimising load on your server. Fully mobile-friendly, responsive, fast and scalable.
+
+
+
+Avatars
+Upload, crop and manage multiple profile avatars and select active avatar.
+
+Messenger
+Basic text messenger for quick communication. Displayed in member menu and always handy.
+
+News
+Publish site news, announcements and alerts with custom publishing date and extended browsing.
+
+Page Access Control
+Setup content, navigation and blocks visibility settings for different membership levels.
+
+Photos
+Upload, browse and share photos.
+
+
+Shoutbox
+Let them shout! Chat-like message box where anyone can post a quick line.
+
+SMTP Mailer
+Use any external SMTP server or service to handle Dolphin site email notifications.
+
+Timeline
+Aggregated content and updates browsers in profiles, accounts and site homepage.
+
+//---
+Ads
+Classified ads for site members with custom categories, prices and photos.
+
+Payments
+Connect your payment gateways to collect payments supported by different modules.
+
+Memberships
+Advertise and sell paid membership levels to your site members.
+
+Shops
+Upload and sell products, let site members sell, receive payments and connect with buyers.
+
+Events
+Create and manage events, with dates, attendants, photos, updates and forums connectivity.
+
+Facebook Connect
+Join and login using Facebook accounts, find and match Facebook friends with site members.
+
+Chat
+Multi-user video chat with concurrent video streaming, custom rooms and rich formatting.
+
+Feedback
+Collect, select and approve feedback messages from site members and publish it on the site.
+
+Files
+Upload, share, manage and publish various files, documents and media for download.
+
+Sounds
+Upload and share sound files. With categories and social sharing features.
+
+Groups
+Create and manage groups, with admins, members, forums, social features, photos and other media.
+
+Videos
+Upload, record and share videos. Built-in converter, social features, categories and privacy controls.
+
+World Map
+Browse site members and published content on the world map, with grouping and zooming.
+
+Polls
+Create Poll questions and display community replies with visualised graphs.

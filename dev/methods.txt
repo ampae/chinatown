@@ -1,0 +1,38 @@
+appmethods::
+
+signUp  - add user
+signIn  - login
+signOut - logout
+signOff - usrDel - delete user
+
+getWebDepth - 
+getRest - getRest()
+
+msgGet($mid) - moduleOut
+msgPost() - stUpdate
+msgOwner($mid) - msgOwner
+
+
+emptyPost() - emptyModuleOut
+
+userFollow() - 
+userUnfollow()
+userIsFollowed()
+userFollowSwitch()
+
+commentsCount
+
+trendingTagsRender ?
+
+getAccountsToFollow
+
+// --- flags, stars, 
+
+getAvatar
+getBackground
+
+//--- private::
+
+userIsOwn() - isUsrOwn
+getIdByName ?
+getNameById ?

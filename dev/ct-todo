@@ -1,0 +1,417 @@
+--- /// -------------------------------------------------------------------
+
+!!! check ONLINE DEMO time after time
+!!! DEMO => LINK BUY NOW !!!
+
+1. --- ----------------------------------
+
+. FIX - Hmvc structure; URL sub-plugins
+. FIX ~ prepared statements PDO
+. FIX - class auto activate (for autoload); ++file autoload;
+~ FIX - vendor app structure
+. FIX - info.php data extension config (2H
+. FIX - profiles must handle both templates (API CALLS) !!!
+. FIX - upload images add (2H
+. FIX - usr avatar upload +fb avatar local store, +file_form PHP, +file_form GET->POST (2H
+
+. FIX - crypto multi form protection!!! --JS! --clear.class ++native filtering (3H
+
+. FIX - !!! ability to change email address !!!
+. FIX - !!! primary records !!!
+
+. FIX ~ ++bitcoin as reserve currency; --ecb ++blockchain;
+. FIX - currency tables to support .8 decimails
+. FIX - multi-currency accounts with default{hierarchy} and/or primary{p flag} account and 
+. FIX - admin acc currency change / convert (++transaction protection)
+
+--- ----
+
+. FIX - login lock for 5 min after x attempts, flood lock (## of req per acc)
+
+. FIX? - same wordpress page add/edit ++shortcode widgets !!! choose tmpl, sub-tmpl page..
+
+
+Whenever you build anything SaaS (Software as a Service) for web you would need to replicate similar to most SaaS functionalities such as User Registration and Management, User Accounts and payment handling, email management, and many more. Even before it comes to those functionalities, you need to put together CRUD, API's, UI, etc. and of course decide on and implement site structure and choose to use (or not to use) any of frameworks.
+
+You don't have to build your web application from scratch. ChinaTown is a Web Rapid Application Development (W-RAD) platform that provides modular site structure, has build in CRUD, API, UI, handles accounts and manages user registration. ChinaTown contains all the basic functionalities that any SaaS web application needs and it can be easily extended. 
+
+====================================================================
+
+. FIX? - mvc structure; class/method url call !!!
+. FIX? - amend MVC structure with plugin config (if present) !!!
+. FIX? - PSR-3 implementation
+. FIX? - !!! paypal reverse chargebacks ++subscriptions !!!
+
+====================================================================
+
+SIGNUP::
++check signed users for level in db !!! every hop, kick out if not
+++ restricted names !!!
+++ live account signup check
+++ password strong?
++ quickfix admin change email address + check email link !!!
+// !!! check for config k and global v; if same v exists globaly DO_NOT_PUT !!!
+// !!! check for strict keys
+// ! del all owned res ! add/use bridge !!!
+++options:
+.. admin usr add send reg email
+.. send welcome emails to users after acc setup
+++admin_acc_menu resend reg email
+
+++ internal message system ()
+
+++ private messaging !!!
+
+. menu visual edit
+. plugins+config to db - ! ALL plugin config to database !!! admin - plugin menu: a,b,settings (4H
+. admin editable emails templates (in DB) ! (1H
+
+. invitations !!! (3H
+. email conf-irmation (2H
+. link to reset&setup password (2H
+
+. backup users csv !!! (2H
+
+. pdf billing, invoicing (4H
+
+. CHUP remote upgrade - write last time we ve checked for updates; (4H
+
+--- ----------------------------------
+2.?
+js make it work without JS; -- js from form, -- enc ps,.
+++ stelth pages (404, same url diff content!)
+. ? admbill add exchange table !!!
+++ api code ++security ++customization ++rest url structure
++++ RAD API (public static/dyn classes functions)
+! API
+! all redirects !!!! (30M
++pg plugin demo payment gateway example
+. fb app create screens
+. check fb, ++li++fb++sshare++
+check all headers!
+++main font!!!
+!!! all email related http:// broadmedia -> config
+++more php settings
+++ all local => json config
+?lang-> xdata
+?reserved pages = config, main
+++ all acc,iso3166,ulevel,etc => json config
+++use of currency signs
+!!! 1 central class $chinatown connect other frameworks !!!
+? mailchimp
+? add check pin to the profiles url
+? balance red = #red
+? more HOOKS
+? adding deep Hierarchy to MVC
+? portal fees
+
+PSR-3
+{
+    "require": {
+        "psr/log": "dev-master"
+    }
+}
+
+
+===================================================================================
+PHP User Registration and Management Framework
+
+ChinaTown is a Light, Fast and Secure LAMP based Rapid Application Development (RAD) Framework with CRUD API for user account management, multi-currency accounts and PayPal integration.
+
+ChinaTown build using HMVC (Hierarchical) MVC and consists from self extending plug-ins.
+===================================================================================
+
+--- --- DONE
+. Vredesign admin/user inner pages ; !boxes! --inner menus, top padding, etc,etc...
+. Vchange icons in menu
+. Vsigned = dashboard std. boxes
+!!! Vchange graph script !!! see IT
+
+? better path constants
+? rename plugins, use better $tmp_raw vars
+
+V+activate/deactivate plugins in config !!!
+V+check writable folders like U
+V! +try to create database!
+V. FIX - better db install system
+V. DB settings on setup (2H
+----------------------------------------------------------------
+Admin (Demo Only) account limitations:
+1. Admin can not change own password (--change own passwords) V nobody can change
+2. Admin account can not be deleted by another Admin (--delete users) V adm can not delete
+3. Admin account can not be downgraded (--change Ul) V
+4. Admin can not promote another account to admins V admin can not promote more MOD
+5. Admin password can not be reset (--reset password) V admin can not reset
+
+Demo User (Demo Only) account limitations:
+1. Demo User can not change own password V nobody can change
+2. Demo User account can not be deleted by another Admin V adm can not delete
+3. Demo User password can not be reset V admin can not reset
+
+* can user change password
+* can adm change pasword
+* level to delete other users
+* level to reset password of other users
+* level to manage funds on accounts
+* level to change other usr level
+* 
+================================================================
+https://plus.google.com/103837322629663830482/about
+https://twitter.com/bromediapartner
+================================================================
+http://www.broadmediapartner.com/api_chup?owner_email=admin@example.com&owner_key=ABA7C-7008A-4E85C-12D52-E9E18&sys_tid=944527&sys_ver=2.4.7&sys_key=12C62-DA60A-7C6EC-0A116-C7420
+================================================================
+
+.. michael
+
+========================================================
+CT vs CI
+Less is More - CT is Much Smaller and Much Faster comparing to CI. CT is not a FW, it is RAD app dev platform. Any FW will slow you down and put some limitations on coding, we believe in FW transparency, so simple so better. No offence to CI as it is probably the best FW out there but it is still a FW and as result it is bit too big, too slow and too restrictive. CT is build for RAD, CI is not RAD, is just a FW.
+
+CT vs WP
+WP is perfect blog engine, in fact it is even more that that, it is a CMS. When it comes to user management and payments handle WP is not the best platform at all.
+
+CT vs WooCommerce
++CT is way faster, smaller, configurable and manageble.
+========================================================
+Do you want to help CAcert?
+We are facing an uphill battle to fund this service and could do with your help?
+If you can, please donate.
+AU$50 per year for this button
+or a one off donation for this button whatever you can afford to help
+
+If you are located in Australia, use bank transfer instead.
+
+CAcert bank account details:
+
+    Account Name: CAcert Inc
+    SWIFT: 
+
+========================================================
+////////////////////////////////////////////////////////////////////////////////////
+CPXBEE
+////////////////////////////////////////////////////////////////////////////////////
+
+.AFF: +campaign list, +campaign groups, +campaign search
+
+.. setup all5 aff campaigns!
+
+qtnic signup check !!!
+
+
+$$ creatives upload
+$$ transfer campaigns to another account
+
+x. redirector go.cpxbee.com (H???
+x~. pixel (? l(cpid) r(afid) 12345678S87654321 => ?x=y&cpxb=afafafaf => ?x=y&cpxb=afafafafaf-PPPPPPPP OLD // NEW ?x=y&cpxb=afafafafaf&cpxbk=PPPPPPPP || make work both (H???
+x. ++ AFF $$ campaign AJAx listing (3H
+x. transaction make it work!
+x. connect/check pixel with qtnic
+
+-----------------------------------------------
+++peerfly as adv !!! (1H
+
+. cmp{move all to tabs,main tab=stats, stats}, + hints in forms - guide-ines.. (3H
+++add pop_ups,pop_unders,insent, device(desk,mob)
+
+x. $$ ppal add money to account (2H
+x. billing page (pp pdf)
+
+. advertisers - %% traffic per regio +type(mobile,dsk), PPI,etc.
+
+---
+
+?? $$ fix bal,rbal?
+. campaign edit - interval !!!
+redirect all non-permited countries to cmp.cpxbee.com
+
+
+-----------------------------------------------
+
+================================================================
+===
+
+1. pay ads fb
+
+cycle of payments / weekly
+?cap/npcap - small credit
+post-net3
+
+
+up100.000 adv
+
+1.7M up 3M
+
+
+1. account?
+2. compaigns ##
+3. prepay - 
+4. pixel
+
+volume
+when??
+
+===
+================================================================
+
+1. sit = 2days no compaign => email Is there anything we can help you. how can we help and guide you through compaign creation.. 
+2. 2days how can we help...
+
+Dear ,
+
+Please note that your campaign(s) have stopped running due to insufficient funds in your account. Your account balance is currently $-3.19. In order to continue receiving traffic you must add funds to your account.
+
+In order to add funds to your account please follow these simple steps:
+
+Visit http://www..com
+
+Log in with your username and password
+
+Click on the Funding link located under Manage Account
+
+Enter the amount you wish to deposit
+
+Click on the “Add Funds” button
+
+If you have any questions do not hesitate to contact us.
+
+Regards,
+The  Team
+
+================================================================
+
+.fix admin add money empty acc record?!
+
+++ contact info in dashboard footer, PIXEL info !!! (pixel PDF)
+. cc checklist (2H
+
+------------------------------------
+
+!. PUT PAGES TO QTNIC
+
+=== FVR === 20:00 - 21:00 
+
+x. fix bugroff gig
+x. ++ 2h ++ gigs Natalya 
+
+1. more img
+2. make img avail in windoz
+
+
+<IfModule mod_deflate.c>
+    #The following line is enough for .js and .css
+    AddOutputFilter DEFLATE js css
+
+    #The following line also enables compression by file content type, for the following list of Content-Type:s
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml
+
+    #The following lines are to avoid bugs with some browsers
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html 
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|xml|gz)$">
+    Header append Vary: Accept-Encoding
+  </FilesMatch>
+</IfModule
+
+Apache Config
+
+If you are using Apache, the easiest way to add headers is to use the mod_expires module. For example, to cache GIF images for 75 minutes after the image was last accessed by the cache server, you would add a directive like this under the VirtualHost (or globally). For example:
+
+ExpiresActive On
+ExpiresByType image/gif "access plus 1 hours 15 minutes"
+
+You can also protect whole URL subtrees. For example:
+
+<Location "/css">
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+</Location>
+
+<Location "/static/">
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+</Location>
+
+
+/// DONE
+
+
+[AU]Australia,[AT]Austria,[BE]Belgium,[BR]Brazil,[CA]Canada,[CN]China,[FI]Finland,[FR]France,[DE]Germany,[GR]Greece,[IT]Italy,[JP]Japan,[KR]South Korea,[NL]Netherlands,[NZ]New Zealand,[NO]Norway,[PT]Portugal,[RU]Russian Federation,[ZA]South Africa,[ES]Spain,[SE]Sweden,[CH]Switzerland,[TW]Taiwan,[TH]Thailand,[TR]Turkey,[AE]United Arab Emirates,[GB]United Kingdom,[US]United States
+
+CREATE TABLE IF NOT EXISTS `log` (
+  `i` int(11) NOT NULL AUTO_INCREMENT,
+  `j` varchar(128) NOT NULL DEFAULT '0f',
+  `k` varchar(16) NOT NULL DEFAULT 'UV',
+  `v_uid` int(11) unsigned NOT NULL DEFAULT '0',
+  `v_ip4i` int(11) unsigned NOT NULL DEFAULT '0',
+  `v_ip4` varchar(16) NOT NULL DEFAULT '127.0.0.1',
+  `v_host` varchar(64) NOT NULL DEFAULT 'UNKNOWN',
+  `v_cc` varchar(3) NOT NULL DEFAULT 'XX',
+  `v_dev` varchar(64) NOT NULL DEFAULT 'UNKNOWN',
+  `v_ua` varchar(128) NOT NULL DEFAULT 'UNKNOWN',
+  `t` int(11) unsigned NOT NULL DEFAULT '0',
+  `u` int(11) unsigned NOT NULL DEFAULT '0',
+  `e` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`i`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+INSERT INTO `ct_usr` (`x`, `i`, `k`, `v`, `p`, `g`, `s`, `t`, `u`, `e`) VALUES
+(112039, 1771745141, 'ind', '16', 1, 0, 1, 1411878081, 1414226089, 0),
+(112040, 1771745141, 'pass', 'bbd532ef3bd655f87a94fe2356fe880e988da751db22020688758123807c31d6760625f4182499e1eb137a48b23bcaaee90e2e3492dfa572ea708f94fa8451ff', 1, 0, 0, 1411878082, 0, 0),
+(112041, 1771745141, 'opass', 'setup3', 1, 0, 0, 1411878082, 0, 0),
+(112042, 1771745141, 'name', 'admin', 1, 0, 0, 1411878082, 0, 0),
+(112043, 1771745141, 'since', 'September 2014', 1, 0, 0, 1411878082, 0, 0),
+(112044, 1771745141, 'tz', 'Asia/Bangkok', 1, 0, 2, 1411878082, 1413868144, 0),
+(112045, 1771745141, 'email', 'setup@qtnic.com', 1, 0, 0, 1411878082, 0, 0),
+(112084, 1771745141, 'tel', '555 555 777', 1, 0, 0, 1413613074, 1414076778, 0),
+(112085, 1771745141, 'country', 'AF', 1, 0, 0, 1413868143, 1414040921, 0),
+(112086, 1771745141, 'city', 'å¤§å®¶å¥½', 1, 0, 0, 1413868143, 1414040921, 0),
+(112087, 1771745141, 'address', '', 1, 0, 0, 1413868143, 1414040921, 0);
+
+
+function get_client_language($availableLanguages, $default='en'){
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		$langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+		foreach ($langs as $value){
+			$choice=substr($value,0,2);
+			if(in_array($choice, $availableLanguages)){
+				return $choice;
+			}
+		}
+	} 
+}
+
+
+			echo '<table id="posts-wrapper" class="table fr-white2">';
+			echo '<thead><tr><th>Date/Time</th><th>Visitor/User</th><th>Device</th><th>OS</th><th>Browser</th><th>Country</th><th>Action</th></tr></thead>';
+//			echo '<thead><tr><th>Status</th><th>Network</th><th>Campaign Title</th><th>CPx Type</th><th>CPx Result</th><th>CPx Cost</th><th>Daily Cap</th><th>Spent</th><th>Start Date</th><th>End Date</th><th>Edit</th></tr></thead>';
+
+//			$no_cmp		= Custom::adv_cmp_nr($i);
+
+			$ulog_list = Admin::ulog_list();
+
+			foreach ( $ulog_list as $k ) {
+
+
+				echo '<tr>
+<td><a href="api_cmp_ust?cpid='.$k['cmp_id'].'&ns='.$nnss.'" title="'.$rem.'"><i class="fa fa-'.$icon.' fa-2x '.$iconcol.'"></i></a></td>
+<td><i class="fa fa-'.$nicon.' '.$niconcol.'"></i></td>
+<td><a href="cmp?cpid='.$k['cmp_id'].'" title="Edit Campaign">'.$k['name'].'</a></td>
+<td>'.$k['os'].'</td>
+<td>'.$k['browser'].'</td>
+<td>'.$doe.'</td>
+<td><a href="cmp?cpid='.$k['cmp_id'].'" title="Edit Campaign"><i class="fa fa-edit"></i></a></td>
+</tr>';
+			}
+
+
+			echo '</table>';
+
++66 0813710774 michael msmyakhetwai@gmail.com
+
+

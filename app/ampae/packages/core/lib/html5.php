@@ -33,18 +33,18 @@ class Html5 extends Html
         'content'=>'width=device-width, initial-scale=1',
         ));
         $html->linkAdd(array(
-        'rel'=>'shortcut icon',
         'type'=>'image/x-icon',
+        'rel'=>'shortcut icon',
         'href'=>$model->appinfo['url'].DIR_ASSETS.'/img/favicon.ico',
         ));
         $html->linkAdd(array(
-        'rel'=>'stylesheet',
         'type'=>'text/css',
+        'rel'=>'stylesheet',
         'href'=>$model->appinfo['url'].DIR_LIBS.'/fa-5/css/fontawesome-all.min.css',
         ));
         $html->linkAdd(array(
-        'rel'=>'stylesheet',
         'type'=>'text/css',
+        'rel'=>'stylesheet',
         'href'=>$model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/styles.css',
         ));
     }
