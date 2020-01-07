@@ -21,18 +21,19 @@ namespace Ampae\Post;
 
 class Signin
 {
-    public function __construct()
+    public function index()
     {
-        global $logger, $session, $alerts, $controller, $view;
-        $model->appinfo['page_type'] = 'com';
+        global $model, $loger, $html5, $form, $local;
     }
 
     public function process()
     {
+        // print_r($controller->request); // Array ( [email] => aaa@aaa [action] => sin [submit] => Sign In )
+
         global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $state, $activity, $email;
 
+        $tmpOp = 0;
         $tmpOk = null;
-        $tmpOp = null;
         $tmpAc = null;
         $tmpAcChk = null;
         $tmpUid = 0;
@@ -41,12 +42,8 @@ class Signin
 
         if (!empty($controller->request['email'])) {
             $tmpEmail = $controller->request['email'];
-
-
             $tmpKnown = $usr->is($tmpEmail);
-
             $tmpUid = $state->get();
-
             if (!$usr->checkUid($tmpUid)) {
                 $tmpUid = 0;
             }
@@ -88,9 +85,4 @@ class Signin
 
         $model->redirect = $tmpRedirect;
     }
-
-
-
-
-
-};
+}

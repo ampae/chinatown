@@ -17,13 +17,26 @@
  * @copyright  2009 - 2020 AMPAE
 **/
 
-namespace Ampae\Request;
+namespace Ampae\Get;
 
-class Home
+class Signin
 {
     public function index()
     {
-        global $model,$loger,$local;
-        $model->add('html-main','<p>'.$local->translate('home').' REQUEST</p>');
+        global $model, $loger, $html5, $form, $local;
+        //$form->set(array('id'=>'kkk','action'=>'fff'));
+        //$form->add('kkk', array('name'=>'aaa','value'=>'zzz'));
+        //$form->add('kkk', array('name'=>'bbb','value'=>'uuuuu'));
+
+        //$tmp = '<h2>HOME</h2>';
+
+        //$tmp.= $form->get('kkk');
+
+        //$tmp.= '<p>home</p>';
+        //$model->add('html-main', $tmp);
+
+        $model->addTmpl($model->findTmpl('signin'));
+        //$model->add('html-main', '[[render.logIn]]');
+        //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
     }
 };

@@ -7,14 +7,14 @@
  * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  *
- * PHP version 5.4
+ * PHP version 7.2
  *
  * @version    GIT: <7.1.1>
  * @category   SaaS RAD LAMP FrameWork.
  * @see        https://ampae.com/chinatown/
  * @author     AMPAE <info@ampae.com>
  * @license    https://ampae.com/chinatown/license.txt
- * @copyright  2009 - 2019 AMPAE
+ * @copyright  2009 - 2020 AMPAE
 **/
 
 if (!strcasecmp(basename($_SERVER['SCRIPT_NAME']), basename(__FILE__))) {
