@@ -12,7 +12,7 @@
  * @package     ChinaTown
  * @category    LAMP SaaS FrameWork
  * @see         https://ampae.com/chinatown/
- * @license     https://ampae.com/chinatown/license.txt
+ * @license     https://ampae.com/chinatown/LICENSE
  * @version     HG: <7.1.1>
  * @author      AMPAE <info@ampae.com>
  * @copyright   2009 - 2019 AMPAE

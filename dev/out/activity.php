@@ -13,7 +13,7 @@
  * @category   SaaS RAD LAMP FrameWork.
  * @see        https://ampae.com/chinatown/
  * @author     AMPAE <info@ampae.com>
- * @license    https://ampae.com/chinatown/license.txt
+ * @license    https://ampae.com/chinatown/LICENSE
  * @copyright  2009 - 2020 AMPAE
 **/
 
