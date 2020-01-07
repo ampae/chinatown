@@ -31,7 +31,7 @@ class Rest
 
     public function go()
     {
-        global $logger, $controller, $model, $state, $appRequest, $appController;
+        global $logger, $controller, $model, $auth, $appRequest, $appController;
         global $appView, $appModel, $tmpGlobalConfig, $theme;
 
         $tmpEvent     = TMP_EVENT_HOME;

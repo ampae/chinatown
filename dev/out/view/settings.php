@@ -28,7 +28,7 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$html,$render;
+     global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$html,$render;
 
      $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
      $html->addScript('HEAD', $val2);
@@ -56,7 +56,7 @@
 
    public function index()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
+     global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
      $tmpLibPath = ABSPATH.DIR_LIBS.DIRECTORY_SEPARATOR.'php'.DIRECTORY_SEPARATOR;
      require_once realpath($tmpLibPath . 'iso3166.php');
      require_once realpath($tmpLibPath . 'timezones.php');
@@ -69,7 +69,7 @@
 
               <?php
 
-              $uid       = $state->get();
+              $uid       = $auth->get();
 
               if(!$usr->get($uid,'tz')){
                 $theme->alert('Y', 'set timezone', 'TimeZone not set !');
@@ -169,7 +169,7 @@ echo '<BR>';
 
    public function email()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
+     global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
 
 ?>
 
@@ -180,7 +180,7 @@ echo '<BR>';
 
               <?php
 
-              $uid       = $state->get();
+              $uid       = $auth->get();
               $ar_ar     = array('name');
               $xg        = 'email';
 
@@ -277,7 +277,7 @@ echo "<BR />";
 
    public function at()
    {
-     global $controller,$model,$avatar,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
+     global $controller,$model,$avatar,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce;
 ?>
 
 <div class="container">
@@ -287,7 +287,7 @@ echo "<BR />";
 
               <?php
 
-              $uid        = $state->get();
+              $uid        = $auth->get();
               $ar_ar      = array('name');
               $xg         = 'at';
 

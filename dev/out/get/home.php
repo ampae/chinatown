@@ -23,9 +23,9 @@ class Home
 {
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$html;
+        global $model,$auth,$alerts,$local,$view,$theme,$html;
 
-        if (!$state->get()) {
+        if (!$auth->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css'; // ???
             $html->addStyle($val3);
         }

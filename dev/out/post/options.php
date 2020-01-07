@@ -35,7 +35,7 @@ class Options
 
   public function process()
   {
-    global $controller, $state, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options;
+    global $controller, $auth, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $local, $options;
 
 
 

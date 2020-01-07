@@ -29,7 +29,7 @@ class Signin
 
     public function process()
     {
-        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $state, $activity, $email;
+        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $auth, $activity, $email;
 
         $tmpOk = null;
         $tmpOp = null;
@@ -45,7 +45,7 @@ class Signin
 
             $tmpKnown = $usr->is($tmpEmail);
 
-            $tmpUid = $state->get();
+            $tmpUid = $auth->get();
 
             if (!$usr->checkUid($tmpUid)) {
                 $tmpUid = 0;

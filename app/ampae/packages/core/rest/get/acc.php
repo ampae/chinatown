@@ -19,33 +19,24 @@
 
 namespace Ampae\Get;
 
-class Home
+class Acc
 {
     public function index()
     {
-        global $model, $auth, $loger, $html5, $form, $local;
-        $form->set(array('id'=>'kkk','action'=>'fff'));
-        $form->add('kkk', array('name'=>'aaa','value'=>'zzz'));
-        $form->add('kkk', array('name'=>'bbb','value'=>'uuuuu'));
+        global $model, $loger, $html5, $form, $local;
+        //$form->set(array('id'=>'kkk','action'=>'fff'));
+        //$form->add('kkk', array('name'=>'aaa','value'=>'zzz'));
+        //$form->add('kkk', array('name'=>'bbb','value'=>'uuuuu'));
 
-        $tmp = '<h2>HOME</h2>';
+        //$tmp = '<h2>HOME</h2>';
 
-        $tmp.= $form->get('kkk');
+        //$tmp.= $form->get('kkk');
 
-        $tmp.= '<p>home</p>';
+        //$tmp.= '<p>home</p>';
+        //$model->add('html-main', $tmp);
 
-        if ($auth->get()) {
-            $tmp.= '<p>Logged In - ID: '.$auth->get().'</p>';
-        } else {
-            $tmp.= '<p>VISITOR</p>';
-        }
-
-        $model->add('html-main', $tmp);
-
-
-
-        //$model->addTmpl($model->findTmpl('signin'));
+        $model->addTmpl($model->findTmpl('ac'));
         //$model->add('html-main', '[[render.logIn]]');
         //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
     }
-}
+};

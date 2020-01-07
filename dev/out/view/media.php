@@ -40,7 +40,7 @@ class Media
 
     public function index()
     {
-        global $sign,$state,$alerts,$local,$view,$theme,$nonce,$html,$model; ?>
+        global $sign,$auth,$alerts,$local,$view,$theme,$nonce,$html,$model; ?>
 
 
        <div class="container">
@@ -50,7 +50,7 @@ class Media
 
                      <?php
 
-                     $uid       = $state->get();
+                     $uid       = $auth->get();
 
         $ar_ar      = array('name');
 
@@ -63,7 +63,7 @@ class Media
 
         $tmp_path = ABSPATH;//$model->appinfo['url'];//.DIR_UPLOADS.'/'; //.'/'.$uid;
 
-        $uid       = $state->get();
+        $uid       = $auth->get();
 
         $xg = 'background';
 

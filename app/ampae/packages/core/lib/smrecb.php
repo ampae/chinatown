@@ -19,7 +19,6 @@
 
 namespace Ampae\Lib;
 
-
 class Smrecb
 {
     /**
@@ -27,32 +26,59 @@ class Smrecb
      */
     public function __construct()
     {
-
     }
 
-    public function getRec($db,$r,$sel,$rec,$dt,$prm=true,$limit=1) {
-      $q = "SELECT `".$sel."` FROM `".$r."` WHERE `".$rec."`='$dt' ";
-      if ($prm) {
-        $q .= "AND `prm`='1' ";
-      }
-      if ($limit) {
-        $q .= "LIMIT ".$limit." ";
-      }
-      $sth = $db->prepare($q);
-      $sth->execute();
-      $result = $sth->fetch(\PDO::FETCH_ASSOC);
-      $res = $result[$sel];
-      return $res;
+    public function getRecNew($db, $r, $sel, $dt, $prm = true, $limit = 1)
+    {
+        $i = 0;
+        $q = "SELECT `".$sel."` FROM `".$r."` WHERE ";
+
+        foreach ($dt as $dtk => $dtv) {
+            $i+=1;
+            if ($i>1) {
+                $q.="AND ";
+            }
+            $q .="`".$dtk."`='$dtv' ";
+        }
+
+        if ($prm) {
+            $q .= "AND `prm`='1' ";
+        }
+        if ($limit) {
+            $q .= "LIMIT ".$limit." ";
+        }
+        echo '====>>> '.$q;
+        $sth = $db->prepare($q);
+        $sth->execute();
+        $result = $sth->fetch(\PDO::FETCH_ASSOC);
+        $res = $result[$sel];
+        return $res;
     }
 
-    public function delRec($db,$r,$k,$v,$prm=false) {
-      $q = "DELETE FROM `".$r."` WHERE `".$k."`='$v' ";
-      if ($prm) {
-        $q .= "AND `prm`='1' ";
-      }
-      $sth = $db->prepare($q);
-      $sth->execute();
-      return $res;
+    public function getRec($db, $r, $sel, $rec, $dt, $prm = true, $limit = 1)
+    {
+        $q = "SELECT `".$sel."` FROM `".$r."` WHERE `".$rec."`='$dt' ";
+        if ($prm) {
+            $q .= "AND `prm`='1' ";
+        }
+        if ($limit) {
+            $q .= "LIMIT ".$limit." ";
+        }
+        $sth = $db->prepare($q);
+        $sth->execute();
+        $result = $sth->fetch(\PDO::FETCH_ASSOC);
+        $res = $result[$sel];
+        return $res;
     }
 
+    public function delRec($db, $r, $k, $v, $prm = false)
+    {
+        $q = "DELETE FROM `".$r."` WHERE `".$k."`='$v' ";
+        if ($prm) {
+            $q .= "AND `prm`='1' ";
+        }
+        $sth = $db->prepare($q);
+        $sth->execute();
+        return $res;
+    }
 }

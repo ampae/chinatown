@@ -16,7 +16,7 @@
     echo '<script type="text/javascript" src="'.$model->appinfo['url'].DIR_LIBS.'/jquery/jquery.validate.min.js"></script>';
 
 /*
-if ($state->get()){
+if ($auth->get()){
     echo '<script type="text/javascript" src="'.$model->appinfo['theme_url'].'assets/js/modal-confirm.js"></script>';
 }
 */

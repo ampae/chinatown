@@ -25,9 +25,9 @@ class Settings
 
     public function __construct()
     {
-        global $model, $theme, $sign, $state, $view;
+        global $model, $theme, $sign, $auth, $view;
 
-        if (!$state->get()) {
+        if (!$auth->get()) {
             $model->redirect = $model->appinfo['url'].'login';
         }
     }
@@ -38,7 +38,7 @@ class Settings
 
     public function at()
     {
-        global $model, $theme, $view, $sign, $state, $html;
+        global $model, $theme, $view, $sign, $auth, $html;
 
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgupnew.js';
         $html->addScript('HEAD', $val4);
@@ -46,7 +46,7 @@ class Settings
 
     public function confirm()
     {
-        global $controller,$model,$usr,$devices,$email,$state;
+        global $controller,$model,$usr,$devices,$email,$auth;
 
         $tmpOtpChk = false;
         $tmpOp = 6; // confirm added email
@@ -54,7 +54,7 @@ class Settings
         if (isset($controller->params['email'])) {
             $tmpEmail = $controller->params['email'];
         }
-        $tmpUid = $state->get();
+        $tmpUid = $auth->get();
 
 
         if ($usr->countKeys('email', $tmpUid, false) < MAX_EMAIL_UID) {
@@ -84,12 +84,12 @@ class Settings
 
     public function emailprim()
     {
-        global $controller,$model,$usr,$devices,$state;
+        global $controller,$model,$usr,$devices,$auth;
 
         if (isset($controller->params['email'])) {
             $tmpEmail = $controller->params['email'];
         }
-        $tmpUid = $state->get();
+        $tmpUid = $auth->get();
 
 
         $usr->setPri($tmpUid, 'email', $tmpEmail);
@@ -99,13 +99,13 @@ class Settings
 
     public function emaildel()
     {
-        global $controller,$model,$usr,$devices,$state;
+        global $controller,$model,$usr,$devices,$auth;
 
         if (isset($controller->params['email'])) {
             $tmpEmail = $controller->params['email'];
         }
 
-        $tmpUid = $state->get();
+        $tmpUid = $auth->get();
 
         $usr->delRec($tmpUid, 'email', $tmpEmail);
 

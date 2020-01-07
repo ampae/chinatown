@@ -32,7 +32,7 @@ class Acc
 
   public function process()
   {
-    global $controller, $model, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $state, $activity;
+    global $controller, $model, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $auth, $activity;
 
     $tmpOk = null;
 

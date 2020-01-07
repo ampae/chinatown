@@ -30,7 +30,7 @@ class Events
 
     public function view2()
     {
-        global $controller, $model, $state, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
+        global $controller, $model, $auth, $appRequest, $appController, $appView, $appModel, $tmpGlobalConfig, $theme;
 
         $tmpRealEvent = $model->appinfo['app'];
         $tmpMethod    = $model->appinfo['app_mtd'];
@@ -93,7 +93,7 @@ class Events
 /*
             } else {
               // tmpViewExists
-                if ($state->get()) {
+                if ($auth->get()) {
                   // !!! !!! !!!
                   //  $theme->asideleft(); // default menu
                 }

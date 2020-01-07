@@ -65,8 +65,8 @@ class Sign
 
     public function in($uid)
     {
-        global $basic, $controller, $activity, $session, $cookies, $devices, $state;
-        $state->set($uid);
+        global $basic, $controller, $activity, $session, $cookies, $devices, $auth;
+        $auth->set($uid);
 
         // !!!move to rememberme !!!
         if (!$cookies->isxSet()) {
@@ -83,10 +83,10 @@ class Sign
 
     public function out()
     {
-        global $activity, $session, $cookies, $devices, $state;
+        global $activity, $session, $cookies, $devices, $auth;
         // $activity->add($uid, 0, 'logout');
         // kill cookies !!!
         // kill device !!!
-        return $state->delete();
+        return $auth->delete();
     }
 }

@@ -39,4 +39,4 @@ class Signin
         //$model->add('html-main', '[[render.logIn]]');
         //$model->add('html-main', $html5->article('a1', null, 'https://placeimg.com/640/480/any'));
     }
-};
+}

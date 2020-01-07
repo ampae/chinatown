@@ -25,14 +25,14 @@ ampae[] = html5
 ampae[] = form
 ampae[] = email
 
-ampae[] = rest
-ampae[] = http
-
 ampae[] = usr
-ampae[] = state
+ampae[] = auth
 ampae[] = ac
 ampae[] = office
 ampae[] = sign
+
+ampae[] = rest
+ampae[] = http
 
 ampae[] = options
 ampae[] = media

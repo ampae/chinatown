@@ -37,8 +37,8 @@ echo 'var tmpChinaTownWebPath="'.$model->appinfo['url'].'"';
 
 <header role="banner" aria-label="header banner">
 <?php
-global $state;
-if ($state->get()) {
+global $auth;
+if ($auth->get()) {
     ?>
       <div class="headerMobMenu">
       <label for="chkMenu" id="fufu" class="mobmenu-toggle">&#9776;</label>
@@ -54,7 +54,7 @@ if ($state->get()) {
       </div>
 
 <?php
-if ($state->get()) {
+if ($auth->get()) {
     ?>
 
       <div class="headerSearch">
@@ -93,7 +93,7 @@ if ($state->get()) {
  <div id="myDropdown2" class="dropdown-content" style="display:none;">
 
 <?php
-if ($state->get()) {
+if ($auth->get()) {
     ?>
 <a href="<?php echo $model->appinfo['url'].''; ?>settings"><?php echo $local->translate('settings'); ?></a>
 <a href="<?php echo $model->appinfo['url'].''; ?>signout"><?php echo $local->translate('signout'); ?></a>

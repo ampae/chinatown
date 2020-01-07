@@ -26,7 +26,7 @@ class Home
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$render;
+        global $model,$auth,$alerts,$local,$view,$theme,$render;
         $theme->open();
         //echo '<BR><BR>';
        //$theme->displayAlerts();

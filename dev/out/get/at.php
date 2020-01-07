@@ -37,7 +37,7 @@ class At
 
     public function status()
     {
-        global $controller, $model, $usr, $view, $sign, $state, $office;
+        global $controller, $model, $usr, $view, $sign, $auth, $office;
 
         $tmpUidReal = $controller->argv[2];
 
@@ -63,7 +63,7 @@ class At
 
     public function del()
     {
-        global $controller, $model, $usr, $view, $sign, $state, $acl, $office, $appexch;
+        global $controller, $model, $usr, $view, $sign, $auth, $acl, $office, $appexch;
 
         // $err          = 0;
         $tmpRedirect  = $model->appinfo['url'].'at';
@@ -81,7 +81,7 @@ class At
         }
 
         // can't DELETE yourself
-        if ($state->getMe($tmpUidReal)) {
+        if ($auth->getMe($tmpUidReal)) {
             $err+=1;
         }
 

@@ -33,7 +33,7 @@ class At
 
     public function add()
     {
-        global $controller, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $state, $local;
+        global $controller, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $auth, $local;
 
         // !!! check for admin !!!
         $tmpRedirect = $model->appinfo['url'].'at/add';
@@ -46,7 +46,7 @@ class At
 
     public function choff()
     {
-        global $controller, $model, $activity, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $state, $local, $office;
+        global $controller, $model, $activity, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $auth, $local, $office;
 
         //if (isset($controller->request['email']) && $controller->request['email']!='') {
         //$usr->add($controller->request['name'], $controller->request['email']);
@@ -75,7 +75,7 @@ class At
     /*
       public function process()
       {
-        global $controller, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $state, $local;
+        global $controller, $model, $session, $alerts, $pdo, $db, $usr, $logger, $sign, $auth, $local;
     
         $tmpOk = null;
     

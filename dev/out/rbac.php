@@ -41,7 +41,7 @@ class Rbac
 
     public function getMyRoleIn($cid)
     {
-      global $session, $state;
+      global $session, $auth;
 			$tmp = $session->get('state');
 			$res = false;
 			if ( $tmp ) {

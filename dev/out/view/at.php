@@ -27,7 +27,7 @@ class At
     */
     public function __construct()
     {
-        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme,$render;
+        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$auth,$theme,$render;
         $theme->open();
         //echo '<BR><BR>';
      //$theme->displayAlerts();
@@ -35,13 +35,13 @@ class At
 
     public function __destruct()
     {
-        global $alerts,$local,$state,$view,$theme,$render;
+        global $alerts,$local,$auth,$view,$theme,$render;
         $theme->close();
     }
 
     public function default()
     {
-        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$state,$theme;
+        global $controller, $model, $db, $usr, $avatar, $html, $smrecb, $alerts,$local,$view,$auth,$theme;
 
         $tmpAt = '';
         $tmpUid = 0;
@@ -104,7 +104,7 @@ class At
 
     public function index()
     {
-        global $sign,$state,$alerts,$local,$view,$html,$theme;
+        global $sign,$auth,$alerts,$local,$view,$html,$theme;
 
         echo ' <div class="container"> ';
         echo ' <br />';
@@ -122,7 +122,7 @@ class At
 
     public function search()
     {
-        global $sign,$state,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce; ?>
+        global $sign,$auth,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce; ?>
 
        <div class="container">
        <div class="row">
@@ -146,7 +146,7 @@ class At
 
     public function add()
     {
-        global $sign,$state,$alerts,$local,$view,$theme,$model,$html; ?>
+        global $sign,$auth,$alerts,$local,$view,$theme,$model,$html; ?>
 
        <div class="container">
          <br />
@@ -193,19 +193,19 @@ $id = 'adm-usr-add';
 
     public function chart()
     {
-        global $model;//global $controller, $model, $sign, $state, $db, $usr, $local;//, $http, $html;
+        global $model;//global $controller, $model, $sign, $auth, $db, $usr, $local;//, $http, $html;
         echo json_encode($model->results);
     }
 
     public function process()
     {
-        global $model;//global $controller, $model, $sign, $state, $db, $usr, $local;//, $http, $html;
+        global $model;//global $controller, $model, $sign, $auth, $db, $usr, $local;//, $http, $html;
         echo json_encode($model->results);
     }
 
     public function getusrlst()
     {
-        global $model;//, $http, $html;, $sign, $controller, $state, $db, $usr, $local
+        global $model;//, $http, $html;, $sign, $controller, $auth, $db, $usr, $local
         echo json_encode($model->results);
     }
 };

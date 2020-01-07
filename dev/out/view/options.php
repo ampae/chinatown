@@ -27,7 +27,7 @@
     */
    public function __construct()
    {
-     global $controller,$model,$sign,$state,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email,$render;
+     global $controller,$model,$sign,$auth,$options,$alerts,$local,$view,$theme,$html,$usr,$db,$nonce,$email,$render;
 
      $theme->open();
 
@@ -43,7 +43,7 @@
 
 <?php
 
-              $uid       = $state->get();
+              $uid       = $auth->get();
               $xg         = 'options';
 
 //echo ' [[]] '.$controller->argv[1].' [[]] ';

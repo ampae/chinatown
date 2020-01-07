@@ -369,7 +369,7 @@ class Htmlrender
 
     public function logIn()
     {
-        global $model, $controller, $sign, $state, $html, $local, $view, $nonce;
+        global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;
 
         $id = 'sin';
         $tmpNonce = '';
@@ -410,7 +410,7 @@ class Htmlrender
 
     public function setUp()
     {
-        global $tmpGlobalConfig, $model, $controller, $session, $nonce, $sign, $state, $html, $local, $view;
+        global $tmpGlobalConfig, $model, $controller, $session, $nonce, $sign, $auth, $html, $local, $view;
 
         //echo '<legend><i class="fa fa-sign-in icon-large"></i> <strong>'.$local->translate('').'</strong></legend>';
         //echo '<div id="facebook" class="btn btn-lg btn-block btn-fb"> Enter <span> with Facebook </span> </div><hr>';

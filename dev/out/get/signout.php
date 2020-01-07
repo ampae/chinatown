@@ -23,9 +23,9 @@ class Signout
 {
     public function __construct()
     {
-        global $model,$sign,$logger,$devices,$state;
+        global $model,$sign,$logger,$devices,$auth;
 
-        if ($state->get()) {
+        if ($auth->get()) {
             $sign->out();
             $logger->debug("AUTH SIGN OUT UID ".$tmpUid."");
         }

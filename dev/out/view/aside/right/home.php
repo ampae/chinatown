@@ -26,16 +26,16 @@
       */
      public function __construct()
      {
-       global $model,$state,$alerts,$local,$view,$theme;
-       if ($state->get()) {
+       global $model,$auth,$alerts,$local,$view,$theme;
+       if ($auth->get()) {
          $theme->asideRightOpen();
        }
      }
 
      public function __destruct()
      {
-       global $alerts,$local,$view,$theme,$state;
-       if ($state->get()) {
+       global $alerts,$local,$view,$theme,$auth;
+       if ($auth->get()) {
          $theme->asideRightClose();
        }
      }
@@ -43,11 +43,11 @@
      public function index()
      {
 
-       global $sign, $state, $usr, $db, $html, $view, $local;
+       global $sign, $auth, $usr, $db, $html, $view, $local;
 
-        if ( $state->get() ) {
+        if ( $auth->get() ) {
 
-          $uid = $state->get();
+          $uid = $auth->get();
 
           echo "<BR />".$local->translate('hello')." ".$usr->get($uid, 'name')."<BR /><BR />";
 

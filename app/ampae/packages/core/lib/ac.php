@@ -28,13 +28,13 @@ namespace Ampae\Lib;
  */
 class Ac
 {
-  const RES = 'ac';
+    const RES = 'ac';
     /**
      * constructor; initialize dev;.
      */
     public function __construct()
     {
-      //global $cookies, $controller, $basic;
+        //global $cookies, $controller, $basic;
     }
 
     /**
@@ -54,13 +54,13 @@ class Ac
      * @param string $k config
      * @param string $v config
      */
-    public function set($k, $v = null)
+    public function set($i, $k, $v)
     {
-      if (!DEBUG_MODE) {
-        $k = hash('sha256', $k); // never store cookie values in db !!!
-      }
+        if (!DEBUG_MODE) {
+            // $k = hash('sha256', $k); // never store cookie values in db !!!
+        }
 
-      // save to DB
+        // save to DB
     }
 
     /**
@@ -70,15 +70,20 @@ class Ac
      *
      * @return string
      */
-    public function get($k)
+    public function get($i, $k)
     {
-      $res = false;
-      if (!DEBUG_MODE) {
-        $k = hash('sha256', $k); // never store cookie values in db !!!
-      }
-// check DB !!!
-//$res = '1234';
-      return $res;
+        global $smrecb, $db;
+        $res = false;
+        if (!DEBUG_MODE) {
+            // $k = hash('sha256', $k); // never store cookie values in db !!!
+        }
+        // check DB !!!
+        //$res = '1234';
+
+        //$res = $smrecb->getRecNew($db->db1, DB1_TABLE_PREFIX.self::RES, 'val', array('key'=>$k));
+        $res = $smrecb->getRecNew($db->db1, DB1_TABLE_PREFIX.self::RES, 'val', array('id'=>$i,'key'=>$k));
+
+        return $res;
     }
 
     /**
@@ -88,11 +93,10 @@ class Ac
      */
     public function del($k = CCID)
     {
-// del DEV ID
+        // del DEV ID
     }
 
     private function dbSet($v)
     {
-
     }
 }

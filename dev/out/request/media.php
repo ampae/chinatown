@@ -25,7 +25,7 @@ class Media
 
     public function __construct()
     {
-        global $model, $theme, $view, $sign, $state,$html;
+        global $model, $theme, $view, $sign, $auth,$html;
 
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/validate-custom.js';
         $html->addScript('HEAD', $val2);
@@ -33,7 +33,7 @@ class Media
         $val4 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/imgup.js';
         $html->addScript('HEAD', $val4);
 
-        if (!$state->get()) {
+        if (!$auth->get()) {
             $model->redirect = $model->appinfo['url'].'login';
         }
     }

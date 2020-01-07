@@ -17,24 +17,28 @@
  * @copyright  2009 - 2020 AMPAE
 **/
 
- namespace Ampae\Lib;
+namespace Ampae\Lib;
 
-class Install
+class Auth
 {
-    public function __construct()
+    public function get()
     {
-        global $logger, $controller, $model, $pdo, $db, $view;
-
-        $tmpAuth = false;
-
-        if (!$db->db1) {
-            if ($controller->argc == 1 && $controller->argv[0] == 'install') {
-                // Ok
-            } else {
-                if (INSTALL && INSTALL_AUTO_REDIRECT) {
-                    $model->redirect = $model->appinfo['url'].'install';
-                }
-            }
-        }
+        global $session;
+        $res = $session->get('auth');
+        return $res;
     }
-};
+
+    public function set($uid)
+    {
+        global $session;
+        $res = $session->set('auth', $uid);
+        return $res;
+    }
+
+    public function delete()
+    {
+        global $session;
+        $session->del('auth');
+        return $session->kill();
+    }
+}

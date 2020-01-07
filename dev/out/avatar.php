@@ -27,14 +27,14 @@ class Avatar
 
     public function set($xuid=null, $code=null, $mode=null)
     {
-        global $state, $model, $usr, $logger;
+        global $auth, $model, $usr, $logger;
 
         //$model->appinfo['page_type']='png';
 
         $tmp_font = 'lato.ttf'; // NotoSans-Regular.ttf DejaVuSansMono-Bold.ttf
 
         if (!$xuid) {
-            $xuid = $state->get();
+            $xuid = $auth->get();
         } else {
             // check office !!!
         }
@@ -116,7 +116,7 @@ class Avatar
     /*
          public function view()
          {
-             global $xdata, $session, $state, $model, $local, $system, $logger;
+             global $xdata, $session, $auth, $model, $local, $system, $logger;
 
              $tmp_title = $local->translate('home');
      //        $tmp_description = $local->translate('home') . ' ' . $local->translate('adm');

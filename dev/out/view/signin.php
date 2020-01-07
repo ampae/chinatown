@@ -28,11 +28,11 @@ class Signin
      */
     public function __construct()
     {
-        global $model,$state,$alerts,$local,$view,$theme,$html,$render;
+        global $model,$auth,$alerts,$local,$view,$theme,$html,$render;
 
         $model->getTheme();
 
-        if (!$state->get()) {
+        if (!$auth->get()) {
             $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css';
             $html->addStyle($val3);
         }
@@ -49,7 +49,7 @@ class Signin
 
     public function index()
     {
-        global $model, $controller, $nonce, $sign, $state, $html, $alerts, $local, $view, $theme, $render, $options; ?>
+        global $model, $controller, $nonce, $sign, $auth, $html, $alerts, $local, $view, $theme, $render, $options; ?>
        <div class="container">
 
          <div class="row">

@@ -213,12 +213,12 @@ class Render
     */
 
     // -----------------------------------------------------------------------------
-    // not reusable but theme dependant objects
+    // objects
     // -----------------------------------------------------------------------------
 
     public function logIn()
     {
-        global $model, $controller, $sign, $state, $html, $local, $view, $nonce;
+        global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;
 
         $id = 'sin';
         $tmpNonce = '';
@@ -257,9 +257,49 @@ class Render
         );
     }
 
+    public function ac()
+    {
+        global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;
+
+        $id = 'sin';
+        $tmpNonce = '';
+        if ($nonce) {
+            $tmpNonce = '?nonce='.$nonce->gen();
+        }
+
+        echo $html->formOpen(
+            $model->appinfo['url'].'acc/cac'.$tmpNonce,
+            'POST',
+            $id.'-form',
+            'co-form',
+            '',
+            '',
+            ''
+        );
+        echo '<br />';
+        echo '<legend><strong>'.$local->translate('code').'</strong></legend>';
+        echo '<br />';
+
+        // echo $html->formField('email', 'email', 'form-control', 'fa fa-envelope-o', $local->translate('email'), ''); // , 'autocomplete="off"'
+
+        echo $html->formField('password', 'ac', 'form-control', 'fa fa-key', $local->translate('code'), '');
+
+        // echo $html->formFieldHidden('mix', '');
+
+        echo $html->formFieldHidden('action', $id);
+        //echo $html->formFieldHidden('fid', 'sin');
+
+        //$view->setTx($id);
+
+        echo $html->formClose(
+            $local->translate('code'),
+            'btn btn-primary btn-lg btn-block'
+        );
+    }
+
     public function setUp()
     {
-        global $tmpGlobalConfig, $model, $controller, $session, $nonce, $sign, $state, $html, $local, $view;
+        global $tmpGlobalConfig, $model, $controller, $session, $nonce, $sign, $auth, $html, $local, $view;
 
         //echo '<legend><i class="fa fa-sign-in icon-large"></i> <strong>'.$local->translate('').'</strong></legend>';
         //echo '<div id="facebook" class="btn btn-lg btn-block btn-fb"> Enter <span> with Facebook </span> </div><hr>';

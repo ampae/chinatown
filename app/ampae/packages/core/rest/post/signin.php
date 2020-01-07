@@ -30,20 +30,21 @@ class Signin
     {
         // print_r($controller->request); // Array ( [email] => aaa@aaa [action] => sin [submit] => Sign In )
 
-        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb, $devices, $usr, $logger, $sign, $state, $activity, $email;
+        global $controller, $model, $options, $alerts, $pdo, $db, $smreca, $smrecb;
+        global $session, $ac, $devices, $usr, $logger, $sign, $auth, $activity, $email;
 
-        $tmpOp = 0;
-        $tmpOk = null;
-        $tmpAc = null;
-        $tmpAcChk = null;
-        $tmpUid = 0;
-        $ct_tmp_usrarr = array();
-        $tmpRedirect = $model->appinfo['url'].'signin';
+        $tmpOk          = null;
+        $tmpAc          = null;
+        $tmpAcChk       = null;
+        $tmpOp          = 0;
+        $tmpUid         = 0;
+        $ct_tmp_usrarr  = array();
+        $tmpRedirect    = $model->appinfo['url'].'signin';
 
         if (!empty($controller->request['email'])) {
             $tmpEmail = $controller->request['email'];
             $tmpKnown = $usr->is($tmpEmail);
-            $tmpUid = $state->get();
+            $tmpUid = $auth->get();
             if (!$usr->checkUid($tmpUid)) {
                 $tmpUid = 0;
             }
@@ -56,7 +57,7 @@ class Signin
                     $tmpUid = $usr->getUid($tmpEmail);
                     $tmpAccSt = $usr->checkUid($tmpUid, 1);
                     if ($tmpAccSt) {
-                        $tmpOp = '2'; // signin
+                        $tmpOp = '2'; // known, signin
                         $tmpAcChk = true;
                     } else {
                         $tmpOp = '5'; // redir to profile
@@ -67,16 +68,19 @@ class Signin
                 if ($tmpUid) {
                     $tmpOp = '4'; // add2UID
                 } else {
-                    $tmpOp = '1'; // signup
+                    $tmpOp = '1'; // unknown, signup
                     $tmpAcChk = true;
                 }
             }
             if ($tmpAcChk) {
-                $tmp_next = 'acc';
+                $session->set('tmp-uid', $tmpUid);
+                $session->set('tmp-eml', $tmpEmail);
+                $tmp_next = 'acc'; // !!!
                 $tmpRedirect = $model->appinfo['url'].$tmp_next;
                 if (DEBUG_MODE) {
-                  // get AC  ???
-                    $tmpRedirect .= '?uid='.$tmpUid.'&ac='.$tmpAc;
+                    // count users !!! if more than 20 don't do it !!!
+                    $tmpAc = $ac->get($tmpUid, $tmpEmail); // !!! !!!
+                    $tmpRedirect .= '?uid='.$tmpUid.'$op='.$tmpOp.'&ac='.$tmpAc;
                 }
             }
         } else {

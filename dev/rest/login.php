@@ -26,9 +26,9 @@ class Login
 
     public function index()
     {
-      global $model, $theme, $view, $sign, $state, $office,$html;
+      global $model, $theme, $view, $sign, $auth, $office,$html;
 
-      // if (!$state->get()) {
+      // if (!$auth->get()) {
         $val3 = $model->appinfo['url'].$model->appinfo['theme_webpath'].'/css/sign.css'; // ???
         $html->addStyle($val3);
       // }

@@ -25,7 +25,7 @@ class At
 
     public function index()
     {
-        global $model, $view, $sign, $state, $office, $html;
+        global $model, $view, $sign, $auth, $office, $html;
 
         //if ($office->can()) {
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admusrlst.js'; // argc == 1
@@ -39,13 +39,13 @@ class At
 
     public function search()
     {
-        global $model, $view, $sign, $state, $office,$html;
+        global $model, $view, $sign, $auth, $office,$html;
 
         //if ($office->can()) {
         $val2 = $model->appinfo['url'].DIR_APP.'/'.self::VENDOR.'/packages/core/view/js/admusearch.js'; // argc == 1
         $html->addScript('HEAD', $val2);
 
-        if (!$state->get()) {
+        if (!$auth->get()) {
             $model->redirect = $model->appinfo['url'].'login';
         }
         //}
@@ -55,7 +55,7 @@ class At
 
     public function chart()
     {
-        global $controller, $model, $sign, $state, $db, $usr, $local;//, $http, $html;
+        global $controller, $model, $sign, $auth, $db, $usr, $local;//, $http, $html;
         $model->appinfo['page_type'] = 'json';
 
 
@@ -98,7 +98,7 @@ class At
 
     public function process()
     {
-        global $controller, $model, $sign, $state, $db, $usr, $local;//, $http, $html;
+        global $controller, $model, $sign, $auth, $db, $usr, $local;//, $http, $html;
         $model->appinfo['page_type'] = 'json';
 
         $limit      = 5;
@@ -158,7 +158,7 @@ LIMIT $limit OFFSET $offset"; // p=1 ?
 
     public function getusrlst()
     {
-        global $controller, $model, $sign, $state, $db, $usr, $local;//, $http, $html;
+        global $controller, $model, $sign, $auth, $db, $usr, $local;//, $http, $html;
         $model->appinfo['page_type'] = 'json';
 
         $limit      = 5;

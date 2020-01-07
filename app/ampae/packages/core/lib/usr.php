@@ -131,7 +131,7 @@ class Usr
 
     public function del($i)
     {
-        global $db,  $smreca, $office, $sign,$state;
+        global $db,  $smreca, $office, $sign,$auth;
         // check $i ???
         $adata = array(
         'id' => $i,
@@ -142,7 +142,7 @@ class Usr
 
     public function purge($i)
     {
-        global $db,  $smreca, $office, $sign,$state;
+        global $db,  $smreca, $office, $sign,$auth;
         // check $i ???
 
         $adata = array(
@@ -153,7 +153,7 @@ class Usr
 
     public function set($i, $k, $v)
     {
-        global $db, $smreca, $office, $sign, $state;
+        global $db, $smreca, $office, $sign, $auth;
         // check $i ???
 
         return $smreca->set($db->db1, DB1_TABLE_PREFIX.self::RES, $i, $k, $v);
@@ -161,7 +161,7 @@ class Usr
 
     public function addRec($i, $k, $v, $st = 0)
     {
-        global $db, $smreca, $office, $sign, $state;
+        global $db, $smreca, $office, $sign, $auth;
         // check $i ???
 
         $idata = array(
@@ -178,7 +178,7 @@ class Usr
 
     public function updRec($i, $k, $v)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         $udata = array(
@@ -196,7 +196,7 @@ class Usr
 
     public function updSt($i, $k, $v)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         $udata = array(
@@ -215,7 +215,7 @@ class Usr
 
     public function updStFull($i, $k, $v, $stv)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         $udata = array(
@@ -245,7 +245,7 @@ class Usr
 
     public function delRec($i, $k, $v)
     {
-        global $db,  $smreca, $office, $state;
+        global $db,  $smreca, $office, $auth;
         // check $i ???
 
         $adata = array(
@@ -258,7 +258,7 @@ class Usr
 
     public function setPri($i, $k, $v)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         return $smreca->setPri($db->db1, DB1_TABLE_PREFIX.self::RES, $i, $k, $v);
@@ -266,7 +266,7 @@ class Usr
 
     public function is($v, $k = null, $i = null, $prm = false, $st = true)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
 
         // check $i ???
 
@@ -321,7 +321,7 @@ class Usr
 
     public function get($i, $k)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
 
         $res = null;
         $adata = array(
@@ -337,7 +337,7 @@ class Usr
 
     public function getArr($i, $k, $st=1)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         $res = null;
@@ -356,7 +356,7 @@ class Usr
 
     public function getFullArr($i, $k, $order=null)
     {
-        global $db,  $smreca, $office, $sign, $state;
+        global $db,  $smreca, $office, $sign, $auth;
         // check $i ???
 
         $res = null;
@@ -403,7 +403,7 @@ class Usr
         $tmpres = $smreca->select($db->db1, DB1_TABLE_PREFIX.self::RES, 'id', $adata);
         /*
               if (!$office->can()) {
-                if ( $tmpres != $state->get() ) {
+                if ( $tmpres != $auth->get() ) {
                   $tmpres = null;
                 }
               }
@@ -421,7 +421,7 @@ class Usr
         $tmpres = $smreca->select($db->db1, DB1_TABLE_PREFIX.self::RES, 'st', $adata);
         /*
               if (!$office->can()) {
-                if ( $tmpres != $state->get() ) {
+                if ( $tmpres != $auth->get() ) {
                   $tmpres = null;
                 }
               }
