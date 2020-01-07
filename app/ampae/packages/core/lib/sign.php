@@ -29,12 +29,12 @@ class Sign
         global $session, $cookies, $devices;
         if (!$session->get('state')) {
             // !!! check session if we need to check cookie, if value ==2 !!!
-
+            // !!! dcc & -did to config !!!
             if (!$session->isxSet('dcc')) {
                 $session->set('dcc', 1);
 
                 if (REMEMBER_ME) {
-                    $tmpDevID = $cookies->get(CCID);
+                    $tmpDevID = $cookies->get(CCID.'-did');
                     if ($tmpDevID!==null) {
                         $tmpUid = $devices->get($tmpDevID);
                         if ($tmpUid) {
@@ -48,8 +48,8 @@ class Sign
 
     public function check($login, $pword)
     {
-        global $activity, $session;
-        $tmp = 1111; // !!!
+        global $auth, $activity, $session;
+        $tmp = $auth->get();
         return $tmp;
     }
 
@@ -71,7 +71,7 @@ class Sign
         // !!!move to rememberme !!!
         if (!$cookies->isxSet()) {
             $tmpDevID = $basic->uuid();
-            $cookies->set(CCID, $tmpDevID, DEV_TTL, $controller->info['app_path']);
+            $cookies->set(CCID.'-did', $tmpDevID, DEV_TTL, $controller->info['app_path']);
             $devices->set($tmpDevID, $uid);
         } else {
             // update cookie exp date !!!
@@ -85,7 +85,7 @@ class Sign
     {
         global $activity, $session, $cookies, $devices, $auth;
         // $activity->add($uid, 0, 'logout');
-        // kill cookies !!!
+        $cookies->del(CCID.'-did');
         // kill device !!!
         return $auth->delete();
     }

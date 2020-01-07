@@ -19,7 +19,6 @@
 
 namespace Ampae\Lib;
 
-
 class Smreca
 {
     /*
@@ -54,19 +53,19 @@ class Smreca
     public function set($db, $r, $i, $k, $v)
     {
         $res = false;
-        $cdata = array (
+        $cdata = array(
           'id' => $i,
           'key' => $k
         );
         if ($this->count($db, $r, $cdata) < 1) {
-            $idata = array (
+            $idata = array(
               'id' => $i,
               'key' => $k,
               'val' => $v
             );
             $res = $this->insert($db, $r, $idata);
         } else {
-            $udata = array (
+            $udata = array(
               'SET' => array(
                 'val' => $v
                ),
@@ -84,7 +83,7 @@ class Smreca
     public function count($db, $r, $kvdata)
     {
         $tmpKeys  = array_keys($kvdata);
-        $tmpK     = implode('`=? AND `',$tmpKeys);
+        $tmpK     = implode('`=? AND `', $tmpKeys);
         $tmpK     = '`'.$tmpK.'`=?';
 
         $tmpVal   = array_values($kvdata);
@@ -101,7 +100,7 @@ class Smreca
     {
         //$res          = null;
         $tmpKeys      = array_keys($kvdata);
-        $tmpK         = implode('`=? AND `',$tmpKeys);
+        $tmpK         = implode('`=? AND `', $tmpKeys);
         $tmpK         = '`'.$tmpK.'`=?';
 
         $tmpVal   = array_values($kvdata);
@@ -119,9 +118,9 @@ class Smreca
     public function selectArr($db, $r, $sel, $kvdata)
     {
         //$res          = null;
-        $tmpKeys      = array_keys($kvdata);
-        $tmpK         = implode('`=? AND `',$tmpKeys);
-        $tmpK         = '`'.$tmpK.'`=?';
+        $tmpKeys  = array_keys($kvdata);
+        $tmpK     = implode('`=? AND `', $tmpKeys);
+        $tmpK     = '`'.$tmpK.'`=?';
 
         $tmpVal   = array_values($kvdata);
 
@@ -131,12 +130,12 @@ class Smreca
 
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 //        $res = array_map(function($a) {  return array_pop($a); }, $result);
-        $res = array_map('array_pop',$result); // current array_pop
+        $res = array_map('array_pop', $result); // current array_pop
 
         return $res;
     }
 
-    public function selectFullArr($db, $r, $seldata, $kvdata, $order=null)
+    public function selectFullArr($db, $r, $seldata, $kvdata, $order = null)
     {
         //$res        = null;
         $tmpKeys  = array();
@@ -145,25 +144,25 @@ class Smreca
         $tmpVal   = array();
 
         if (!empty($kvdata)) {
-          $tmpKeys    = array_keys($kvdata);
-          $tmpK       = implode('`=? AND `',$tmpKeys);
-          $tmpK       = '`'.$tmpK.'`=?';
-          $tmpVal     = array_values($kvdata);
+            $tmpKeys    = array_keys($kvdata);
+            $tmpK       = implode('`=? AND `', $tmpKeys);
+            $tmpK       = '`'.$tmpK.'`=?';
+            $tmpVal     = array_values($kvdata);
         }
 
         if (!empty($seldata)) {
-          $tmpS       = implode("`,`",$seldata);
-          $tmpS       = "`".$tmpS."`";
+            $tmpS       = implode("`,`", $seldata);
+            $tmpS       = "`".$tmpS."`";
         }
 
         $sql = 'SELECT '.$tmpS.' FROM `'.$r.'` ';
 
         if (!empty($kvdata)) {
-          $sql.= 'WHERE '.$tmpK.' ';
+            $sql.= 'WHERE '.$tmpK.' ';
         }
 
         if ($order) {
-          $sql.= 'ORDER BY `'.$order.'` DESC ';
+            $sql.= 'ORDER BY `'.$order.'` DESC ';
         }
 
         $sth = $db->prepare($sql);
@@ -186,14 +185,14 @@ class Smreca
         $tmpWhere       = $tmpUpd['WHERE'];
 
         $tmpKeysSet     = array_keys($tmpSet);
-        $tmpKs          = implode('`=? , `',$tmpKeysSet);
+        $tmpKs          = implode('`=? , `', $tmpKeysSet);
         $tmpKs          = '`'.$tmpKs.'`=?';
 
         $tmpKeysWhere   = array_keys($tmpWhere);
-        $tmpKw          = implode('`=? AND `',$tmpKeysWhere);
+        $tmpKw          = implode('`=? AND `', $tmpKeysWhere);
         $tmpKw          = '`'.$tmpKw.'`=?';
 
-        $tmpArr   = array_merge($tmpSet,$tmpWhere);
+        $tmpArr   = array_merge($tmpSet, $tmpWhere);
         $tmpVal   = array_values($tmpArr);
 
         $sql      = 'UPDATE `'.$r.'` SET '.$tmpKs.' WHERE '.$tmpKw.' '; // create another one for arr return
@@ -204,24 +203,34 @@ class Smreca
     }
 
     //  create record k/v to the r with given i
+    /*
+    $kvdata = array(
+      'id' => $i,
+      'key' => 'email',
+      'val' => $email,
+      'prv' => '0',
+      'grp' => '1',
+      'st' => '1'
+    );
+    */
     public function insert($db, $r, $kvdata)
     {
         $t        = time();
         $res      = null;
 
-        $bdata    = array ('key' => $kvdata['key'], 'id' => $kvdata['id']);
+        $bdata    = array('key' => $kvdata['key'], 'id' => $kvdata['id']);
 
         if ($this->count($db, $r, $bdata)) {
-          $kvdata['prm'] = 0;
+            $kvdata['prm'] = 0;
         } else {
-          $kvdata['prm'] = 1;
+            $kvdata['prm'] = 1;
         }
-        $kvdata['ts']   = time();
+        $kvdata['ts'] = time();
 
         $tmpKeys  = array_keys($kvdata);
-        $tmpK     = implode('`, `',$tmpKeys);
+        $tmpK     = implode('`, `', $tmpKeys);
         $tmpK     = '`'.$tmpK.'`';
-        $tmpV     = implode(', :',$tmpKeys);
+        $tmpV     = implode(', :', $tmpKeys);
         $tmpV     = ':'.$tmpV.'';
         $sql      = 'INSERT INTO `'.$r.'` ('.$tmpK.') VALUES ('.$tmpV.') ';
         $tmpQ     = $db->prepare($sql);
@@ -235,7 +244,7 @@ class Smreca
     {
         $res      = null;
         $tmpKeys  = array_keys($kvdata);
-        $tmpK     = implode('`=? AND `',$tmpKeys);
+        $tmpK     = implode('`=? AND `', $tmpKeys);
         $tmpK     = '`'.$tmpK.'`=?';
 
         $tmpVal   = array_values($kvdata);
@@ -260,23 +269,24 @@ class Smreca
           'st' => '1'
         );
         if ($i) {
-          $this->insert($db, $r, $adata);
+            $this->insert($db, $r, $adata);
         }
         return $i;
     }
 
-    public function setPri($db, $r, $i, $k, $v) {
-      $res = false;
-      // only confirmed records can become primary
-      $kvdata = array(
+    public function setPri($db, $r, $i, $k, $v)
+    {
+        $res = false;
+        // only confirmed records can become primary
+        $kvdata = array(
         'id' => $i,
         'key' => $k,
         'val' => $v,
         'st' => 1,
       );
-      if ( $this->count($db, $r, $kvdata) ) {
-          $this->remPri($db, $r, $i, $k);
-          $tmpUpd = array(
+        if ($this->count($db, $r, $kvdata)) {
+            $this->remPri($db, $r, $i, $k);
+            $tmpUpd = array(
             'SET' => array(
               'prm' => 1,
               'grp' => 1
@@ -287,9 +297,9 @@ class Smreca
               'val' => $v
             )
           );
-          $res = $this->update($db, $r, $tmpUpd);
-      }
-      return $res;
+            $res = $this->update($db, $r, $tmpUpd);
+        }
+        return $res;
     }
 
     // --- PRIVATE SERVICE ---
@@ -298,20 +308,21 @@ class Smreca
     //    generate unique record id - i
     private function newid($db, $r)
     {
-      $i = null;
-      for ($j=1;$j<ID_TRY;$j++) {
-        $ic = rand(ID_MIN, ID_MAX);
-        $tmpai = array('id'=>$ic);
-        if ($this->count($db, $r, $tmpai) < 1) {
-          $i = $ic;
-          break;
+        $i = null;
+        for ($j=1;$j<ID_TRY;$j++) {
+            $ic = rand(ID_MIN, ID_MAX);
+            $tmpai = array('id'=>$ic);
+            if ($this->count($db, $r, $tmpai) < 1) {
+                $i = $ic;
+                break;
+            }
         }
-      }
-      return $i;
+        return $i;
     }
 
-    private function remPri($db, $r, $i, $k) {
-      $tmpUpd = array(
+    private function remPri($db, $r, $i, $k)
+    {
+        $tmpUpd = array(
         'SET' => array(
           'prm' => 0,
           'grp' => 0
@@ -321,7 +332,7 @@ class Smreca
           'key' => $k,
         )
       );
-      return $this->update($db, $r, $tmpUpd);
+        return $this->update($db, $r, $tmpUpd);
     }
 
 

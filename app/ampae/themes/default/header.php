@@ -97,13 +97,16 @@ if ($auth->get()) {
     ?>
 <a href="<?php echo $model->appinfo['url'].''; ?>settings"><?php echo $local->translate('settings'); ?></a>
 <a href="<?php echo $model->appinfo['url'].''; ?>signout"><?php echo $local->translate('signout'); ?></a>
+
 <?php
 } else {
-        ?>
+    ?>
 <a href="<?php echo $model->appinfo['url'].''; ?>signin"><?php echo $local->translate('signin'); ?></a>
+<a href="<?php echo $model->appinfo['url'].''; ?>signup"><?php echo $local->translate('signup'); ?></a>
+
 <?php
     }
-?>
+    ?>
 
  </div>
 </div>

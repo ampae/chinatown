@@ -19,7 +19,7 @@
 
 namespace Ampae\Post;
 
-class Signin
+class Signup
 {
     public function index()
     {
@@ -39,7 +39,7 @@ class Signin
         $tmpOp          = 0;
         $tmpUid         = 0;
         $ct_tmp_usrarr  = array();
-        $tmpRedirect    = $model->appinfo['url'].'signin';
+        $tmpRedirect    = $model->appinfo['url'].'signup';
 
         if (!empty($controller->request['email'])) {
             $tmpEmail = $controller->request['email'];
@@ -50,39 +50,39 @@ class Signin
                 $tmpUid = 0;
             }
 
-            if ($tmpKnown) {
-                // signin or set as PRI if logged in !!! ($tmpUid) or do nothing if already PRI
-                if ($tmpUid) {
-                    $tmpOp = '3'; // setPRI
-                } else {
-                    $tmpUid = $usr->getUid($tmpEmail);
-                    $tmpAccSt = $usr->checkUid($tmpUid, 1);
-                    if ($tmpAccSt) {
-                        $tmpOp = '2'; // known, signin
-                        $tmpAcChk = true;
-                    } else {
-                        $tmpOp = '5'; // redir to profile
+            if (!$tmpKnown) {
+                if (!$tmpUid) {
+                    $tmpOp        = '1'; // unknown, signup
+                    $tmp_next     = 'acc'; // !!!
+                    $tmpRedirect  = $model->appinfo['url'].$tmp_next;
+
+                    // !!! get new AC
+                    // !!! mail new AC to usr
+                    //$session->set('tmp-op', $tmpOp);
+/*
+                    $tmpPrm = 0;
+                    $dt = array(
+                      'id' => '1111',
+                      'key' => $tmpEmail,
+                      'val' => '0000',
+                      'prm' => $tmpPrm,
+                      'prv' => '1',
+                      'grp' => '1',
+                      'st' => '1',
+                      'ts' => time(),
+                      'exp' => '0'
+                    );
+                    $smrecb->addRec($db->db1, DB1_TABLE_PREFIX.'ac', $dt);
+*/
+                    if (DEBUG_MODE) {
+                        // count users !!! if more than 20 don't do it !!!
+                        $tmpAc = $ac->get($tmpUid, $tmpEmail); // !!! !!!
+                        $tmpRedirect .= '?uid='.$tmpUid.'$op='.$tmpOp.'&ac='.$tmpAc;
                     }
                 }
-            } else {
-                // signup or add email to UID if logged in
-                if ($tmpUid) {
-                    $tmpOp = '4'; // add2UID
-                } else {
-                    $tmpOp = '1'; // unknown, signup
-                    $tmpAcChk = true;
-                }
             }
-            if ($tmpAcChk) {
-                $session->set('tmp-uid', $tmpUid);
-                $tmp_next = 'acc'; // !!!
-                $tmpRedirect = $model->appinfo['url'].$tmp_next;
-                if (DEBUG_MODE) {
-                    // count users !!! if more than 20 don't do it !!!
-                    $tmpAc = $ac->get($tmpUid, $tmpEmail); // !!! !!!
-                    $tmpRedirect .= '?uid='.$tmpUid.'$op='.$tmpOp.'&ac='.$tmpAc;
-                }
-            }
+            //$session->set('tmp-uid', $tmpUid);
+            //$session->set('tmp-op', $tmpOp);
         } else {
             // alerts !!!
         }

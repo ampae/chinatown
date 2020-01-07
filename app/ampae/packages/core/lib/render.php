@@ -216,6 +216,39 @@ class Render
     // objects
     // -----------------------------------------------------------------------------
 
+    public function signUp()
+    {
+        global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;
+
+        $id = 'sup';
+        $tmpNonce = '';
+        if ($nonce) {
+            $tmpNonce = '?nonce='.$nonce->gen();
+        }
+
+        echo $html->formOpen(
+            $model->appinfo['url'].'signup/process'.$tmpNonce,
+            'POST',
+            $id.'-form',
+            'co-form',
+            '',
+            '',
+            ''
+        );
+        echo '<br />';
+        echo '<legend><strong>'.$local->translate('signup').'</strong></legend>';
+        echo '<br />';
+
+        echo $html->formField('email', 'email', 'form-control', 'fa fa-envelope-o', $local->translate('email'), ''); // , 'autocomplete="off"'
+        echo $html->formFieldHidden('action', $id);
+        //echo $html->formFieldHidden('fid', 'sup');
+
+        echo $html->formClose(
+            $local->translate('signup'),
+            'btn btn-primary btn-lg btn-block'
+        );
+    }
+
     public function logIn()
     {
         global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;

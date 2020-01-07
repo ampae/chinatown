@@ -72,15 +72,14 @@ class Model
         return $ret;
     }
 
-    // TODO add 'raw' to config, add raw file ext 'txt' to config !!!
     public function findTmpl($file)
     {
         global $model;
         $tmpRawPath = DIR_APP.DIRECTORY_SEPARATOR.$model->appinfo['rest_vendor'];
         $tmpRawPath.= DIRECTORY_SEPARATOR.DIR_PACKS;
         $tmpRawPath.= DIRECTORY_SEPARATOR.$model->appinfo['rest_pack'];
-        $tmpRawPath.= DIRECTORY_SEPARATOR.'raw'.DIRECTORY_SEPARATOR;
-        $ret = $tmpRawPath.$file.'.txt';
+        $tmpRawPath.= DIRECTORY_SEPARATOR.DIR_PTMPL.DIRECTORY_SEPARATOR;
+        $ret = $tmpRawPath.$file.'.'.PTMPL_EXT;
         return $ret;
     }
 

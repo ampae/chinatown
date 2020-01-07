@@ -28,6 +28,50 @@ class Smrecb
     {
     }
 
+    public function addRec($db, $r, $dt)
+    {
+
+        /*
+
+        $dt = array(
+          'id' => $i,
+          'key' => 'email',
+          'val' => $email,
+          'prv' => '0',
+          'grp' => '1',
+          'st' => '1'
+        );
+
+        $statement = $link->prepare('INSERT INTO testtable (name, lastname, age)
+            VALUES (:fname, :sname, :age)');
+
+        $statement->execute([
+            'fname' => 'Bob',
+            'sname' => 'Desaunois',
+            'age' => '18',
+        ]);
+
+        $bdata    = array('key' => $dt['key'], 'id' => $dt['id']);
+        if ($this->count($db, $r, $bdata)) {
+            $dt['prm'] = 0;
+        } else {
+            $dt['prm'] = 1;
+        }
+*/
+
+        $res      = null;
+        $tmpKeys  = array_keys($dt);
+        $tmpK     = implode('`, `', $tmpKeys);
+        $tmpK     = '`'.$tmpK.'`';
+        $tmpV     = implode(', :', $tmpKeys);
+        $tmpV     = ':'.$tmpV.'';
+        $sql      = 'INSERT INTO `'.$r.'` ('.$tmpK.') VALUES ('.$tmpV.') ';
+        $tmpQ     = $db->prepare($sql);
+        $res      = $tmpQ->execute($dt);
+
+        return $res;
+    }
+
     public function getRecNew($db, $r, $sel, $dt, $prm = true, $limit = 1)
     {
         $i = 0;
@@ -47,7 +91,6 @@ class Smrecb
         if ($limit) {
             $q .= "LIMIT ".$limit." ";
         }
-        echo '====>>> '.$q;
         $sth = $db->prepare($q);
         $sth->execute();
         $result = $sth->fetch(\PDO::FETCH_ASSOC);
