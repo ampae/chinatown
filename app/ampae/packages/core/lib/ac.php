@@ -96,6 +96,27 @@ class Ac
         // del DEV ID
     }
 
+    // ---
+    public function genNew()
+    {
+        $z = 10000;
+        do {
+            $i = rand(10101010, 98989898); // !!! length 2 config
+            if ($z < 1) {
+                $i = 0;
+                break;
+            }
+            --$z;
+        } while ($this->isOtp($i) > 0);
+        return $i;
+    }
+    public function isOtp($tmpOtp)
+    {
+        global $db, $smrecb;
+        $res = $smrecb->getRec($db->db1, DB1_TABLE_PREFIX.self::RES, 'x', 'val', $tmpOtp, false, 1);
+        return $res;
+    }
+
     private function dbSet($v)
     {
     }

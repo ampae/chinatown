@@ -218,13 +218,15 @@ class Render
 
     public function signUp()
     {
-        global $model, $controller, $sign, $auth, $html, $local, $view, $nonce;
+        global $model, $ac, $controller, $sign, $auth, $html, $local, $view, $nonce;
 
         $id = 'sup';
         $tmpNonce = '';
         if ($nonce) {
             $tmpNonce = '?nonce='.$nonce->gen();
         }
+
+        echo '==>> '.$ac->genNew();
 
         echo $html->formOpen(
             $model->appinfo['url'].'signup/process'.$tmpNonce,

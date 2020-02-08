@@ -57,14 +57,15 @@ class Signup
                     $tmpRedirect  = $model->appinfo['url'].$tmp_next;
 
                     // !!! get new AC
+                    $tmpAc = $ac->genNew();
                     // !!! mail new AC to usr
                     //$session->set('tmp-op', $tmpOp);
 /*
-                    $tmpPrm = 0;
+                    $tmpPrm = 1; // make sure is SINGLE email !!!
                     $dt = array(
                       'id' => '1111',
                       'key' => $tmpEmail,
-                      'val' => '0000',
+                      'val' => $tmpAc,
                       'prm' => $tmpPrm,
                       'prv' => '1',
                       'grp' => '1',
